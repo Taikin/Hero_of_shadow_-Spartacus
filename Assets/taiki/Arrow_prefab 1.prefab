@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33009921165897868}
   - component: {fileID: 23551872229514082}
   - component: {fileID: 65944437702703520}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arrow00_mesh(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 4441779722578614}
   - component: {fileID: 114344579044386628}
   - component: {fileID: 54461730937661134}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arrow_prefab 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

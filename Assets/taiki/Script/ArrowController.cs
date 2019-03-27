@@ -46,7 +46,6 @@ public class ArrowController : MonoBehaviour {
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-      //  child = transform.FindChild("Arrow00_mesh(Clone)").gameObject.GetComponent<BoxCollider>(); ;
         
         //曲線矢なら
         if (arrowtype == 2)
@@ -70,7 +69,12 @@ public class ArrowController : MonoBehaviour {
             speed = 0;
             gravity = 0;
             slowspeed = 0;
-            Debug.Log("aa");
+           
+        }
+        //矢が地面に当たると消す
+        if (collision.gameObject.tag == "ground")
+        {
+            Destroy(this.gameObject);
         }
     }
     
@@ -82,13 +86,9 @@ public class ArrowController : MonoBehaviour {
         {
             rb.constraints = RigidbodyConstraints.None;
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezePositionZ;
-            //if (arrowtype == 2)
-            //{
-              //  child.isTrigger = true;
-           // }
             rb.useGravity = true;
-          //  Debug.Log("2");
-            
+            transform.Rotate(0, 0, 2);
+
         }
 
         if (arrowtype==0)
