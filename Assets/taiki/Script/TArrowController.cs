@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class ArrowController : MonoBehaviour {
+public class TArrowController : MonoBehaviour {
    
     //それぞれの位置を保存する変数
     //スタート地点

@@ -59,7 +59,7 @@ public class ArrowGenerator : MonoBehaviour
             //矢の初期位置を敵の位置にする
           //  t.transform.position = pos;
             //矢につけているスクリプトを保存する
-            var cash = t.GetComponent<ArrowController>();
+            var cash = t.GetComponent<TArrowController>();
             //スタート地点を矢のスクリプトに渡す
             cash.CharaPos = this.transform.position;
 

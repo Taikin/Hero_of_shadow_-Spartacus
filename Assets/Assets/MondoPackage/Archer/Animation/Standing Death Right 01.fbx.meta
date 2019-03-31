@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ce3cc2a0fe45ae34188a7804494ebae9
+guid: 1b076d2fe168318479d721250620f2d2
 timeCreated: 1553325275
 licenseType: Free
 ModelImporter:
@@ -166,22 +166,22 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Akai_MAT
-    second: {fileID: 2100000, guid: 18cceadcb90d874428f3a80bc15c96c4, type: 2}
+    second: {fileID: 2100000, guid: e6a8fd9e75a10214e8c14f273b2a88db, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Body_MAT
-    second: {fileID: 2100000, guid: 48ff39396bac48d4091ed96a268837a5, type: 2}
+    second: {fileID: 2100000, guid: 62fff89a7c0657c4fb814a44fcbcb4ce, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: EyeSpec_MAT
-    second: {fileID: 2100000, guid: 48ff39396bac48d4091ed96a268837a5, type: 2}
+    second: {fileID: 2100000, guid: 62fff89a7c0657c4fb814a44fcbcb4ce, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Lashes_MAT
-    second: {fileID: 2100000, guid: 48ff39396bac48d4091ed96a268837a5, type: 2}
+    second: {fileID: 2100000, guid: 62fff89a7c0657c4fb814a44fcbcb4ce, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
