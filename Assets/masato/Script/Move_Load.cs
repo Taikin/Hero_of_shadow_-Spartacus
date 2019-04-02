@@ -15,7 +15,7 @@ public class Move_Load : MonoBehaviour
     void Update()
     {
         transform.position += new Vector3(-0.1f, 0.0f, 0.0f);
-        LoadTime += 1.0f;
+        LoadTime += 0.05f;
         if (transform.position.x < -14.0f)
         {
             transform.position = new Vector3(16.7f, -2, -4.5f);
@@ -28,7 +28,7 @@ public class Move_Load : MonoBehaviour
         if (LoadTime > 300)
         {
             // 黄緑色に変更する
-            gameObject.GetComponent<Renderer>().material.color = new Color(173, 255, 47);
+            gameObject.GetComponent<Renderer>().material.color = Color.red;
         }
         Debug.Log(LoadTime);
     }
