@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shield_Center : MonoBehaviour {
+public class Shield_Center_SC : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

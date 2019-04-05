@@ -6,7 +6,7 @@ using UnityEngine;
 public class Beaten_SC : MonoBehaviour {
 
     private Animator animator;
-    public int Time;
+    private int Time;
     bool TimeFlg;
 
     // Use this for initialization

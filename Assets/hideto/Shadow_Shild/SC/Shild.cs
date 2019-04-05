@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Shild : MonoBehaviour {
 
-    public float Width, Length;
-    public float Position_x, Position_y;
-    public float Rotate_x, Rotate_y, Rotate_z;
-    public int Distance, Time;
-    public float Horizontal, Vertical;
-    public int PosFlg;
+    private float Shild_Width, Shild_Length;
+    private float Position_x, Position_y;
+    private float Rotate_x, Rotate_y, Rotate_z;
+    private int Distance, Time;
+    private float Horizontal, Vertical;
+    private int PosFlg;
 
 	// Use this for initialization
 	void Start () {
         // 大きさ
-        Width = 1;
-        Length = 1;
+        Shild_Width = 1;
+        Shild_Length = 1;
         // 位置
         Position_x = 0.5f;
         Position_y = 0;
@@ -32,7 +32,7 @@ public class Shild : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         // 大きさ・位置・回転
-        this.transform.localScale = new Vector2(Width, Length);
+        this.transform.localScale = new Vector2(Shild_Width, Shild_Length);
         this.transform.localPosition = new Vector2(Position_x, Position_y);
         transform.eulerAngles = new Vector3(Rotate_x, Rotate_y, Rotate_z);
 
@@ -51,11 +51,11 @@ public class Shild : MonoBehaviour {
         switch (Distance)
         {
             case 8:
-                Length = 0.8f;
+                Shild_Length = 0.8f;
                 break;
 
             case 5:
-                Length = 0.5f;
+                Shild_Length = 0.5f;
                 break;
         }
 
