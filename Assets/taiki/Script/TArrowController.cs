@@ -24,25 +24,30 @@ public class TArrowController : MonoBehaviour {
     float time;
 
     public float speed;             //普通の矢
-    public float slowspeed;  //ゆっくり矢
+    public float slowspeed;          //ゆっくり矢
     public float curvespeed;        //曲線矢の速さ
-
+    
     //上に力を入れる変数
     float gravity = 1;
 
     //矢が落ち始める回転の時間
     float step;
     float rotspeed=0.8f;
-
+    float Boundspeed=5f;        //跳ね返す速さ
+    float rotatespeed = 2f; //落ちながら回転する変数   
     //盾(真ん中でない)場合の管理変数
     bool protect= false;
 
-    
+    bool middle = false;
+    Vector3 direction;
+
+    Vector3 hitposition;    //rayでhitしたオブジェクトの位置を取得
+  
     //回転する方向
     Vector3 look;
     Rigidbody rb;
-    
-    Collider child;
+    Ray ray;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -71,23 +76,94 @@ public class TArrowController : MonoBehaviour {
             slowspeed = 0;
            
         }
+        //盾（真ん中）部分に当たった時
+        if (collision.gameObject.tag == "middlepoint")
+        {
+            //真ん中に当たったフラグが立つ
+            middle = true;
+            speed = 0;
+            gravity = 0;
+            slowspeed = 0;
+            RayPlay();  //Raycast,Rayの関数呼び出し
+          
+
+        }
+       
         //矢が地面に当たると消す
         if (collision.gameObject.tag == "ground")
         {
             Destroy(this.gameObject);
         }
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //跳ね返ったフラグが立っていてgameObjectのタグに当たった時
+        if (other.gameObject.tag == "enemy" && middle == true)
+        {
+            Destroy(this.gameObject);
+        }
+
+    }
+
+    //Raycast,Rayの処理
+    void RayPlay()
+    {
+
+        //敵の方向取得
+        direction = (this.transform.position- charaPos).normalized;
+            
+        this.ray = new Ray(transform.position, -direction);
+        RaycastHit hit;
+        Debug.DrawRay(ray.origin, ray.direction * 300, Color.red);
+
+        if (Physics.Raycast(ray, out hit, 300))
+        {
+            if (hit.collider.tag == "enemy")
+            {
+                //当たったオブジェクトの位置を取得
+                hitposition = hit.point+new Vector3(-1,0,0);
+                Debug.Log("teki");
+                Debug.Log(hitposition + "位置");
+
+                //当たったオブジェクトに向けて回転
+                if (arrowtype != 2)
+                {
+                    Vector2 look = hit.point;
+                    transform.rotation = Quaternion.FromToRotation(Vector2.right + new Vector2(0, 1.4f), look);
+
+                }
+                //当たったオブジェクトに向けて回転
+                else
+                {
+                    transform.Rotate(0, 0, -150f);
+                }
+            }
+        }
+
+
+    }
+
     // Update is called once per frame
     void Update()
-    {
+    { 
+        //曲線矢以外で盾（真ん中）部分に当たった時
+        if (middle == true&&arrowtype!=2)
+        {
+            // Debug.Log("あたり");
+            float middletime = Time.deltaTime*8;
+            //敵の方向へ矢が飛ぶ
+            rb.MovePosition(Vector2.Lerp(this.transform.position, hitposition,middletime));
+        }
+
+
         //盾(真ん中でない)部分に当たった時
-        if (protect == true)
+        if (protect == true&&arrowtype!=2)
         {
             rb.constraints = RigidbodyConstraints.None;
             rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezePositionZ;
             rb.useGravity = true;
-            transform.Rotate(0, 0, 2);
+            transform.Rotate(0, 0, rotatespeed);    //オブジェクトを回す
 
         }
 
@@ -97,29 +173,29 @@ public class TArrowController : MonoBehaviour {
             rb.AddForce(speed, gravity, 0);
         }
 
-         if (arrowtype==1)
+        else if (arrowtype==1)
         {
           
-             /*ゆっくりの矢*/
+                /*ゆっくりの矢*/
             rb.AddForce(slowspeed, 0, 0);
         }
        
         /*************曲線矢*************/
-        if(arrowtype==2)
+        else if(arrowtype==2)
         {
 
             //矢の進む割合をTime.deltaTimeで決める
             time += Time.deltaTime / curvespeed;
 
             //ターゲットまで到達していないとき  
-            if (this.transform.position != playerPos&& protect== false)
+            if (this.transform.position != playerPos&& protect== false&&middle==false)
             {
                 //二次ベジェ曲線
                 //スタート地点から中継地点までのベクトル上を通る点の現在の位置
-               var a = Vector3.Lerp(charaPos, greenPos, time);
+                var a = Vector3.Lerp(charaPos, greenPos, time);
 
                 //中継地点からターゲットまでのベクトル上を通る点の現在の位置
-               var b = Vector3.Lerp(greenPos, playerPos, time);
+                var b = Vector3.Lerp(greenPos, playerPos, time);
                 //上の二つの点を結んだベクトル上を通る点の現在の位置（弾の位置）
                 this.transform.position = Vector3.Lerp(a, b, time);             //曲線矢
 
@@ -127,12 +203,24 @@ public class TArrowController : MonoBehaviour {
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, -120f), step); //z軸-120度まで回転させ矢を下向きに
                
             }
-            //矢がターゲットに到達したら
-            if (protect == true)
+            //曲線矢が真ん中に当たった時の処理
+            else if (middle == true)
             {
+                Debug.Log("あたり");
+                float middletime = Time.deltaTime*Boundspeed;
+                //敵の方向へ矢が飛ぶ
+                transform.position = Vector3.Lerp(this.transform.position, hitposition, middletime);
+               
+            }
+            //矢がターゲットに到達したら
+            else if (protect == true)
+            {
+                rb.constraints = RigidbodyConstraints.None;
+                rb.constraints =  RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationY;
+                rb.useGravity = true;
                 //矢を回転させながら落とす
                 rb.AddForce(-3, 0, 0);
-                transform.Rotate(0, 0, 2);
+                transform.Rotate(0, 0, rotatespeed);    //オブジェクトを回す
             }
             
         }
