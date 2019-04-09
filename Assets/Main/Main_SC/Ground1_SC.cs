@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move_Load : MonoBehaviour
-{
+public class Ground1_SC : MonoBehaviour {
+
     float LoadTime;
     public Material[] _material;           // 割り当てるマテリアル. 
     private int Material_Num;
@@ -13,28 +13,28 @@ public class Move_Load : MonoBehaviour
     private float x1;
     public int ChangeNumber;
 
+
     // Use this for initialization
-    void Start()
-    {
+    void Start () {
         // ground_1の初期位置
         Position_x = -0.3f;
-        Position_y = 0.95f;
+        Position_y = 0.76f;
         Position_z = -9.5f;
 
         Material_Num = 0;
-        ChangeNumber = 0 ;
+        ChangeNumber = 0;
         x1 = -0.01f;
         transform.position = new Vector3(Position_x, Position_y, Position_z);
+
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        transform.position += new Vector3(x1,0, 0);
+    void Update () {
+        transform.position += new Vector3(x1, 0, 0);
         LoadTime += 0.1f;
         if (transform.position.x < -2.0f)
         {
-            Position_x =  2.0f;
+            Position_x = 2.0f;
             ChangeNumber += 1;
             transform.position = new Vector3(Position_x, Position_y, Position_z);
         }
@@ -57,12 +57,12 @@ public class Move_Load : MonoBehaviour
         this.GetComponent<MeshRenderer>().material = _material[Material_Num];
         // Debug.Log(LoadTime);//513でだいたい90秒
         // Debug.Log(i);//513でだいたい90秒7
-        Debug.Log(ChangeNumber);
+        //Debug.Log(ChangeNumber);
     }
 
     public int GetChangeNumber()
     {
         return ChangeNumber;
     }
-}
 
+}
