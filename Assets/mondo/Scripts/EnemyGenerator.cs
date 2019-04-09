@@ -72,6 +72,8 @@ public class EnemyGenerator : MonoBehaviour
                 activeEnemys[i] = prefab;
                 // 敵が移動する目標地点を敵のスクリプトに渡す
                 enemyController._EnemyPosition = enemyPositions[i];
+                // 敵のポジション状態をセットする
+                enemyController.SetEnemyPosType(i);
                 break;
             }
         }
@@ -90,6 +92,8 @@ public class EnemyGenerator : MonoBehaviour
             var enemyController = activeEnemys[i - 1].GetComponent<EnemyController>();
             // 敵の移動位置を更新
             enemyController._EnemyPosition = enemyPositions[i - 1];
+            // 敵のポジション状態をセットする
+            enemyController.SetEnemyPosType(i - 1);
         }
     }
 }
