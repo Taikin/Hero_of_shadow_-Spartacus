@@ -8,6 +8,9 @@ TagManager:
   - middlepoint
   - ground
   - arrow
+  - TestArrow
+  - Arrow
+  - enemy
   layers:
   - Default
   - TransparentFX

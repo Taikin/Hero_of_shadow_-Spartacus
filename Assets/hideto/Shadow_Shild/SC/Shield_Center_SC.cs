@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class test6 : MonoBehaviour {
+public class Shield_Center_SC : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,4 +13,10 @@ public class test6 : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    void OnCollisionEnter2D(Collision2D Shield_Center)
+    {
+        Debug.Log("真ん中に当たった");
+    }
+
 }
