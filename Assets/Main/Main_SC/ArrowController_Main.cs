@@ -41,9 +41,122 @@ public class ArrowController_Main : MonoBehaviour {
     public Vector3 PlayerPos { set { playerPos = value; } }
     public Vector3 GreenPos { set { greenPos = value; } }
 
+
+
+
+
+    //上に力を入れる変数
+    float gravity = 1;
+
+    //矢が落ち始める回転の時間
+    float Boundspeed = 5f;        //跳ね返す速さ
+    float rotatespeed = 2f; //落ちながら回転する変数  
+    
+    //盾(真ん中でない)場合の管理変数
+    bool protect = false;
+
+    bool middle = false;
+    Vector3 direction;
+
+    Vector3 hitposition;    //rayでhitしたオブジェクトの位置を取得
+
+    Rigidbody rb;
+    Ray ray;
+
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //盾(真ん中でない)部分に当たった時
+        if (collision.gameObject.tag == "shieldpoint")
+        {
+
+            protect = true;
+            speed = 0;
+            gravity = 0;
+            slowspeed = 0;
+
+        }
+        //盾（真ん中）部分に当たった時
+        if (collision.gameObject.tag == "middlepoint")
+        {
+            //真ん中に当たったフラグが立つ
+            middle = true;
+            speed = 0;
+            gravity = 0;
+            slowspeed = 0;
+            RayPlay();  //Raycast,Rayの関数呼び出し
+
+
+        }
+
+        //矢が地面に当たると消す
+        if (collision.gameObject.tag == "ground")
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //跳ね返ったフラグが立っていてgameObjectのタグに当たった時
+        if (other.gameObject.tag == "enemy" && middle == true)
+        {
+            Destroy(this.gameObject);
+        }
+
+    }
+
+    //Raycast,Rayの処理
+    void RayPlay()
+    {
+
+        //敵の方向取得
+        direction = (this.transform.position - charaPos).normalized;
+
+        this.ray = new Ray(transform.position, -direction);
+        RaycastHit hit;
+        Debug.DrawRay(ray.origin, ray.direction * 300, Color.red);
+
+        if (Physics.Raycast(ray, out hit, 300))
+        {
+            if (hit.collider.tag == "enemy")
+            {
+                //当たったオブジェクトの位置を取得
+                hitposition = hit.point + new Vector3(-1, 0, 0);
+                Debug.Log("teki");
+                Debug.Log(hitposition + "位置");
+
+                //当たったオブジェクトに向けて回転
+                if (arrowState != ArrowState._CURVE_LINE)
+                {
+                    Vector2 look = hit.point;
+                    transform.rotation = Quaternion.FromToRotation(Vector2.right + new Vector2(0, 1.4f), look);
+
+                }
+                //当たったオブジェクトに向けて回転
+                else
+                {
+                    transform.Rotate(0, 0, -150f);
+                }
+            }
+        }
+
+
+    }
+
+
+
+
+
+
+
+
+
+
 
     void Update()
     {
@@ -106,11 +219,11 @@ public class ArrowController_Main : MonoBehaviour {
     {
         //Debug.Log("曲線");
         //曲線矢なら
-        if (arrowState == ArrowState._CURVE_LINE && !doOnceFlg)
+        if (!doOnceFlg)
         {
             //矢を上向きに
             look = greenPos;
-            transform.rotation = Quaternion.FromToRotation(Vector3.up, look);
+            transform.rotation = Quaternion.FromToRotation(Vector3.left, look);
             // 処理を一度だけ通すのに使用
             doOnceFlg = true;
         }

@@ -2646,7 +2646,7 @@ MonoBehaviour:
   greenPoint: {fileID: 0}
   greenPoint1: {fileID: 0}
   target: {fileID: 0}
-  enemySpeed: 0.5
+  enemySpeed: 0.3
 --- !u!137 &137292174031009734
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

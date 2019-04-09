@@ -14,6 +14,7 @@ public class GameMgr_Main : MonoBehaviour {
 
     private void Start()
     {
+        
     }
 
     private void Update()

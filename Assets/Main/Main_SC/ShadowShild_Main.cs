@@ -19,7 +19,7 @@ public class ShadowShild_Main : MonoBehaviour {
         Shild_Length = 0.1f;
         // 位置
         Position_x = -0.88f;
-        Position_y = 1.6f;
+        Position_y = 1.8f;
         Position_z = -7f;
         // 回転
         Rotate_x = 0;
@@ -64,11 +64,11 @@ public class ShadowShild_Main : MonoBehaviour {
         }
 
         // 盾の移位置微調整
-        if (1.9f <= Position_y)
+        if (2.05f <= Position_y)
         {
             PosFlg = -1;
         }
-        else if (1.5f >= Position_y)
+        else if (1.7f >= Position_y)
         {
             PosFlg = 1;
         }
