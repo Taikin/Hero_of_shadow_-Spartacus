@@ -27,6 +27,15 @@ public class EnemyController : MonoBehaviour
         _ALL_ARROW,                          // 全ての矢を飛ばす敵
     }
 
+
+    // 敵のポジションタイプ（追加）
+    public enum ENEMYPOS_TYPE
+    {
+        _FORWARD,                            // 前方
+        _MIDDLE,                             // 中間
+        _BACK,                               // 後方
+    }
+
     [SerializeField, Header("矢を生成する位置")]
     private GameObject arrowPos;
     [SerializeField, Header("現在持っている矢")]
@@ -39,6 +48,8 @@ public class EnemyController : MonoBehaviour
     private GameObject greenPoint1;
     [SerializeField, Header("ターゲット（プレイヤー）")]
     private GameObject target;
+    [SerializeField, Header("敵が移動するスピード")]
+    private float enemySpeed;
 
     private GameObject enemyPosition;           // 敵が進んでいく位置
     private Animator animator;
@@ -47,6 +58,7 @@ public class EnemyController : MonoBehaviour
     private STATE state;                        // 状態を格納
     private STATE preState;                     // 前の状態を格納
     private ENEMYTYPE enemyType;                // 敵のタイプを格納
+    private ENEMYPOS_TYPE enemyPosType;         // 敵のポジションタイプを格納
     private float keyInputTime;                 // Time.deltaTimeの値を格納
     private float createTime;                   // 矢を生成する時間
     private int count = 0;                      // 中継地点を割り振るための変数
@@ -61,6 +73,8 @@ public class EnemyController : MonoBehaviour
     public GameObject _GreenPoint1 { set { greenPoint1 = value; } }
     public GameObject _EnemyPosition { get { return enemyPosition; } set{ enemyPosition = value; }}
     public EnemyGenerator _EnemyGeneratorCon { set { enemyGeneratorCon = value; } }
+    public ENEMYPOS_TYPE _EnemyPos_Type { get { return enemyPosType; } set { enemyPosType = value; } }
+
 
     void Start ()
     {
@@ -68,7 +82,7 @@ public class EnemyController : MonoBehaviour
         this.state = STATE._IDLE;
         this.preState = STATE._IDLE;
         enemyType = ENEMYTYPE._ALL_ARROW;
-        ArrowCreate();
+        ArrowCreate();                                          // 矢を生成
         CheckEnemyType();                                       // 敵のタイプを初期化
     }
 	
@@ -80,7 +94,7 @@ public class EnemyController : MonoBehaviour
         // 目標地点に移動
         if (Vector3.Distance(enemyPosition.transform.position, transform.position) > 0.5f && state != STATE._DAMAGE)
         {
-            transform.position += transform.forward * Time.deltaTime * 2;
+            transform.position += transform.forward * Time.deltaTime * enemySpeed;
         }
 	}
 
@@ -158,9 +172,16 @@ public class EnemyController : MonoBehaviour
         arrowController.CharaPos = arrowController.gameObject.transform.position;
         //　矢を一つ打ち出すたびに中継地点を変える
         count++;
-        //　中継地点を矢のスクリプトに渡す
-        if (count % 2 == 1) arrowController.GreenPos = greenPoint.transform.position;
-        else arrowController.GreenPos = greenPoint1.transform.position;
+        //　敵のポジションが一番後ろなら、greenPointを格納
+        if(enemyPosType == ENEMYPOS_TYPE._BACK)
+        {
+            arrowController.GreenPos = greenPoint.transform.position;
+        }
+        // それ以外ならgreenPoint1を格納
+        else
+        {
+            arrowController.GreenPos = greenPoint1.transform.position;
+        }
         //　プレイヤー（ターゲット）の位置を矢のスクリプトに渡す
         arrowController.PlayerPos = target.transform.position;
         // 矢を飛ばす
@@ -192,30 +213,55 @@ public class EnemyController : MonoBehaviour
         //　矢のコントローラーを取得
         var arrowController = arrow.GetComponent<ArrowController>();
 
-        // 敵のタイプに応じて矢の種類を変える
-        switch (enemyType)
+        // 敵が一番前にいたら
+        if(enemyPosType == ENEMYPOS_TYPE._FORWARD)
+        { 
+            // 敵のタイプに応じて矢の種類を変える
+            switch (enemyType)
+            {
+                case ENEMYTYPE._STRAOGHT:               // 直線の矢を飛ばす敵
+                    arrowController._ArrowState = ArrowController.ArrowState._STRAOGHT_LINE;
+                    break;
+                case ENEMYTYPE._SLOW:                   // ゆっくりの矢を飛ばす敵
+                    arrowController._ArrowState = ArrowController.ArrowState._SLOW_LINE;
+                    break;
+                case ENEMYTYPE._STRAOGHT_AND_SLOW:      // 直線とゆっくりな矢を飛ばす敵
+                    arrowController._ArrowState = ArrowController.ArrowState._STRAOGHT_AND_SLOW_LINE;
+                    break;
+                default:                                // それ以外なら直線とゆっくりな矢を飛ばす敵にする
+                    arrowController._ArrowState = ArrowController.ArrowState._STRAOGHT_AND_SLOW_LINE;
+                    break;
+            }
+            EnemyTextType();
+        }
+        // それ以外なら（通常の指定された敵タイプで処理）
+        else
         {
-            case ENEMYTYPE._STRAOGHT:               // 直線の矢を飛ばす敵
-                arrowController._ArrowState = ArrowController.ArrowState._STRAOGHT_LINE;
-                break;
-            case ENEMYTYPE._CURVE:                  // 曲線の矢を飛ばす敵
-                arrowController._ArrowState = ArrowController.ArrowState._CURVE_LINE;
-                break;
-            case ENEMYTYPE._SLOW:                   // ゆっくりの矢を飛ばす敵
-                arrowController._ArrowState = ArrowController.ArrowState._SLOW_LINE;
-                break;
-            case ENEMYTYPE._STRAOGHT_AND_CURVE:     // 直線と曲線の矢を飛ばす敵
-                arrowController._ArrowState = ArrowController.ArrowState._STRAOGHT_AND_CURVE_LINE;
-                break;
-            case ENEMYTYPE._STRAOGHT_AND_SLOW:      // 直線とゆっくりな矢を飛ばす敵
-                arrowController._ArrowState = ArrowController.ArrowState._STRAOGHT_AND_SLOW_LINE;
-                break;
-            case ENEMYTYPE._SLOW_AND_CURVE:         // 曲線とゆっくりな矢を飛ばす敵
-                arrowController._ArrowState = ArrowController.ArrowState._SLOW_AND_CURVE_LINE;
-                break;
-            case ENEMYTYPE._ALL_ARROW:              // 全ての矢を飛ばす敵
-                arrowController._ArrowState = ArrowController.ArrowState._ALL_ARROW_LINE;
-                break;
+            // 敵のタイプに応じて矢の種類を変える
+            switch (enemyType)
+            {
+                case ENEMYTYPE._STRAOGHT:               // 直線の矢を飛ばす敵
+                    arrowController._ArrowState = ArrowController.ArrowState._STRAOGHT_LINE;
+                    break;
+                case ENEMYTYPE._CURVE:                  // 曲線の矢を飛ばす敵
+                    arrowController._ArrowState = ArrowController.ArrowState._CURVE_LINE;
+                    break;
+                case ENEMYTYPE._SLOW:                   // ゆっくりの矢を飛ばす敵
+                    arrowController._ArrowState = ArrowController.ArrowState._SLOW_LINE;
+                    break;
+                case ENEMYTYPE._STRAOGHT_AND_CURVE:     // 直線と曲線の矢を飛ばす敵
+                    arrowController._ArrowState = ArrowController.ArrowState._STRAOGHT_AND_CURVE_LINE;
+                    break;
+                case ENEMYTYPE._STRAOGHT_AND_SLOW:      // 直線とゆっくりな矢を飛ばす敵
+                    arrowController._ArrowState = ArrowController.ArrowState._STRAOGHT_AND_SLOW_LINE;
+                    break;
+                case ENEMYTYPE._SLOW_AND_CURVE:         // 曲線とゆっくりな矢を飛ばす敵
+                    arrowController._ArrowState = ArrowController.ArrowState._SLOW_AND_CURVE_LINE;
+                    break;
+                case ENEMYTYPE._ALL_ARROW:              // 全ての矢を飛ばす敵
+                    arrowController._ArrowState = ArrowController.ArrowState._ALL_ARROW_LINE;
+                    break;
+            }
         }
     }
 
@@ -305,5 +351,25 @@ public class EnemyController : MonoBehaviour
         }
 
         return "NULL";
+    }
+
+    // 敵のいるポジションの状態をセットする
+    public void SetEnemyPosType(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                // ポジションの状態を前へ
+                enemyPosType = EnemyController.ENEMYPOS_TYPE._FORWARD;
+                break;
+            case 1:
+                // ポジションの状態を中間へ
+                enemyPosType = EnemyController.ENEMYPOS_TYPE._MIDDLE;
+                break;
+            case 2:
+                // ポジションの状態を後ろへ
+                enemyPosType = EnemyController.ENEMYPOS_TYPE._BACK;
+                break;
+        }
     }
 }
