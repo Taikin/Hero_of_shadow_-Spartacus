@@ -15,7 +15,7 @@ public class TArrowController : MonoBehaviour {
     //中継地点
     private Vector3 greenPos;
     public Vector3 GreenPos { set { greenPos = value; } }
-    
+
     //矢の種類
     private float arrowtype;
     public float Arrowtype { set { arrowtype = value; } }
@@ -41,6 +41,7 @@ public class TArrowController : MonoBehaviour {
     bool middle = false;
     Vector3 direction;
 
+    GameObject shadowobj;
     Vector3 hitposition;    //rayでhitしたオブジェクトの位置を取得
   
     //回転する方向
@@ -79,6 +80,12 @@ public class TArrowController : MonoBehaviour {
         //盾（真ん中）部分に当たった時
         if (collision.gameObject.tag == "middlepoint")
         {
+            shadowobj = transform.GetChild(1).gameObject;
+            shadowobj.transform.parent = null;
+            //影の矢を削除    
+            
+            //s.transform.position = new Vector3(1f, 0, 0);
+            //Destroy(s);
             //真ん中に当たったフラグが立つ
             middle = true;
             speed = 0;
@@ -129,6 +136,7 @@ public class TArrowController : MonoBehaviour {
                 //当たったオブジェクトに向けて回転
                 if (arrowtype != 2)
                 {
+                   
                     Vector2 look = hit.point;
                     transform.rotation = Quaternion.FromToRotation(Vector2.right + new Vector2(0, 1.4f), look);
 
@@ -150,10 +158,13 @@ public class TArrowController : MonoBehaviour {
         //曲線矢以外で盾（真ん中）部分に当たった時
         if (middle == true&&arrowtype!=2)
         {
+            shadowobj.transform.parent = this.transform;
             // Debug.Log("あたり");
             float middletime = Time.deltaTime*8;
             //敵の方向へ矢が飛ぶ
             rb.MovePosition(Vector2.Lerp(this.transform.position, hitposition,middletime));
+            
+            
         }
 
 

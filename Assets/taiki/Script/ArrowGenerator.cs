@@ -9,6 +9,8 @@ public class ArrowGenerator : MonoBehaviour
     public GameObject player;
     //矢のプレハブ
     public GameObject Arrow;
+    //影の矢のプレハブ
+    public GameObject shadow_Arrow;
     //矢を秒ごとに打ち出す
     public float targetTime;
     private float currentTime = 0;
@@ -55,15 +57,19 @@ public class ArrowGenerator : MonoBehaviour
             //矢のプレハブを作成
             var t = Instantiate(Arrow) as GameObject;
 
+            //影の矢プレハブを作成
+            var a = Instantiate(shadow_Arrow) as GameObject;
+            
+            //影の矢を子にする
+            a.transform.parent = t.transform;
 
             //矢の初期位置を敵の位置にする
-          //  t.transform.position = pos;
+            //  t.transform.position = pos;
             //矢につけているスクリプトを保存する
             var cash = t.GetComponent<TArrowController>();
             //スタート地点を矢のスクリプトに渡す
             cash.CharaPos = this.transform.position;
-
-
+           
             //矢を一つ打ち出すたびに中継地点を変える
             count++;
             //中継地点を矢のスクリプトに渡す
