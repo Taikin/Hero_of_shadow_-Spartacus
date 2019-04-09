@@ -11,6 +11,7 @@ TagManager:
   - TestArrow
   - Arrow
   - enemy
+  - Sparutakusu
   layers:
   - Default
   - TransparentFX

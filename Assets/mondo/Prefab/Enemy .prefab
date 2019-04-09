@@ -1465,7 +1465,7 @@ Transform:
   m_GameObject: {fileID: 1584398881543906}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 1.2655873, y: -0.8184908, z: -1.831684}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4144940278695038}
   - {fileID: 4132648942510514}
@@ -2646,6 +2646,7 @@ MonoBehaviour:
   greenPoint: {fileID: 0}
   greenPoint1: {fileID: 0}
   target: {fileID: 0}
+  enemySpeed: 2
 --- !u!137 &137161263459844742
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
