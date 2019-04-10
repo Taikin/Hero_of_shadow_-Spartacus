@@ -27,9 +27,6 @@ public class TArrowController : MonoBehaviour {
     public float slowspeed;          //ゆっくり矢
     public float curvespeed;        //曲線矢の速さ
     
-    //上に力を入れる変数
-    float gravity = 1;
-
     //矢が落ち始める回転の時間
     float step;
     float rotspeed=0.8f;
@@ -46,12 +43,12 @@ public class TArrowController : MonoBehaviour {
   
     //回転する方向
     Vector3 look;
-    Rigidbody rb;
+    Rigidbody2D rb;
     Ray ray;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
         
         //曲線矢なら
         if (arrowtype == 2)
@@ -64,32 +61,28 @@ public class TArrowController : MonoBehaviour {
         
         
     }
-
-    private void OnCollisionEnter(Collision collision)
+   
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         //盾(真ん中でない)部分に当たった時
         if (collision.gameObject.tag == "shieldpoint")
         {
-
+            Debug.Log("あたり");
             protect = true;
             speed = 0;
-            gravity = 0;
             slowspeed = 0;
-           
+
         }
         //盾（真ん中）部分に当たった時
         if (collision.gameObject.tag == "middlepoint")
         {
-            shadowobj = transform.GetChild(1).gameObject;
-            shadowobj.transform.parent = null;
-            //影の矢を削除    
             
-            //s.transform.position = new Vector3(1f, 0, 0);
-            //Destroy(s);
+
+            Debug.Log("真ん中あたり");
+           
             //真ん中に当たったフラグが立つ
             middle = true;
             speed = 0;
-            gravity = 0;
             slowspeed = 0;
             RayPlay();  //Raycast,Rayの関数呼び出し
           
@@ -103,7 +96,7 @@ public class TArrowController : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         //跳ね返ったフラグが立っていてgameObjectのタグに当たった時
         if (other.gameObject.tag == "enemy" && middle == true)
@@ -138,7 +131,7 @@ public class TArrowController : MonoBehaviour {
                 {
                    
                     Vector2 look = hit.point;
-                    transform.rotation = Quaternion.FromToRotation(Vector2.right + new Vector2(0, 1.4f), look);
+                    transform.rotation = Quaternion.FromToRotation(Vector2.right + new Vector2(0, 1.0f), look);
 
                 }
                 //当たったオブジェクトに向けて回転
@@ -158,7 +151,7 @@ public class TArrowController : MonoBehaviour {
         //曲線矢以外で盾（真ん中）部分に当たった時
         if (middle == true&&arrowtype!=2)
         {
-            shadowobj.transform.parent = this.transform;
+          
             // Debug.Log("あたり");
             float middletime = Time.deltaTime*8;
             //敵の方向へ矢が飛ぶ
@@ -171,9 +164,9 @@ public class TArrowController : MonoBehaviour {
         //盾(真ん中でない)部分に当たった時
         if (protect == true&&arrowtype!=2)
         {
-            rb.constraints = RigidbodyConstraints.None;
-            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezePositionZ;
-            rb.useGravity = true;
+           
+            rb.AddForce(new Vector2(-1f, 0));
+            rb.gravityScale = 2;
             transform.Rotate(0, 0, rotatespeed);    //オブジェクトを回す
 
         }
@@ -181,14 +174,16 @@ public class TArrowController : MonoBehaviour {
         if (arrowtype==0)
         {
             /*普通の矢*/
-            rb.AddForce(speed, gravity, 0);
+            rb.AddForce(new Vector2(speed,0));
+        
+             
         }
 
         else if (arrowtype==1)
         {
           
                 /*ゆっくりの矢*/
-            rb.AddForce(slowspeed, 0, 0);
+            rb.AddForce(new Vector2(slowspeed, 0));
         }
        
         /*************曲線矢*************/
@@ -226,11 +221,9 @@ public class TArrowController : MonoBehaviour {
             //矢がターゲットに到達したら
             else if (protect == true)
             {
-                rb.constraints = RigidbodyConstraints.None;
-                rb.constraints =  RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationY;
-                rb.useGravity = true;
+              
                 //矢を回転させながら落とす
-                rb.AddForce(-3, 0, 0);
+                rb.AddForce(new Vector2(-3, 0));
                 transform.Rotate(0, 0, rotatespeed);    //オブジェクトを回す
             }
             
