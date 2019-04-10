@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Sparutakusu_Main : MonoBehaviour {
 
@@ -25,10 +27,10 @@ public class Sparutakusu_Main : MonoBehaviour {
             Time++;
         }
 
-        if (Time == 250)
+        if (Time >= 250)
         {
             Destroy(gameObject);
-            // SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("GameOverScene");
         }
     }
     private void OnTriggerEnter(Collider Sparutakusu)
