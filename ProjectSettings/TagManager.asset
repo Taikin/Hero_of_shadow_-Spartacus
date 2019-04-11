@@ -11,6 +11,11 @@ TagManager:
   - TestArrow
   - Arrow
   - enemy
+  - Sparutakusu
+  - Shadow
+  - Shield
+  - Shield_Center
+  - ShadowArrow
   layers:
   - Default
   - TransparentFX
@@ -21,8 +26,8 @@ TagManager:
   - 
   - 
   - Arrow
-  - 
-  - 
+  - enemy
+  - ground
   - 
   - 
   - 

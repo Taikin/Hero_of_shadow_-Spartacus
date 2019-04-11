@@ -966,7 +966,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &637105431
 GameObject:
@@ -2421,6 +2421,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1584398881543906, guid: 6ffe21c93b2ee774db28e93f19e62a97, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ffe21c93b2ee774db28e93f19e62a97, type: 2}
   m_IsPrefabParent: 0
@@ -3498,7 +3502,7 @@ MonoBehaviour:
   greenPoint: {fileID: 234896292}
   greenPoint1: {fileID: 1246231511}
   target: {fileID: 974154250}
-  enemy: {fileID: 1526031347671188, guid: 6ffe21c93b2ee774db28e93f19e62a97, type: 2}
+  enemy: {fileID: 1584398881543906, guid: 6ffe21c93b2ee774db28e93f19e62a97, type: 2}
   enemyCreatePos: {fileID: 1941531343}
   enemyPositions:
   - {fileID: 1702866557}
