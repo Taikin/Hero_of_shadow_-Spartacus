@@ -6,57 +6,39 @@ public class Move_Load2 : MonoBehaviour
 {
     float LoadTime2;
     public Material[] _material2;           // 割り当てるマテリアル. 
+    private int j;
 
-    private float Position_x, Position_y, Position_z;
-
-    private int Material_Num2;
-
-    private float x2;
-    public int ChangeNumber;
+    public float z2;
 
     // Use this for initialization
     void Start()
     {
-        Material_Num2 = 0;
-        x2 = -0.01f;
-        ChangeNumber = 0;
-
-        // ground2の初期位置
-        Position_x = 1.7f;
-        Position_y = 0.95f;
-        Position_z = -9.5f;
-        transform.position = new Vector3(Position_x, Position_y, Position_z);
+        j = 0;
+        LoadTime2 = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(x2, 0.0f, 0.0f);
-        if (transform.position.x < -2.0f)
+        transform.position += new Vector3(z2, 0.0f, 0.0f);
+        LoadTime2 += 0.1f;
+        if (transform.position.x < -13.7f)
         {
-            Position_x = 2.0f;
-            ChangeNumber += 1;
-            transform.position = new Vector3(Position_x, Position_y, Position_z);
+            transform.position = new Vector3(16.63f, -2, -4.5f);
         }
 
-        switch (ChangeNumber)
+        if (LoadTime2 > 160)
         {
-            case 0:
-                Material_Num2 = 0;
-                break;
+            j++;
+            if (j == 3)
+            {
+                j = 0;
+            }
 
-            case 4:
-                Material_Num2 = 1;
-                break;
-
-            case 6:
-                Material_Num2 = 2;
-                break;
+            this.GetComponent<MeshRenderer>().material = _material2[j];
         }
-
-        this.GetComponent<MeshRenderer>().material = _material2[Material_Num2];
-       // Debug.Log(LoadTime2);//513でだいたい90秒
-       // Debug.Log(j);//513でだいたい90秒
+        Debug.Log(LoadTime2);//513でだいたい90秒
+        Debug.Log(j);//513でだいたい90秒
     }
 }
 

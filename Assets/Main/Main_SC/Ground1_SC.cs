@@ -34,7 +34,7 @@ public class Ground1_SC : MonoBehaviour {
         LoadTime += 0.1f;
         if (transform.position.x < -2.0f)
         {
-            Position_x = 2.0f;
+            Position_x = 1.99f;
             ChangeNumber += 1;
             transform.position = new Vector3(Position_x, Position_y, Position_z);
         }

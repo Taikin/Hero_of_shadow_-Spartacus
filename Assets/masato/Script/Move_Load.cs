@@ -6,63 +6,39 @@ public class Move_Load : MonoBehaviour
 {
     float LoadTime;
     public Material[] _material;           // 割り当てるマテリアル. 
-    private int Material_Num;
+    private int i;
 
-    private float Position_x, Position_y, Position_z;
-
-    private float x1;
-    public int ChangeNumber;
+    public float z1;
 
     // Use this for initialization
     void Start()
     {
-        // ground_1の初期位置
-        Position_x = -0.3f;
-        Position_y = 0.95f;
-        Position_z = -9.5f;
-
-        Material_Num = 0;
-        ChangeNumber = 0 ;
-        x1 = -0.01f;
-        transform.position = new Vector3(Position_x, Position_y, Position_z);
+        i = 0;
+        LoadTime = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(x1,0, 0);
+        transform.position += new Vector3(z1, 0.0f, 0.0f);
         LoadTime += 0.1f;
-        if (transform.position.x < -2.0f)
+        if (transform.position.x < -13.7f)
         {
-            Position_x =  2.0f;
-            ChangeNumber += 1;
-            transform.position = new Vector3(Position_x, Position_y, Position_z);
+            transform.position = new Vector3(16.93f, -2, -4.5f);
         }
 
-        switch (ChangeNumber)
+        if (LoadTime > 100)
         {
-            case 0:
-                Material_Num = 0;
-                break;
+            i++;
+            if (i == 3)
+            {
+                i = 0;
+            }
 
-            case 4:
-                Material_Num = 1;
-                break;
-
-            case 6:
-                Material_Num = 2;
-                break;
+            this.GetComponent<MeshRenderer>().material = _material[i];
         }
-
-        this.GetComponent<MeshRenderer>().material = _material[Material_Num];
-        // Debug.Log(LoadTime);//513でだいたい90秒
-        // Debug.Log(i);//513でだいたい90秒7
-        Debug.Log(ChangeNumber);
-    }
-
-    public int GetChangeNumber()
-    {
-        return ChangeNumber;
+        Debug.Log(LoadTime);//513でだいたい90秒
+        Debug.Log(i);//513でだいたい90秒
     }
 }
 

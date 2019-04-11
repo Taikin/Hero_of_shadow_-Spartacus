@@ -68,10 +68,10 @@ public class ArrowController_Main : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision ShadowArrow)
     {
         //盾(真ん中でない)部分に当たった時
-        if (collision.gameObject.tag == "shieldpoint")
+        if (ShadowArrow.gameObject.tag == "Shield_Center")
         {
 
             protect = true;
@@ -81,7 +81,7 @@ public class ArrowController_Main : MonoBehaviour {
 
         }
         //盾（真ん中）部分に当たった時
-        if (collision.gameObject.tag == "middlepoint")
+        if (ShadowArrow.gameObject.tag == "Shield")
         {
             //真ん中に当たったフラグが立つ
             middle = true;
@@ -94,7 +94,7 @@ public class ArrowController_Main : MonoBehaviour {
         }
 
         //矢が地面に当たると消す
-        if (collision.gameObject.tag == "ground")
+        if (ShadowArrow.gameObject.tag == "ground")
         {
             Destroy(this.gameObject);
         }
