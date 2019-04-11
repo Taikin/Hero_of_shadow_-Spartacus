@@ -38,7 +38,7 @@ public class TArrowController : MonoBehaviour {
     bool middle = false;
     Vector3 direction;
 
-    GameObject shadowobj;
+    GameObject modelobj;
     Vector3 hitposition;    //rayでhitしたオブジェクトの位置を取得
   
     //回転する方向
@@ -49,7 +49,10 @@ public class TArrowController : MonoBehaviour {
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        
+
+        //子の実体矢オブジェクト取得
+        modelobj = transform.GetChild(0).gameObject;
+
         //曲線矢なら
         if (arrowtype == 2)
         {
@@ -57,9 +60,8 @@ public class TArrowController : MonoBehaviour {
             //矢を上向きに
             look = greenPos;
             transform.rotation = Quaternion.FromToRotation(Vector3.up, look);
-        }
-        
-        
+        }       
+
     }
    
     private void OnCollisionEnter2D(Collision2D collision)
@@ -76,12 +78,18 @@ public class TArrowController : MonoBehaviour {
         //盾（真ん中）部分に当たった時
         if (collision.gameObject.tag == "middlepoint")
         {
-            
 
+            //曲線矢以外なら
+            if (arrowtype != 2)
+            {
+                //親子関係一旦解除
+                modelobj.transform.parent = null;
+            }
+  
             Debug.Log("真ん中あたり");
            
-            //真ん中に当たったフラグが立つ
-            middle = true;
+           
+            middle = true;   //真ん中に当たったフラグが立つ
             speed = 0;
             slowspeed = 0;
             RayPlay();  //Raycast,Rayの関数呼び出し
@@ -98,7 +106,7 @@ public class TArrowController : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //跳ね返ったフラグが立っていてgameObjectのタグに当たった時
+        //跳ね返ったフラグが立っていて敵に当たった時
         if (other.gameObject.tag == "enemy" && middle == true)
         {
             Destroy(this.gameObject);
@@ -109,7 +117,7 @@ public class TArrowController : MonoBehaviour {
     //Raycast,Rayの処理
     void RayPlay()
     {
-
+        
         //敵の方向取得
         direction = (this.transform.position- charaPos).normalized;
             
@@ -129,7 +137,7 @@ public class TArrowController : MonoBehaviour {
                 //当たったオブジェクトに向けて回転
                 if (arrowtype != 2)
                 {
-                   
+
                     Vector2 look = hit.point;
                     transform.rotation = Quaternion.FromToRotation(Vector2.right + new Vector2(0, 1.0f), look);
 
@@ -151,20 +159,28 @@ public class TArrowController : MonoBehaviour {
         //曲線矢以外で盾（真ん中）部分に当たった時
         if (middle == true&&arrowtype!=2)
         {
-          
+            
+            //再び実体の矢を子にする
+            modelobj.transform.parent = this.transform;
+            //実体の矢を左向きに回転
+            modelobj.transform.rotation=Quaternion.Euler(0.0f, 0.0f, 90f);
+
             // Debug.Log("あたり");
             float middletime = Time.deltaTime*8;
             //敵の方向へ矢が飛ぶ
             rb.MovePosition(Vector2.Lerp(this.transform.position, hitposition,middletime));
-            
-            
+                        
         }
 
 
         //盾(真ん中でない)部分に当たった時
         if (protect == true&&arrowtype!=2)
         {
-           
+            ////再び実体の矢を子にする
+            modelobj.transform.parent = this.transform;
+            ////実体の矢を左向きに回転
+            modelobj.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 90f);
+
             rb.AddForce(new Vector2(-1f, 0));
             rb.gravityScale = 2;
             transform.Rotate(0, 0, rotatespeed);    //オブジェクトを回す
@@ -176,7 +192,6 @@ public class TArrowController : MonoBehaviour {
             /*普通の矢*/
             rb.AddForce(new Vector2(speed,0));
         
-             
         }
 
         else if (arrowtype==1)
@@ -189,6 +204,12 @@ public class TArrowController : MonoBehaviour {
         /*************曲線矢*************/
         else if(arrowtype==2)
         {
+
+            //実体矢のy軸を調整
+            Vector3 pos = modelobj.transform.position;
+            pos.y =30;  //実体の敵に合わせてよい 
+            modelobj.transform.position = pos;
+
 
             //矢の進む割合をTime.deltaTimeで決める
             time += Time.deltaTime / curvespeed;

@@ -10,7 +10,7 @@ public class ArrowGenerator : MonoBehaviour
     //影の矢のプレハブ
     public GameObject Arrow;
     //3Dの矢のプレハブ
-   // public GameObject modelArrow;
+    public GameObject modelArrow;
     //矢を秒ごとに打ち出す
     public float targetTime;
     private float currentTime = 0;
@@ -58,10 +58,10 @@ public class ArrowGenerator : MonoBehaviour
             var t = Instantiate(Arrow) as GameObject;
 
             //3D矢プレハブを作成
-          //  var a = Instantiate(modelArrow) as GameObject;
+            var a = Instantiate(modelArrow) as GameObject;
             
-            //影の矢を子にする
-          //  a.transform.parent = t.transform;
+            //実体の矢を子にする
+            a.transform.parent = t.transform;
 
             //矢の初期位置を敵の位置にする
             //  t.transform.position = pos;

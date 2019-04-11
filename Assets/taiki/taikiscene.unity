@@ -523,52 +523,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 369703135}
   m_Mesh: {fileID: 4300000, guid: 4433e5ebfa0287c4bb1e3ae2a0be0f7e, type: 3}
---- !u!1001 &423576258
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4774558219166888, guid: 5c8ec1cb642980a43a1f840c550e237d, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -89.09999
-      objectReference: {fileID: 0}
-    - target: {fileID: 4774558219166888, guid: 5c8ec1cb642980a43a1f840c550e237d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 77.700005
-      objectReference: {fileID: 0}
-    - target: {fileID: 4774558219166888, guid: 5c8ec1cb642980a43a1f840c550e237d, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 83
-      objectReference: {fileID: 0}
-    - target: {fileID: 4774558219166888, guid: 5c8ec1cb642980a43a1f840c550e237d, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4774558219166888, guid: 5c8ec1cb642980a43a1f840c550e237d, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4774558219166888, guid: 5c8ec1cb642980a43a1f840c550e237d, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4774558219166888, guid: 5c8ec1cb642980a43a1f840c550e237d, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4774558219166888, guid: 5c8ec1cb642980a43a1f840c550e237d, type: 2}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1191600789420456, guid: 5c8ec1cb642980a43a1f840c550e237d, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 5c8ec1cb642980a43a1f840c550e237d, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &436091928
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,8 +1076,7 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 3.4700003
       objectReference: {fileID: 0}
-    - target: {fileID: 54360648541546612, guid: 1f21a3461db31194cbd4885f0db77232,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_Constraints
       value: 120
       objectReference: {fileID: 0}
@@ -1167,7 +1120,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4046835529168956, guid: 35b46f7a1b0f7b84c8908762e5925296, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1540972942690640, guid: 35b46f7a1b0f7b84c8908762e5925296, type: 2}
       propertyPath: m_IsActive
@@ -1629,7 +1582,7 @@ Transform:
   m_LocalScale: {x: 400, y: 1, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1684840384
 GameObject:
@@ -1660,6 +1613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 368090117}
   Arrow: {fileID: 1160745788327312, guid: 1f21a3461db31194cbd4885f0db77232, type: 2}
+  modelArrow: {fileID: 0}
   targetTime: 3
   greenPoint: {fileID: 525928946}
   greenPoint1: {fileID: 38282042}
@@ -1760,7 +1714,7 @@ Transform:
   m_Children:
   - {fileID: 369703136}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1001 &1997345291
 Prefab:
@@ -1799,7 +1753,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4153135501801232, guid: 6ffe21c93b2ee774db28e93f19e62a97, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4153135501801232, guid: 6ffe21c93b2ee774db28e93f19e62a97, type: 2}
       propertyPath: m_LocalScale.x
@@ -1953,6 +1907,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 709777537}
   Arrow: {fileID: 1540972942690640, guid: 35b46f7a1b0f7b84c8908762e5925296, type: 2}
+  modelArrow: {fileID: 1160745788327312, guid: 1f21a3461db31194cbd4885f0db77232, type: 2}
   targetTime: 2
   greenPoint: {fileID: 525928946}
   greenPoint1: {fileID: 38282042}
