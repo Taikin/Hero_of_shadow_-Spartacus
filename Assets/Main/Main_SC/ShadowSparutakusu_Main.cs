@@ -12,7 +12,7 @@ public class ShadowSparutakusu_Main : MonoBehaviour {
     {
         Shadow_Width = 0.1f;
         Shadow_Length = 0.1f;
-        Shadow_x = -0.63f;
+        Shadow_x = -0.48f;
         Shadow_y = 1.80f;
         Shadow_z = -7.0f;
     }
