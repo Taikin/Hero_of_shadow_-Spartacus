@@ -9,10 +9,6 @@ public class ArrowController : MonoBehaviour
         _STRAOGHT_LINE,                           // 直線
         _CURVE_LINE,                              // 曲線
         _SLOW_LINE,                               // ゆっくり
-        _STRAOGHT_AND_CURVE_LINE,                 // 直線と曲線
-        _STRAOGHT_AND_SLOW_LINE,                  // 直線とゆっくりな矢
-        _SLOW_AND_CURVE_LINE,                     // 曲線とゆっくりな矢
-        _ALL_ARROW_LINE,                          // 全ての種類の矢
     }
 
     [SerializeField, Header("直線に飛ぶスピード")]
@@ -68,28 +64,6 @@ public class ArrowController : MonoBehaviour
                 case ArrowState._SLOW_LINE:
                     SlowLine();
                     break;
-                // 直線と曲線
-                case ArrowState._STRAOGHT_AND_CURVE_LINE:
-                    if (!randamFlg) { randamValue = Random.Range(0, 2); randamFlg = true; }
-                    if (randamValue == 0) { StraoghtLine(); } else { CurveLine(); }
-                    break;
-                // 直線とゆっくりな矢
-                case ArrowState._STRAOGHT_AND_SLOW_LINE:
-                    if (!randamFlg) { randamValue = Random.Range(0, 2); randamFlg = true; }
-                    if (randamValue == 0) { StraoghtLine(); } else { SlowLine(); }
-                    break;
-                // ゆっくりと曲線
-                case ArrowState._SLOW_AND_CURVE_LINE:
-                    if (!randamFlg) { randamValue = Random.Range(0, 2); randamFlg = true; }
-                    if (randamValue == 0) { SlowLine(); } else { CurveLine(); }
-                    break;
-                // 全ての種類の矢
-                case ArrowState._ALL_ARROW_LINE:
-                    if (!randamFlg) { randamValue = Random.Range(0, 3); randamFlg = true; }
-                    if (randamValue == 0) { StraoghtLine(); }
-                    else if (randamValue == 1) { CurveLine(); }
-                    else { SlowLine(); }
-                    break;
             }
         }
 	}
@@ -103,12 +77,12 @@ public class ArrowController : MonoBehaviour
     // 曲線処理
     void CurveLine()
     {
-        //曲線矢なら
-        if (arrowState == ArrowState._CURVE_LINE && !doOnceFlg)
+        // 一度だけ通す処理
+        if (!doOnceFlg)
         {
             //矢を上向きに
-            look = greenPos;
-            transform.rotation = Quaternion.FromToRotation(Vector3.up, look);
+            //look = greenPos;
+            //transform.rotation = Quaternion.FromToRotation(Vector3.up, greenPos);
             // 処理を一度だけ通すのに使用
             doOnceFlg = true;
         }
