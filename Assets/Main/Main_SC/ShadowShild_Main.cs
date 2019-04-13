@@ -18,7 +18,7 @@ public class ShadowShild_Main : MonoBehaviour {
         Shild_Width = 0.1f;
         Shild_Length = 0.1f;
         // 位置
-        Position_x = -0.88f;
+        Position_x = -0.75f;
         Position_y = 1.8f;
         Position_z = -7f;
         // 回転
@@ -43,7 +43,7 @@ public class ShadowShild_Main : MonoBehaviour {
 
         if (Time != 0 && Distance != 0)
         {
-            Time--;
+            //Time--;
         }
         else if (Time == 0)
         {

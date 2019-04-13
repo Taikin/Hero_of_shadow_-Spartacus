@@ -310,15 +310,15 @@ public class EnemyController_Main : MonoBehaviour {
 
 
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider enemy)
     {
         // 矢に当たったら
-        if (other.tag == "TestArrow" && state != STATE._DAMAGE)
+        if (enemy.tag == "Arrow" && state != STATE._DAMAGE)
         {
             // DAMAGE状態へ
             state = STATE._DAMAGE;
             // 当たった矢を削除
-            Destroy(other.gameObject);
+            Destroy(enemy.gameObject);
         }
     }
 
@@ -347,7 +347,6 @@ public class EnemyController_Main : MonoBehaviour {
             case ENEMYTYPE._ALL_ARROW:              // 全ての矢を飛ばす敵
                 return " 全ての矢を飛ばす敵";
         }
-
         return "NULL";
     }
 
