@@ -3508,6 +3508,37 @@ MonoBehaviour:
   - {fileID: 1702866557}
   - {fileID: 1504306355}
   - {fileID: 869576837}
+  levelStatus:
+  - name: LEVEL0
+    type: 0
+    maxCreateEnemy: 1
+    enemyCreateTime: 0
+    shootArrowSpeed: 0.5
+    nextLevelTime: 0
+  - name: LEVEL1
+    type: 0
+    maxCreateEnemy: 1
+    enemyCreateTime: 2
+    shootArrowSpeed: 2
+    nextLevelTime: 15
+  - name: LEVEL2
+    type: 0
+    maxCreateEnemy: 2
+    enemyCreateTime: 1
+    shootArrowSpeed: 1
+    nextLevelTime: 15
+  - name: LEVEL3
+    type: 3
+    maxCreateEnemy: 2
+    enemyCreateTime: 1
+    shootArrowSpeed: 1.5
+    nextLevelTime: 25
+  - name: LEVEL4
+    type: 6
+    maxCreateEnemy: 3
+    enemyCreateTime: 1
+    shootArrowSpeed: 0.5
+    nextLevelTime: 35
 --- !u!1 &2009243375
 GameObject:
   m_ObjectHideFlags: 0
