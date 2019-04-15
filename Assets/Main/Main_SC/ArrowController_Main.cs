@@ -60,18 +60,18 @@ public class ArrowController_Main : MonoBehaviour {
 
     Vector3 hitposition;    //rayでhitしたオブジェクトの位置を取得
 
-    Rigidbody rb;
+    Rigidbody2D rb;
     Ray ray;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    private void OnCollisionEnter(Collision ShadowArrow)
+    private void OnCollisionEnter2D(Collision2D ShadowArrow)
     {
         //盾(真ん中でない)部分に当たった時
-        if (ShadowArrow.gameObject.tag == "Shield_Center")
+        if (ShadowArrow.gameObject.tag == "shieldpoint" && middle == false)
         {
 
             protect = true;
@@ -81,7 +81,7 @@ public class ArrowController_Main : MonoBehaviour {
 
         }
         //盾（真ん中）部分に当たった時
-        if (ShadowArrow.gameObject.tag == "Shield")
+        if (ShadowArrow.gameObject.tag == "middlepoint" && protect == false)
         {
             //真ん中に当たったフラグが立つ
             middle = true;
@@ -100,10 +100,10 @@ public class ArrowController_Main : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D Arrow)
     {
         //跳ね返ったフラグが立っていてgameObjectのタグに当たった時
-        if (other.gameObject.tag == "enemy" && middle == true)
+        if (Arrow.gameObject.tag == "enemy" && middle == true)
         {
             Destroy(this.gameObject);
         }
@@ -115,9 +115,9 @@ public class ArrowController_Main : MonoBehaviour {
     {
 
         //敵の方向取得
-        direction = (this.transform.position - charaPos).normalized;
+        direction = ((this.transform.position) - charaPos).normalized;
 
-        this.ray = new Ray(transform.position, -direction);
+        this.ray = new Ray((transform.position), -direction);
         RaycastHit hit;
         Debug.DrawRay(ray.origin, ray.direction * 300, Color.red);
 
@@ -134,7 +134,7 @@ public class ArrowController_Main : MonoBehaviour {
                 if (arrowState != ArrowState._CURVE_LINE)
                 {
                     Vector2 look = hit.point;
-                    transform.rotation = Quaternion.FromToRotation(Vector2.right + new Vector2(0, 1.4f), look);
+                    transform.rotation = Quaternion.FromToRotation(Vector2.right + new Vector2(0, 1.0f), look);
 
                 }
                 //当たったオブジェクトに向けて回転
@@ -148,18 +148,7 @@ public class ArrowController_Main : MonoBehaviour {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-    void Update()
-    {
+    void Update() {
         // 矢を敵が放っていたら
         if (isShootFlg)
         {
@@ -204,6 +193,29 @@ public class ArrowController_Main : MonoBehaviour {
                     else { SlowLine(); }
                     break;
             }
+        }
+
+        //曲線矢以外で盾（真ん中）部分に当たった時
+        if (middle == true && arrowState != ArrowState._CURVE_LINE)
+        {
+
+            // Debug.Log("あたり");
+            float middletime = Time.deltaTime * 8;
+            //敵の方向へ矢が飛ぶ
+            rb.MovePosition(Vector2.Lerp(this.transform.position, hitposition, middletime));
+
+
+        }
+
+
+        //盾(真ん中でない)部分に当たった時
+        if (protect == true && arrowState != ArrowState._CURVE_LINE)
+        {
+
+            rb.AddForce(new Vector2(-1f, 0));
+            rb.gravityScale = 2;
+            transform.Rotate(0, 0, rotatespeed);    //オブジェクトを回す
+
         }
     }
 

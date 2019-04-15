@@ -2641,7 +2641,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowPos: {fileID: 1665610342013346}
   arrow: {fileID: 0}
-  arrowPrefab: {fileID: 1732242242049776, guid: 86eb278fc0805234b8541368f2aa70aa,
+  arrowPrefab: {fileID: 1480510516087014, guid: 34e61ebfaad1f3b47b41d4e541961e06,
     type: 2}
   greenPoint: {fileID: 0}
   greenPoint1: {fileID: 0}
