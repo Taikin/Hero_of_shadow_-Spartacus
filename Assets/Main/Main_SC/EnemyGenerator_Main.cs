@@ -10,6 +10,8 @@ public class EnemyGenerator_Main : MonoBehaviour {
     private GameObject greenPoint1;
     [SerializeField, Header("ターゲット（プレイヤー）")]
     private GameObject target;
+    [SerializeField, Header("ターゲットの影")]
+    private GameObject targetShadow;
     [SerializeField, Header("敵")]
     private GameObject enemy;
     [SerializeField, Header("敵を生成する位置")]
@@ -61,6 +63,7 @@ public class EnemyGenerator_Main : MonoBehaviour {
         enemyController._Target = target;
         enemyController._GreenPoint = greenPoint;
         enemyController._GreenPoint1 = greenPoint1;
+        enemyController._TargetShadow = targetShadow;
 
         // 現在ゲーム上にいる敵を取得
         for (int i = 0; i < 3; i++)
@@ -68,7 +71,7 @@ public class EnemyGenerator_Main : MonoBehaviour {
             // 敵がいなければ
             if (activeEnemys[i] == null)
             {
-                Debug.Log("ok");
+               // Debug.Log("ok");
                 // 現在生成した敵の情報を入れる
                 activeEnemys[i] = prefab;
                 // 敵が移動する目標地点を敵のスクリプトに渡す

@@ -9,7 +9,6 @@ public class EnemyController_Main : MonoBehaviour {
     public enum STATE
     {
         _IDLE,
-        _MOVE,
         _SHOOT_BOW,
         _DAMAGE,
 
@@ -49,8 +48,11 @@ public class EnemyController_Main : MonoBehaviour {
     private GameObject target;
     [SerializeField, Header("敵の速度")]
     private float enemySpeed;
+    [SerializeField, Header("補完スピード")]
+    private float completionSpeed;
 
     private GameObject enemyPosition;           // 敵が進んでいく位置
+    private GameObject targetShadow;            // ターゲットの影
     private Animator animator;
     private AnimatorStateInfo aniStateInfo;
     private EnemyGenerator_Main enemyGeneratorCon;
@@ -71,6 +73,7 @@ public class EnemyController_Main : MonoBehaviour {
     public GameObject _GreenPoint { set { greenPoint = value; } }
     public GameObject _GreenPoint1 { set { greenPoint1 = value; } }
     public GameObject _EnemyPosition { get { return enemyPosition; } set { enemyPosition = value; } }
+    public GameObject _TargetShadow { set { targetShadow = value; } }
     public EnemyGenerator_Main _EnemyGeneratorCon { set { enemyGeneratorCon = value; } }
     public ENEMYPOS_TYPE _EnemyPos_Type { get { return enemyPosType; } set { enemyPosType = value; } }
 
@@ -105,8 +108,6 @@ public class EnemyController_Main : MonoBehaviour {
         {
             case STATE._IDLE:           // アイドル状態
                 EnemyIdle();
-                break;
-            case STATE._MOVE:           // 動きの状態
                 break;
             case STATE._SHOOT_BOW:      // 矢を放っている状態
                 EnemyShootBow();
@@ -168,9 +169,7 @@ public class EnemyController_Main : MonoBehaviour {
         var arrowController = arrow.GetComponent<ArrowController_Main>();
         //　スタート地点を矢のスクリプトに渡す
         arrowController.CharaPos = arrowController.gameObject.transform.position;
-        //　矢を一つ打ち出すたびに中継地点を変える
-        count++;
-        //　敵のポジションが一番後ろなら、greenPointを格納
+        //　敵のポジションが一番後ろなら、greenPointを格納    
         if (enemyPosType == ENEMYPOS_TYPE._BACK)
         {
             arrowController.GreenPos = greenPoint.transform.position;
@@ -200,6 +199,9 @@ public class EnemyController_Main : MonoBehaviour {
             arrow.transform.parent = arrowPos.transform;
             arrow.transform.localPosition = Vector3.zero;
             arrow.transform.localRotation = Quaternion.identity;
+            var arrowController = arrow.GetComponent<ArrowController_Main>();
+            // ターゲットの影の情報を格納
+            arrowController._TargetShadow = targetShadow;
             // 
             CheckEnemyType();
         }
@@ -263,6 +265,27 @@ public class EnemyController_Main : MonoBehaviour {
         }
     }
 
+    //// ランダムで矢の挙動を変える処理
+    //private void RandamArrow(ArrowController.ArrowState A, ArrowController.ArrowState B = 0, ArrowController.ArrowState C = 0, int value = 1)
+    //{
+    //    var arrowController = arrow.GetComponent<ArrowController>();
+    //    int randamValue = Random.Range(0, value);
+
+    //    // ランダムに矢の挙動を割り振る
+    //    switch (randamValue)
+    //    {
+    //        case 0:
+    //            arrowController._ArrowState = A;
+    //            break;
+    //        case 1:
+    //            arrowController._ArrowState = B;
+    //            break;
+    //        case 2:
+    //            arrowController._ArrowState = C;
+    //            break;
+    //    }
+    //}
+
     /**********************************************************************
      * * ダメージ状態
      * *******************************************************************/
@@ -305,20 +328,6 @@ public class EnemyController_Main : MonoBehaviour {
                     break;
             }
             preState = state;
-        }
-    }
-
-
-
-    private void OnTriggerEnter(Collider enemy)
-    {
-        // 矢に当たったら
-        if (enemy.tag == "Arrow" && state != STATE._DAMAGE)
-        {
-            // DAMAGE状態へ
-            state = STATE._DAMAGE;
-            // 当たった矢を削除
-            Destroy(enemy.gameObject);
         }
     }
 
@@ -369,4 +378,21 @@ public class EnemyController_Main : MonoBehaviour {
                 break;
         }
     }
+
+    void OnTriggerEnter(Collider enemy)
+    {
+        // ArrowImageの子オブジェクトに当たったら
+        if (enemy.gameObject.tag == "Arrow")
+        {
+            var entityArrowCon = enemy.GetComponent<EntityArrowController_Main>();
+
+            if(entityArrowCon._Hit)
+            {
+                Destroy(this.gameObject);
+                entityArrowCon.DestroyArrow();      // 当たった矢を削除
+                Debug.Log("Hit");
+            }
+        }
+    }
+
 }
