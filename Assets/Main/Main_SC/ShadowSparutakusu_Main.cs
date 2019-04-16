@@ -33,8 +33,9 @@ public class ShadowSparutakusu_Main : MonoBehaviour {
     {
         if (Shadow.gameObject.tag == "Arrow")
         {
+            Debug.Log("ゲームオーバー");
             PerDecision = true;
-            //SceneManager.LoadScene("GameOverScene");
+            SceneManager.LoadScene("GameOverScene");
         }
     }
 }

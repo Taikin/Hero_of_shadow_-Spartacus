@@ -9,10 +9,6 @@ public class ArrowController_Main : MonoBehaviour {
         _STRAOGHT_LINE,                           // 直線
         _CURVE_LINE,                              // 曲線
         _SLOW_LINE,                               // ゆっくり
-        _STRAOGHT_AND_CURVE_LINE,                 // 直線と曲線
-        _STRAOGHT_AND_SLOW_LINE,                  // 直線とゆっくりな矢
-        _SLOW_AND_CURVE_LINE,                     // 曲線とゆっくりな矢
-        _ALL_ARROW_LINE,                          // 全ての種類の矢
     }
 
     [SerializeField, Header("直線に飛ぶスピード")]
@@ -79,8 +75,8 @@ public class ArrowController_Main : MonoBehaviour {
         //盾（真ん中）部分に当たった時
         if (Arrow.gameObject.tag == "middlepoint" && protect == false)
         {
-            //Debug.Log("EEE");
             // 実体の矢を入れ替え
+            Entityarrow.SetActive(false);
             Entityarrow02.SetActive(true);
             // hitフラグをtrue
             entityArrowCon._Hit = true;
@@ -105,16 +101,6 @@ public class ArrowController_Main : MonoBehaviour {
         }
     }
 
-    //private void OnTriggerEnter2D(Collider2D Arrow)
-    //{
-    //    //跳ね返ったフラグが立っていてgameObjectのタグに当たった時
-    //    if (Arrow.gameObject.tag == "enemy" && middle == true)
-    //    {
-    //        Destroy(this.gameObject);
-    //    }
-
-    //}
-
     //Raycast,Rayの処理
     void RayPlay()
     {
@@ -132,8 +118,6 @@ public class ArrowController_Main : MonoBehaviour {
             {
                 //当たったオブジェクトの位置を取得
                 hitposition = hit.point + new Vector3(-1, 0, 0);
-                //Debug.Log("teki");
-                //Debug.Log(hitposition + "位置");
 
                 //当たったオブジェクトに向けて回転
                 if (arrowState != ArrowState._CURVE_LINE)
@@ -152,6 +136,12 @@ public class ArrowController_Main : MonoBehaviour {
     }
 
     void Update() {
+
+        //direction = ((transform.position) - charaPos).normalized;
+
+        //this.ray = new Ray((transform.position), -direction);
+        //Debug.DrawRay(ray.origin, ray.direction * 300, Color.red);
+
         // 矢を敵が放っていたら
         if (isShootFlg)
         {
@@ -173,37 +163,16 @@ public class ArrowController_Main : MonoBehaviour {
                 case ArrowState._SLOW_LINE:
                     SlowLine();
                     break;
-                // 直線と曲線
-                case ArrowState._STRAOGHT_AND_CURVE_LINE:
-                    if (!randamFlg) { randamValue = Random.Range(0, 2); randamFlg = true; }
-                    if (randamValue == 0) { StraoghtLine(); } else { CurveLine(); }
-                    break;
-                // 直線とゆっくりな矢
-                case ArrowState._STRAOGHT_AND_SLOW_LINE:
-                    if (!randamFlg) { randamValue = Random.Range(0, 2); randamFlg = true; }
-                    if (randamValue == 0) { StraoghtLine(); } else { SlowLine(); }
-                    break;
-                // ゆっくりと曲線
-                case ArrowState._SLOW_AND_CURVE_LINE:
-                    if (!randamFlg) { randamValue = Random.Range(0, 2); randamFlg = true; }
-                    if (randamValue == 0) { SlowLine(); } else { CurveLine(); }
-                    break;
-                // 全ての種類の矢
-                case ArrowState._ALL_ARROW_LINE:
-                    if (!randamFlg) { randamValue = Random.Range(0, 3); randamFlg = true; }
-                    if (randamValue == 0) { StraoghtLine(); }
-                    else if (randamValue == 1) { CurveLine(); }
-                    else { SlowLine(); }
-                    break;
             }
         }
 
         //曲線矢以外で盾（真ん中）部分に当たった時
         if (middle == true && arrowState != ArrowState._CURVE_LINE)
         {
+            Debug.Log("直線矢" + hitposition);
             // Debug.Log("あたり");
             // float middletime = Time.deltaTime * 8;
-            float middletime = Time.deltaTime * 1;
+            float middletime = Time.deltaTime * 4;
 
             //敵の方向へ矢が飛ぶ
             rb.MovePosition(Vector2.Lerp(this.transform.position, hitposition, middletime));
@@ -227,11 +196,10 @@ public class ArrowController_Main : MonoBehaviour {
         //曲線矢が真ん中に当たった時の処理
         if (middle == true  && arrowState == ArrowState._CURVE_LINE)
         {
-            rb.gravityScale = 0.01f;
-            Debug.Log("あたり");
-            float middletime = Time.deltaTime * 1;
+            Debug.Log("曲線矢" + hitposition);
+            float middletime = Time.deltaTime /** 4*/;
             //敵の方向へ矢が飛ぶ
-            transform.position = Vector3.Lerp(this.transform.position, hitposition, middletime);
+           transform.position = Vector3.Lerp(this.transform.position, hitposition, middletime);
 
         }
         //矢がターゲットに到達したら
