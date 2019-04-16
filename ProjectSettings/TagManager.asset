@@ -16,6 +16,7 @@ TagManager:
   - Shield
   - Shield_Center
   - ShadowArrow
+  - ArrowTip
   layers:
   - Default
   - TransparentFX
