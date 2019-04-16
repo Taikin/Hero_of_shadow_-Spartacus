@@ -175,7 +175,7 @@ public class EnemyGenerator : MonoBehaviour
     // 時間を計測し、次のレベルに行く時間か調べる
     private bool IsCheckTimer(float numberSecond)
     {
-        Debug.Log("現在のレベル" + createLevel + "\t" + comparisonTime);
+       // Debug.Log("現在のレベル" + createLevel + "\t" + comparisonTime);
         comparisonTime += Time.deltaTime;
         if (numberSecond < comparisonTime)
         {
@@ -274,5 +274,20 @@ public class EnemyGenerator : MonoBehaviour
         }
 
         return 0;
+    }
+
+    // 一番目の敵のポジションを取得
+    public GameObject FirstEnemyPos()
+    {
+        GameObject firstPos = null;
+
+        for (int i = 0; i < 3; i++)
+        {
+            if(activeEnemys[i])
+            {
+                firstPos = activeEnemys[i];
+            }
+        }
+        return firstPos;
     }
 }

@@ -1800,6 +1800,52 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 738074370}
+--- !u!1 &779223258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 779223260}
+  - component: {fileID: 779223259}
+  m_Layer: 0
+  m_Name: AudioMGR
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &779223259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 779223258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dba6072af7712f488bec1694cc64169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BGMList:
+  - {fileID: 8300000, guid: d2a28c819a584ec43897e052f0bec6f1, type: 3}
+  - {fileID: 8300000, guid: f07e9163f6a416b4290f9a8593166468, type: 3}
+  SEList:
+  - {fileID: 8300000, guid: ff71ffbee70f27d4f90c5cd547290421, type: 3}
+  - {fileID: 8300000, guid: 51be919071c6bf3458fdd38cd0e50290, type: 3}
+--- !u!4 &779223260
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 779223258}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.6006377, y: 1.5181241, z: -9.967537}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &830322034
 GameObject:
   m_ObjectHideFlags: 0
