@@ -32,26 +32,34 @@ public class TArrowController : MonoBehaviour {
     float rotspeed=0.8f;
     float Boundspeed=5f;        //跳ね返す速さ
     float rotatespeed = 2f; //落ちながら回転する変数   
-    //盾(真ん中でない)場合の管理変数
-    bool protect= false;
+    bool protect= false;  //盾(真ん中でない)場合の管理変数
 
     bool middle = false;
     Vector3 direction;
 
-    GameObject modelobj;
+    GameObject modelobj;    //実体の矢
+    GameObject windobj;     //風エフェクト
+
     Vector3 hitposition;    //rayでhitしたオブジェクトの位置を取得
   
     //回転する方向
     Vector3 look;
     Rigidbody2D rb;
     Ray ray;
-
+    Vector2 HitEffect;
+    AudioSource audiosource;
+    public AudioClip Middlesound;   //真ん中に当たった時の矢の音
+    public AudioClip Arrowshot;     //敵が放った矢の音
+    
     void Start()
     {
+        audiosource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
 
+        //風のエフェクトオブジェクト取得
+        windobj = transform.GetChild(0).gameObject;
         //子の実体矢オブジェクト取得
-        modelobj = transform.GetChild(0).gameObject;
+        modelobj = transform.GetChild(1).gameObject;
 
         //曲線矢なら
         if (arrowtype == 2)
@@ -74,6 +82,8 @@ public class TArrowController : MonoBehaviour {
             speed = 0;
             slowspeed = 0;
 
+           
+
         }
         //盾（真ん中）部分に当たった時
         if (collision.gameObject.tag == "middlepoint")
@@ -82,13 +92,13 @@ public class TArrowController : MonoBehaviour {
             //曲線矢以外なら
             if (arrowtype != 2)
             {
-                //親子関係一旦解除
+                //実体矢の親子関係一旦解除
                 modelobj.transform.parent = null;
             }
-  
+           
             Debug.Log("真ん中あたり");
-           
-           
+
+            audiosource.PlayOneShot(Middlesound);   //真ん中に当たった時の音再生
             middle = true;   //真ん中に当たったフラグが立つ
             speed = 0;
             slowspeed = 0;
@@ -131,8 +141,8 @@ public class TArrowController : MonoBehaviour {
             {
                 //当たったオブジェクトの位置を取得
                 hitposition = hit.point+new Vector3(-1,0,0);
-                Debug.Log("teki");
-                Debug.Log(hitposition + "位置");
+                //Debug.Log("teki");
+               // Debug.Log(hitposition + "位置");
 
                 //当たったオブジェクトに向けて回転
                 if (arrowtype != 2)
@@ -152,19 +162,22 @@ public class TArrowController : MonoBehaviour {
 
 
     }
-
+   
     // Update is called once per frame
     void Update()
-    { 
+    {
+       
         //曲線矢以外で盾（真ん中）部分に当たった時
         if (middle == true&&arrowtype!=2)
         {
-            
+           
             //再び実体の矢を子にする
             modelobj.transform.parent = this.transform;
             //実体の矢を左向きに回転
             modelobj.transform.rotation=Quaternion.Euler(0.0f, 0.0f, 90f);
 
+            //風エフェクトを表示
+            windobj.SetActive (true);
             // Debug.Log("あたり");
             float middletime = Time.deltaTime*8;
             //敵の方向へ矢が飛ぶ
@@ -191,7 +204,7 @@ public class TArrowController : MonoBehaviour {
         {
             /*普通の矢*/
             rb.AddForce(new Vector2(speed,0));
-        
+            
         }
 
         else if (arrowtype==1)
@@ -199,6 +212,7 @@ public class TArrowController : MonoBehaviour {
           
                 /*ゆっくりの矢*/
             rb.AddForce(new Vector2(slowspeed, 0));
+            
         }
        
         /*************曲線矢*************/
@@ -233,7 +247,7 @@ public class TArrowController : MonoBehaviour {
             //曲線矢が真ん中に当たった時の処理
             else if (middle == true)
             {
-                Debug.Log("あたり");
+               // Debug.Log("あたり");
                 float middletime = Time.deltaTime*Boundspeed;
                 //敵の方向へ矢が飛ぶ
                 transform.position = Vector3.Lerp(this.transform.position, hitposition, middletime);
@@ -243,8 +257,10 @@ public class TArrowController : MonoBehaviour {
             else if (protect == true)
             {
               
+
                 //矢を回転させながら落とす
                 rb.AddForce(new Vector2(-3, 0));
+                rb.gravityScale = 2;
                 transform.Rotate(0, 0, rotatespeed);    //オブジェクトを回す
             }
             

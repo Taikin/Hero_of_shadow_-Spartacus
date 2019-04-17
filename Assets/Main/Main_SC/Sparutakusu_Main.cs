@@ -33,13 +33,11 @@ public class Sparutakusu_Main : MonoBehaviour {
             SceneManager.LoadScene("GameOverScene");
         }
     }
-    private void OnTriggerEnter(Collider Sparutakusu)
+    private void OnTriggerEnter2D(Collider2D Shadow)
     {
-        if (Sparutakusu.gameObject.tag == "Arrow") { 
-            Debug.Log("当たったTrigger");
-            animator.SetBool("is_Run", false);
-            animator.SetBool("is_RoundKick", true);
-            TimeFlg = true;
+        if (Shadow.gameObject.tag == "Arrow")
+        {
+            SceneManager.LoadScene("GameOverScene");
         }
     }
 }

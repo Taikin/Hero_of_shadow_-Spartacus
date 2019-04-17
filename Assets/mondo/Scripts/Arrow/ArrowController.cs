@@ -96,11 +96,15 @@ public class ArrowController : MonoBehaviour
         //中継地点からターゲットまでのベクトル上を通る点の現在の位置
         var b = Vector3.Lerp(greenPos, playerPos, time);
 
+        Vector3 velocity = Vector3.Lerp(a, b, time);
         //上の二つの点を結んだベクトル上を通る点の現在の位置（弾の位置）
-        this.transform.position = Vector3.Lerp(a, b, time);             //曲線矢
-                                                                        //落ちる矢の角度調整
+        this.transform.position = velocity;             //曲線矢
+
         step = rotspeed * Time.deltaTime;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, -120f), step); //z軸-120度まで回転させ矢を下向きに
+        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir.normalized), step);
+        transform.rotation = Quaternion.LookRotation(velocity, Vector3.right);
+                                                                        //落ちる矢の角度調整
+        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, -120f), step); //z軸-120度まで回転させ矢を下向きに
     }
 
     // ゆっくり
@@ -108,4 +112,6 @@ public class ArrowController : MonoBehaviour
     {
         transform.position += transform.up * slowspeed * Time.deltaTime;
     }
+
+    
 }
