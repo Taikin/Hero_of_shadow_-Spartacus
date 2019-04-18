@@ -164,6 +164,7 @@ public class EnemyController : MonoBehaviour
     // 矢を放つ処理
     void ShootArrow()
     {
+        AudioManager.Instance.PlaySE("仮SE01", arrow);
         //　矢のコントローラーを取得
         var arrowController = arrow.GetComponent<ArrowController>();
         //　スタート地点を矢のスクリプトに渡す
@@ -433,6 +434,7 @@ public class EnemyController : MonoBehaviour
         // 矢に当たったら
         if (other.tag == "TestArrow" && state != STATE._DAMAGE)
         {
+            AudioManager.Instance.PlaySE("仮SE02" , this.gameObject);
             // DAMAGE状態へ
             state = STATE._DAMAGE;
             // 当たった矢を削除
