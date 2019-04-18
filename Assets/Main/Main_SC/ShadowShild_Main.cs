@@ -18,9 +18,9 @@ public class ShadowShild_Main : MonoBehaviour {
         Shild_Width = 0.1f;
         Shild_Length = 0.1f;
         // 位置
-        Position_x = -0.7f;
+        Position_x = -0.5f;
         Position_y = 1.8f;
-        Position_z = -7f;
+        Position_z = -9.333f;
         // 回転
         Rotate_x = 0;
         Rotate_y = 0;
@@ -64,7 +64,7 @@ public class ShadowShild_Main : MonoBehaviour {
         }
 
         // 盾の移位置微調整
-        if (2.05f <= Position_y)
+        if (2.2f <= Position_y)
         {
             PosFlg = -1;
         }
@@ -80,13 +80,13 @@ public class ShadowShild_Main : MonoBehaviour {
         // 盾の移動・回転
         if (Vertical == 1 && (PosFlg == 0 || PosFlg == 1))
         {
-            Position_y += 0.01f;
-            Rotate_z -= 1.3f;
+            Position_y += 0.025f;
+            Rotate_z -= 1.4f;
         }
         else if (Vertical == -1 && (PosFlg == 0 || PosFlg == -1))
         {
-            Position_y -= 0.01f;
-            Rotate_z += 1.3f;
+            Position_y -= 0.025f;
+            Rotate_z += 1.4f;
         }
     }
 }
