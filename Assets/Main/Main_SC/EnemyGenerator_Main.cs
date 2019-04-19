@@ -13,7 +13,7 @@ public struct CREATE_LEVEL_STATUS_MAIN
     public int maxCreateEnemy;
     [Header("敵の生成速度")]
     public float enemyCreateTime;
-    [Header("矢を放つまでの速度"), Range(0.5f, 5.0f)]
+    [Header("矢を放つまでの速度"), Range(1.0f, 5.0f)]
     public float shootArrowSpeed;
     [Header("次のLevelに移動する時間")]
     public float nextLevelTime;
@@ -36,6 +36,8 @@ public class EnemyGenerator_Main : MonoBehaviour {
     private GameObject greenPoint1;
     [SerializeField, Header("ターゲット（プレイヤー）")]
     private GameObject target;
+    [SerializeField, Header("ターゲットの頭の位置")]
+    private GameObject targetCurvePoint;
     [SerializeField, Header("ターゲットの影")]
     private GameObject targetShadow;
     [SerializeField, Header("敵")]
@@ -145,6 +147,7 @@ public class EnemyGenerator_Main : MonoBehaviour {
         enemyController._TargetShadow = targetShadow;
         enemyController._ENEMYTYPE = type;                    // 敵のタイプ格納
         enemyController._ShootArrowSpeed = _shootArrowSpeed;  // 矢を放つスピードを格納
+        enemyController._TargetCurvePoint = targetCurvePoint;
 
         // 現在ゲーム上にいる敵を取得
         for (int i = 0; i < 3; i++)
@@ -199,5 +202,19 @@ public class EnemyGenerator_Main : MonoBehaviour {
         }
 
         return 0;
+    }
+
+    // 一番目の敵の位置
+    public GameObject FirstEnemyPos()
+    {
+        GameObject firstPos = null;
+
+        for(int i = 0; i < 3; i++)
+        {
+            firstPos = activeEnemys[i];
+            break;
+        }
+
+        return firstPos;
     }
 }

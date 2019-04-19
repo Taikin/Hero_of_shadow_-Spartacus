@@ -6,36 +6,39 @@ public class ShadowShieldOther_Main : MonoBehaviour {
 
     GameObject shieldEffectobj;
     bool shieldEffect;
-    float Rimittime = 0.5f;   //エフェクトが消える時間
+    float Rimittime = 0.2f;   //エフェクトが消える時間
     float time;
     AudioSource audiosource;
     public AudioClip shieldsound;   //真ん中以外に当たった時の盾の音
+
+    public bool _ShieldEffect { get { return shieldEffect; } }
 
     // Use this for initialization
     void Start()
     {
         //子を取得
-       // shieldEffectobj = transform.GetChild(0).gameObject;
+       shieldEffectobj = transform.GetChild(0).gameObject;
         audiosource = GetComponent<AudioSource>();
     }
 
 
     //真ん中以外の盾に当てた時のエフェクト出す
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D shieldpoint)
     {
-        //当たった位置に出す
-        foreach (ContactPoint2D point in collision.contacts)
-        {
-
-           // Debug.Log(point.point);
-            //shieldEffectobj.transform.position = (Vector2)point.point;
-           // shieldEffectobj.SetActive(true);
-           // shieldEffect = true;
+        if(shieldpoint.gameObject.tag == "Arrow") {
+            var ArrowController = shieldpoint.gameObject.GetComponent<ArrowController_Main>();
+            if (ArrowController._Protect/* && !ArrowController._Middle*/)
+            {
+                shieldEffectobj.transform.position = (Vector2)shieldpoint.transform.position;
+                shieldEffectobj.SetActive(true);
+                shieldEffect = true;
+                Vector3 pos = shieldEffectobj.transform.position;
+                pos.z = 90;  //出現するz軸を調整
+                shieldEffectobj.transform.position = pos;
+                audiosource.PlayOneShot(shieldsound);   //真ん中以外に当たった時の音再生
+            }
         }
-        //Vector3 pos = shieldEffectobj.transform.position;
-       // pos.z = 90;  //出現するz軸を調整
-       // shieldEffectobj.transform.position = pos;
-        audiosource.PlayOneShot(shieldsound);   //真ん中以外に当たった時の音再生
+
     }
 
     // Update is called once per frame
@@ -47,8 +50,9 @@ public class ShadowShieldOther_Main : MonoBehaviour {
             //時間を過ぎるとエフェクトを出さない
             if (Rimittime < time)
             {
+                shieldEffect = false;
                 time = 0;
-                //shieldEffectobj.SetActive(false);
+                shieldEffectobj.SetActive(false);
             }
         }
     }
