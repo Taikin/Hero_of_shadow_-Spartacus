@@ -12,18 +12,13 @@ public class GaugeIncreases : MonoBehaviour
         _slider = GameObject.Find("Slider").GetComponent<Slider>();
     }
 
-    float _hp = 0;
-    void Update()
+    float Load_value = 0;
+    void FixedUpdate()
     {
-        // HP上昇
-        _hp += 0.01f;
-        if (_hp > 1)
-        {
-            // 最大を超えたら0に戻す
-            _hp = 0;
-        }
+        // Load_value上昇
+        Load_value += 0.1f;
 
-        // HPゲージに値を設定
-        _slider.value = _hp;
+        // Load_valueに値を設定
+        _slider.value = Load_value;
     }
 }
