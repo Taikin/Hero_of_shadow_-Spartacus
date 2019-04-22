@@ -35,7 +35,8 @@ public class ShadowSparutakusu_Main : MonoBehaviour {
         {
             Debug.Log("ゲームオーバー");
             PerDecision = true;
-           // SceneManager.LoadScene("GameOverScene");
+            //SceneManager.LoadScene("GameOverScene");
+            SceneManager.LoadScene("Title");
         }
     }
 }

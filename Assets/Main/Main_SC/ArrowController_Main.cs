@@ -42,6 +42,7 @@ public class ArrowController_Main : MonoBehaviour {
     private GameObject milld;
     private EntityArrowController_Main entityArrowCon;
     private EnemyGenerator_Main enemyGenerator;         // 敵を生成するスクリプト
+    private GameObject enemy;
 
     //矢が落ち始める回転の時間
     float rotatespeed = 10f; //落ちながら回転する変数  
@@ -69,6 +70,7 @@ public class ArrowController_Main : MonoBehaviour {
 
     void Start()
     {
+        
         protect = false;
         middle = false ;
         entityArrowCon = Entityarrow02.GetComponent<EntityArrowController_Main>();
@@ -80,12 +82,6 @@ public class ArrowController_Main : MonoBehaviour {
         //盾（真ん中）部分に当たった時
         if (Arrow.gameObject.tag == "middlepoint" && protect == false)
         {
-            //// 実体の矢を入れ替え
-            //Entityarrow.SetActive(false);
-            //Entityarrow02.SetActive(true);
-            //// hitフラグをtrue
-            //entityArrowCon._Hit = true;
-            //RayPlay();  //Raycast,Rayの関数呼び出し
 
             DirectionArrow();
             ////真ん中に当たったフラグが立つ
@@ -110,7 +106,7 @@ public class ArrowController_Main : MonoBehaviour {
 
     void DirectionArrow()
     {
-        GameObject enemy = enemyGenerator.FirstEnemyPos();
+        enemy = enemyGenerator.FirstEnemyPos();
         // 敵がゲーム上にいたら
         if(enemy)
         {
@@ -219,6 +215,11 @@ public class ArrowController_Main : MonoBehaviour {
         //曲線矢以外で盾（真ん中）部分に当たった時
         if (middle == true && arrowState != ArrowState._CURVE_LINE)
         {
+            //if (!enemy)
+            //{
+            //    Destroy(gameObject);
+            //} 
+
            // Debug.Log("直線矢" + hitposition);
             // Debug.Log("あたり");
             // float middletime = Time.deltaTime * 8;
@@ -226,6 +227,10 @@ public class ArrowController_Main : MonoBehaviour {
 
             //敵の方向へ矢が飛ぶ
             rb.MovePosition(Vector2.Lerp(this.transform.position, hitposition, middletime));
+            if (Vector2.Distance(this.transform.position, hitposition) < 0.1f)
+            {
+                Destroy(gameObject);
+            }
         }
 
 
@@ -246,10 +251,17 @@ public class ArrowController_Main : MonoBehaviour {
         //曲線矢が真ん中に当たった時の処理
         if (middle == true  && arrowState == ArrowState._CURVE_LINE)
         {
-            Debug.Log("曲線矢" + hitposition);
+            //if (!enemy)
+            //{
+            //    Destroy(gameObject);
+            //}
             float middletime = Time.deltaTime * Boundspeed;
             //敵の方向へ矢が飛ぶ
             transform.position = Vector3.Lerp(this.transform.position, hitposition, middletime);
+            if (Vector3.Distance(this.transform.position, hitposition) < 0.1f)
+            {
+                Destroy(gameObject);
+            }
             //transform.position -= new Vector3(hitposition.x, hitposition.y ,0);
 
         }

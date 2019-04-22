@@ -67,7 +67,7 @@ public class EnemyController_Main : MonoBehaviour {
     private float shootArrowSpeed;              // 矢を放つ時間
     private Animator entityAnimator;
 
-    public GameObject _Arrow_Main { get { return arrow; } }
+
     public ENEMYTYPE _ENEMYTYPE { set { enemyType = value; } get { return enemyType; } }
     public STATE _State { set { state = value; } get { return state; } }
 
@@ -409,17 +409,18 @@ public class EnemyController_Main : MonoBehaviour {
     void OnTriggerEnter(Collider enemy)
     {
         // ArrowImageの子オブジェクトに当たったら
-        if (enemy.gameObject.tag == "Arrow")
+        if (enemy.gameObject.tag == "Arrow" && state != STATE._DAMAGE)
         {
             var entityArrowCon = enemy.GetComponent<EntityArrowController_Main>();
 
-            if(entityArrowCon._Hit)
+            if (entityArrowCon._Hit)
             {
+                //state = STATE._DAMAGE;
                 // 敵が死んだ時に、生きている敵の目標地点を更新する処理
-                enemyGeneratorCon.EnemyPosSort();
                 Destroy(this.gameObject);
+                enemyGeneratorCon.EnemyPosSort();
+                Destroy(arrow);
                 entityArrowCon.DestroyArrow();      // 当たった矢を削除
-                Debug.Log("Hit");
             }
         }
     }

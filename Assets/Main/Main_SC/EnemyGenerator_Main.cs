@@ -61,6 +61,10 @@ public class EnemyGenerator_Main : MonoBehaviour {
     {
         // 敵の情報を入れる箱
         this.activeEnemys = new GameObject[3];
+        for (int i = 0; i < 3; i++)
+        {
+            activeEnemys[i] = null;
+        }
         createLevel = CREATE_LEVEL_MAIN._LEVEL1;
     }
 
@@ -83,6 +87,12 @@ public class EnemyGenerator_Main : MonoBehaviour {
                 Levels(4);
                 break;
         }
+
+        //for(int i = 0; i < 3; i++)
+        //{
+        //    Debug.Log(i + 1 + "番目の敵" + activeEnemys[i]);
+        //}
+
     }
 
     private void Levels(int value)
@@ -118,17 +128,19 @@ public class EnemyGenerator_Main : MonoBehaviour {
     // 敵がvalueで設定された値ぶん登場しているか？
     public bool IsMaxEnemy(int value)
     {
+        bool valueFlg = true;
         // 現在ゲーム上にいる敵を取得
         for (int i = 0; i < value; i++)
         {
             // 敵がvalueで設定された値ぶんいなければ、falseを返す
             if (activeEnemys[i] == null)
             {
-                return false;
+                //   return false;
+                valueFlg = false;
             }
         }
         // 敵が最大数いれば、trueを返す
-        return true;
+        return valueFlg;
     }
 
     // 敵を生成する処理
@@ -209,10 +221,19 @@ public class EnemyGenerator_Main : MonoBehaviour {
     {
         GameObject firstPos = null;
 
-        for(int i = 0; i < 3; i++)
+        //if (activeEnemys[0])
+        //{
+        //    return activeEnemys[0];
+        //}
+
+        for (int i = 0; i < 3; i++)
         {
-            firstPos = activeEnemys[i];
-            break;
+            if (activeEnemys[i])
+            {
+                firstPos = activeEnemys[i];
+                break;
+
+            }
         }
 
         return firstPos;

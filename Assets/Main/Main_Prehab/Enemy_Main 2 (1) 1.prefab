@@ -5140,8 +5140,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7064557, y: 6.818198, z: 0.3}
-  m_Center: {x: -0.7532277, y: -0.8302344, z: -3.1857333e-16}
+  m_Size: {x: 4.0639696, y: 6.8181987, z: 0.3}
+  m_Center: {x: 0.42552796, y: -0.8302346, z: -3.9680233e-16}
 --- !u!65 &65665523410426388
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -5339,7 +5339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowPos: {fileID: 1586547981346932}
   arrow: {fileID: 0}
-  arrowPrefab: {fileID: 1816095698852066, guid: f367a6af5b5390543ad4e837bfe6c9f4,
+  arrowPrefab: {fileID: 1665029535470076, guid: 38cb18e40a33a9d4b840a07d587f10a2,
     type: 2}
   greenPoint: {fileID: 0}
   greenPoint1: {fileID: 0}
