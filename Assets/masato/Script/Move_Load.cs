@@ -6,39 +6,52 @@ public class Move_Load : MonoBehaviour
 {
     float LoadTime;
     public Material[] _material;           // 割り当てるマテリアル. 
-    private int i;
 
     public float z1;
+
+    public int flg1;
 
     // Use this for initialization
     void Start()
     {
-        i = 0;
         LoadTime = 0.0f;
+        //flg1 = 0;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.position += new Vector3(z1, 0.0f, 0.0f);
-        LoadTime += 0.1f;
-        if (transform.position.x < -13.7f)
+        LoadTime += Time.deltaTime;
+        if (transform.position.x < -2.17f)
         {
-            transform.position = new Vector3(16.93f, -2, -4.5f);
+            transform.position = new Vector3(3.2f, 0.76f, -9.5f);
         }
 
-        if (LoadTime > 100)
+        if (LoadTime > 40)
         {
-            i++;
-            if (i == 3)
-            {
-                i = 0;
-            }
-
-            this.GetComponent<MeshRenderer>().material = _material[i];
+            flg1++;
+            LoadTime = 0;
         }
+
+        if (flg1 > 2){
+            flg1 = 2;
+        }
+
+        this.GetComponent<MeshRenderer>().material = _material[flg1];
+
+        //if (LoadTime > 10)
+        //{
+        //    i++;
+        //    if (i == 3)
+        //    {
+        //        i = 0;
+        //    }
+        //    
+        //
         Debug.Log(LoadTime);//513でだいたい90秒
-        Debug.Log(i);//513でだいたい90秒
+        //Debug.Log(i);//513でだいたい90秒
+
     }
 }
 

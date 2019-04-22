@@ -13,7 +13,7 @@ public struct CREATE_LEVEL_STATUS_MAIN
     public int maxCreateEnemy;
     [Header("敵の生成速度")]
     public float enemyCreateTime;
-    [Header("矢を放つまでの速度"), Range(0.5f, 5.0f)]
+    [Header("矢を放つまでの速度"), Range(1.0f, 5.0f)]
     public float shootArrowSpeed;
     [Header("次のLevelに移動する時間")]
     public float nextLevelTime;
@@ -36,6 +36,8 @@ public class EnemyGenerator_Main : MonoBehaviour {
     private GameObject greenPoint1;
     [SerializeField, Header("ターゲット（プレイヤー）")]
     private GameObject target;
+    [SerializeField, Header("ターゲットの頭の位置")]
+    private GameObject targetCurvePoint;
     [SerializeField, Header("ターゲットの影")]
     private GameObject targetShadow;
     [SerializeField, Header("敵")]
@@ -59,6 +61,10 @@ public class EnemyGenerator_Main : MonoBehaviour {
     {
         // 敵の情報を入れる箱
         this.activeEnemys = new GameObject[3];
+        for (int i = 0; i < 3; i++)
+        {
+            activeEnemys[i] = null;
+        }
         createLevel = CREATE_LEVEL_MAIN._LEVEL1;
     }
 
@@ -81,6 +87,12 @@ public class EnemyGenerator_Main : MonoBehaviour {
                 Levels(4);
                 break;
         }
+
+        //for(int i = 0; i < 3; i++)
+        //{
+        //    Debug.Log(i + 1 + "番目の敵" + activeEnemys[i]);
+        //}
+
     }
 
     private void Levels(int value)
@@ -116,17 +128,19 @@ public class EnemyGenerator_Main : MonoBehaviour {
     // 敵がvalueで設定された値ぶん登場しているか？
     public bool IsMaxEnemy(int value)
     {
+        bool valueFlg = true;
         // 現在ゲーム上にいる敵を取得
         for (int i = 0; i < value; i++)
         {
             // 敵がvalueで設定された値ぶんいなければ、falseを返す
             if (activeEnemys[i] == null)
             {
-                return false;
+                //   return false;
+                valueFlg = false;
             }
         }
         // 敵が最大数いれば、trueを返す
-        return true;
+        return valueFlg;
     }
 
     // 敵を生成する処理
@@ -145,6 +159,7 @@ public class EnemyGenerator_Main : MonoBehaviour {
         enemyController._TargetShadow = targetShadow;
         enemyController._ENEMYTYPE = type;                    // 敵のタイプ格納
         enemyController._ShootArrowSpeed = _shootArrowSpeed;  // 矢を放つスピードを格納
+        enemyController._TargetCurvePoint = targetCurvePoint;
 
         // 現在ゲーム上にいる敵を取得
         for (int i = 0; i < 3; i++)
@@ -199,5 +214,28 @@ public class EnemyGenerator_Main : MonoBehaviour {
         }
 
         return 0;
+    }
+
+    // 一番目の敵の位置
+    public GameObject FirstEnemyPos()
+    {
+        GameObject firstPos = null;
+
+        //if (activeEnemys[0])
+        //{
+        //    return activeEnemys[0];
+        //}
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (activeEnemys[i])
+            {
+                firstPos = activeEnemys[i];
+                break;
+
+            }
+        }
+
+        return firstPos;
     }
 }

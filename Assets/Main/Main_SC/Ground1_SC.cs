@@ -18,13 +18,12 @@ public class Ground1_SC : MonoBehaviour {
     void Start () {
         // ground_1の初期位置
         Position_x = -0.3f;
-        Position_y = 0.76f;
         Position_z = -9.5f;
 
         Material_Num = 0;
         ChangeNumber = 0;
         x1 = -0.01f;
-        transform.position = new Vector3(Position_x, Position_y, Position_z);
+        transform.position = new Vector3(Position_x, transform.position.y, Position_z);
 
     }
 
@@ -36,7 +35,7 @@ public class Ground1_SC : MonoBehaviour {
         {
             Position_x = 1.99f;
             ChangeNumber += 1;
-            transform.position = new Vector3(Position_x, Position_y, Position_z);
+            transform.position = new Vector3(Position_x, transform.position.y, Position_z);
         }
 
         switch (ChangeNumber)
