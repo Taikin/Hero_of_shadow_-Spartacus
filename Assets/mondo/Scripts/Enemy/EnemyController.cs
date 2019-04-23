@@ -47,6 +47,8 @@ public class EnemyController : MonoBehaviour
     private GameObject greenPoint1;
     [SerializeField, Header("ターゲット（プレイヤー）")]
     private GameObject target;
+    [SerializeField, Header("実体の敵")]
+    private GameObject entityEnemy;
     [SerializeField, Header("敵が移動するスピード")]
     private float enemySpeed;
     [SerializeField, Header("補完スピード")]
@@ -54,6 +56,7 @@ public class EnemyController : MonoBehaviour
 
     private GameObject enemyPosition;           // 敵が進んでいく位置
     private Animator animator;
+    private Animator entityAnimator;            // 実体のアニメーション
     private AnimatorStateInfo aniStateInfo;
     private EnemyGenerator enemyGeneratorCon;
     private ArrowController preArrowController; // 矢のコントローラーの状態を格納する処理
@@ -66,6 +69,7 @@ public class EnemyController : MonoBehaviour
     private float shootArrowSpeed;              // 矢を放つ時間
     private Vector3 relativePos;                // ターゲット方向のベクトルを格納
     private Quaternion rotationInformation;     // 回転情報
+
 
     public GameObject _Arrow { get { return arrow; } }
     public ENEMYTYPE _ENEMYTYPE { set { enemyType = value; } get { return enemyType; } }
@@ -84,9 +88,9 @@ public class EnemyController : MonoBehaviour
     void Start ()
     {
         this.animator = GetComponent<Animator>();
+        this.entityAnimator = entityEnemy.GetComponent<Animator>();
         this.state = STATE._IDLE;
         this.preState = STATE._IDLE;
-        //enemyType = ENEMYTYPE._STRAOGHT_AND_CURVE;
         ArrowCreate();                                          // 矢を生成
         CheckEnemyType();                                       // 敵のタイプを初期化
     }
@@ -368,12 +372,16 @@ public class EnemyController : MonoBehaviour
                 case STATE._IDLE:
                     animator.SetBool("ShootBow", false);
                     animator.SetBool("Damage",  false);
+                    entityAnimator.SetBool("ShootBow", false);
+                    entityAnimator.SetBool("Damage", false);
                     break;
                 case STATE._SHOOT_BOW:
                     animator.SetBool("ShootBow", true);
+                    entityAnimator.SetBool("ShootBow", true);
                     break;
                 case STATE._DAMAGE:
                     animator.SetBool("Damage", true);
+                    entityAnimator.SetBool("Damage", true);
                     break;
             }
             preState = state;
