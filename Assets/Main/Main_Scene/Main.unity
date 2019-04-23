@@ -2064,10 +2064,10 @@ MonoBehaviour:
     nextLevelTime: 0
   - name: LEVEL1
     type: 0
-    maxCreateEnemy: 1
+    maxCreateEnemy: 3
     enemyCreateTime: 1
     shootArrowSpeed: 2
-    nextLevelTime: 10
+    nextLevelTime: 60
   - name: LEVEL2
     type: 1
     maxCreateEnemy: 2
@@ -4319,7 +4319,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.6244259, y: -1.4895784}
+  m_Offset: {x: 0.6244259, y: -1.392173}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4330,7 +4330,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.30733156, y: 1.6311848}
+  m_Size: {x: 0.30733156, y: 1.8259954}
   m_EdgeRadius: 0
 --- !u!61 &1795978841
 BoxCollider2D:
@@ -4344,7 +4344,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.55502105, y: 1.5599365}
+  m_Offset: {x: 0.55502105, y: 1.4625288}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4355,7 +4355,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.35109568, y: 1.4971352}
+  m_Size: {x: 0.35109568, y: 1.6919506}
   m_EdgeRadius: 0
 --- !u!114 &1795978842
 MonoBehaviour:

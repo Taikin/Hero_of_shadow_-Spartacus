@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class GuageManegur_Main : MonoBehaviour {
 
@@ -35,5 +37,10 @@ public class GuageManegur_Main : MonoBehaviour {
 
         // HPゲージに値を設定
         _slider.value = _hp / 90;
+
+        if (_slider.value == 90)
+        {
+            SceneManager.LoadScene("Title");
+        }
     }
 }

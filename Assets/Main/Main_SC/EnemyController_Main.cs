@@ -281,18 +281,40 @@ public class EnemyController_Main : MonoBehaviour {
                     RandamArrow(ArrowController_Main.ArrowState._CURVE_LINE, ArrowController_Main.ArrowState._SLOW_LINE, 0, 2);
                     break;
                 case ENEMYTYPE._ALL_ARROW:              // 全ての矢を飛ばす敵
-                    RandamArrow(ArrowController_Main.ArrowState._STRAOGHT_LINE, ArrowController_Main.ArrowState._CURVE_LINE, ArrowController_Main.ArrowState._SLOW_LINE, 3);
+                    RandamArrow(ArrowController_Main.ArrowState._STRAOGHT_LINE, ArrowController_Main.ArrowState._CURVE_LINE, ArrowController_Main.ArrowState._SLOW_LINE, 3, true);
                     break;
             }
         }
     }
 
     // ランダムで矢の挙動を変える処理
-    private void RandamArrow(ArrowController_Main.ArrowState A, ArrowController_Main.ArrowState B = 0, ArrowController_Main.ArrowState C = 0, int value = 1)
+    private void RandamArrow(ArrowController_Main.ArrowState A, ArrowController_Main.ArrowState B = 0, ArrowController_Main.ArrowState C = 0, int value = 1, bool probabilityFlg = false)
     {
         var ArrowController_Main_Main = arrow.GetComponent<ArrowController_Main>();
         int randamValue = Random.Range(0, value);
 
+        if(probabilityFlg)
+        {
+            int rValue = Random.Range(0, 10);
+            // 30%
+            if(rValue >= 0 && rValue < 3)
+            {
+                randamValue = 0;
+               // Debug.Log("30%");
+            }
+            // 50%
+            else if( rValue >= 3 && rValue < 8)
+            {
+                randamValue = 1;
+                Debug.Log("50%");
+            }
+            // 20%
+            else if(rValue >= 8 && rValue < 10)
+            {
+                randamValue = 2;
+                Debug.Log("20%");
+            }
+        }
         // ランダムに矢の挙動を割り振る
         switch (randamValue)
         {

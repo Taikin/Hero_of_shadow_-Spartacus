@@ -10,7 +10,7 @@ public class ShadowShild_Main : MonoBehaviour {
     private int Distance, Time;
     private float Horizontal, Vertical;
     private int PosFlg;
-
+    private float ShildTime;
     // Use this for initialization
     void Start()
     {
@@ -29,11 +29,14 @@ public class ShadowShild_Main : MonoBehaviour {
         Distance = 0; //------- ゲームの経過時間 ----------//
         Time = 60;
         PosFlg = 0;
+        ShildTime = 0; ;
     }
 
     // Update is called once per frame
     void Update()
     {
+       // Debug.Log(("Shild_Length")+Shild_Length);
+        Debug.Log(("Distance")+Distance);
         // 大きさ・位置・回転
         this.transform.localScale = new Vector2(Shild_Width, Shild_Length);
         this.transform.localPosition = new Vector3(Position_x, Position_y, Position_z);
@@ -51,18 +54,22 @@ public class ShadowShild_Main : MonoBehaviour {
             Distance += 1;
         }
 
-        // 盾の大きさ
-        switch (Distance)
-        {
-            case 20:
-                Shild_Length = 0.08f;
-                break;
 
-            case 50:
-                Shild_Length = 0.05f;
-                break;
-        }
+        //if ((Distance >= 20 && Distance <= 22))
+        //{
+        //    ShildTime++;
+        //}
+        //else if ((Distance >= 50 && Distance <= 51))
+        //{
+        //    ShildTime++;
+        //}
 
+        //if (ShildTime == 5)
+        //{
+        //    ShildTime = 0;
+        //    Shild_Length -= 0.001f;
+        //}
+        
         // 盾の移位置微調整
         if (2.2f <= Position_y)
         {
@@ -90,10 +97,10 @@ public class ShadowShild_Main : MonoBehaviour {
         }
 
 
-        if (Input.GetButton("Circle"))
-        {
-            Position_y = 1.8f;
-            Rotate_z = 0;
-        }
+        //if (Input.GetButton("Circle"))
+        //{
+        //    Position_y = 1.8f;
+        //    Rotate_z = 0;
+        //}
     }
 }
