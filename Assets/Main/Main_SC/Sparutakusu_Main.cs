@@ -15,6 +15,7 @@ public class Sparutakusu_Main : MonoBehaviour {
     {
         animator = GetComponent<Animator>();
         animator.SetBool("is_Run", true);
+        animator.SetBool("is_RoundKick", false);
         Time = 0;
         TimeFlg = false;
     }
@@ -27,19 +28,21 @@ public class Sparutakusu_Main : MonoBehaviour {
             Time++;
         }
 
-        if (Time >= 250)
+        if (Time >= 30)
         {
             Destroy(gameObject);
-            SceneManager.LoadScene("GameOverScene");
+           // SceneManager.LoadScene("GameOverScene");
         }
     }
 
-    private void OnTriggerEnter(Collider Shadow)
+    private void OnTriggerEnter(Collider Sparutakusu)
     {
-        if (Shadow.gameObject.tag == "Arrow")
+        if (Sparutakusu.gameObject.tag == "Arrow")
         {
+            animator.SetBool("is_Run", false);
+            animator.SetBool("is_RoundKick", true);
             Debug.Log("OK");
-           // TimeFlg = true;
+            TimeFlg = true;
         }
         
     }

@@ -18,7 +18,7 @@ public class ShadowShild_Main : MonoBehaviour {
         Shild_Width = 0.1f;
         Shild_Length = 0.1f;
         // 位置
-        Position_x = -0.5f;
+        Position_x = -0.432f;
         Position_y = 1.8f;
         Position_z = -9.333f;
         // 回転
@@ -36,7 +36,7 @@ public class ShadowShild_Main : MonoBehaviour {
     void Update()
     {
        // Debug.Log(("Shild_Length")+Shild_Length);
-        Debug.Log(("Distance")+Distance);
+        //Debug.Log(("Distance")+Distance);
         // 大きさ・位置・回転
         this.transform.localScale = new Vector2(Shild_Width, Shild_Length);
         this.transform.localPosition = new Vector3(Position_x, Position_y, Position_z);
@@ -71,7 +71,7 @@ public class ShadowShild_Main : MonoBehaviour {
         }
 
         // 盾の移位置微調整
-        if (2.2f <= Position_y)
+        if (2.1f <= Position_y)
         {
             PosFlg = -1;
         }
@@ -85,15 +85,15 @@ public class ShadowShild_Main : MonoBehaviour {
         }
 
         // 盾の移動・回転
-        if (Vertical == 1 && PosFlg != -1)
+        if (Vertical > 0 && PosFlg != -1)
         {
-            Position_y += 0.023f;
-            Rotate_z -= 1.4f;
+            Position_y += 0.02f;
+            Rotate_z -= 2.0f;
         }
-        else if (Vertical == -1 && PosFlg != 1)
+        else if (Vertical < 0 && PosFlg != 1)
         {
-            Position_y -= 0.023f;
-            Rotate_z += 1.4f;
+            Position_y -= 0.02f;
+            Rotate_z += 2.0f;
         }
 
 

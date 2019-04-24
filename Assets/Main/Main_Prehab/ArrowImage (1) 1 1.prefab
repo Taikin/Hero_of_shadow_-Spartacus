@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 114636674887976686}
   - component: {fileID: 54462994963760890}
   - component: {fileID: 65923210631142982}
-  - component: {fileID: 65706729554427906}
   m_Layer: 0
   m_Name: Arrow_Main (1)
   m_TagString: Arrow
@@ -58,7 +57,6 @@ GameObject:
   - component: {fileID: 114581405056756318}
   - component: {fileID: 54811434182022802}
   - component: {fileID: 65204649536183356}
-  - component: {fileID: 65950387419572864}
   m_Layer: 0
   m_Name: Arrow_Main
   m_TagString: Arrow
@@ -369,18 +367,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.03818177, y: 0.12293342, z: 0.059124783}
   m_Center: {x: 0.0024914616, y: 0.63104206, z: 0.006310902}
---- !u!65 &65706729554427906
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1288442509371438}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.03818177, y: 0.12293342, z: 0.059124783}
-  m_Center: {x: 0.0024914616, y: 0.08, z: 0.006310902}
 --- !u!65 &65923210631142982
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -393,18 +379,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.03818177, y: 0.12293342, z: 0.059124783}
   m_Center: {x: 0.0024914616, y: 0.63104206, z: 0.006310902}
---- !u!65 &65950387419572864
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1316877351491054}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.03818177, y: 0.12293342, z: 0.059124783}
-  m_Center: {x: 0.0024914616, y: 0.08, z: 0.006310902}
 --- !u!114 &114581405056756318
 MonoBehaviour:
   m_ObjectHideFlags: 1

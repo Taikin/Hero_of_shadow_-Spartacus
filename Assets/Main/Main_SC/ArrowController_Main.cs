@@ -102,7 +102,13 @@ public class ArrowController_Main : MonoBehaviour {
             slowspeed = 0;
 
         }
-        
+
+        //// スパルタクスに当たったら
+        //if (Arrow.gameObject.tag == "Shadow")
+        //{
+        //    Destroy(gameObject);
+        //}
+
     }
 
     void DirectionArrow()

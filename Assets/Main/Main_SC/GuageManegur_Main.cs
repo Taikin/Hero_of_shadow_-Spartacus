@@ -38,7 +38,7 @@ public class GuageManegur_Main : MonoBehaviour {
         // HPゲージに値を設定
         _slider.value = _hp / 90;
 
-        if (_slider.value == 90)
+        if (_hp == 91)
         {
             SceneManager.LoadScene("Title");
         }

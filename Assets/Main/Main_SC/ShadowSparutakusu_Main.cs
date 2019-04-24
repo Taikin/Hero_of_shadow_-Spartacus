@@ -12,8 +12,8 @@ public class ShadowSparutakusu_Main : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        Shadow_Width = 0.1f;
-        Shadow_Length = 0.1f;
+        Shadow_Width = 0.2f;
+        Shadow_Length = 0.2f;
         Shadow_x = -0.23f;
         Shadow_y = 1.80f;
         Shadow_z = -9.333f;
@@ -29,14 +29,14 @@ public class ShadowSparutakusu_Main : MonoBehaviour {
 
     }
 
-    private void OnTriggerEnter2D(Collider2D Shadow)
+    private void OnTriggerEnter(Collider Shadow)
     {
         if (Shadow.gameObject.tag == "Arrow")
         {
-            Debug.Log("ゲームオーバー");
+          //  Debug.Log("ゲームオーバー");
             PerDecision = true;
             //SceneManager.LoadScene("GameOverScene");
-            SceneManager.LoadScene("Title");
+            //SceneManager.LoadScene("Title");
         }
     }
 }
