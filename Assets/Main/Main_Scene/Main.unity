@@ -2064,10 +2064,10 @@ MonoBehaviour:
     nextLevelTime: 0
   - name: LEVEL1
     type: 0
-    maxCreateEnemy: 3
+    maxCreateEnemy: 1
     enemyCreateTime: 1
     shootArrowSpeed: 2
-    nextLevelTime: 60
+    nextLevelTime: 10
   - name: LEVEL2
     type: 1
     maxCreateEnemy: 2

@@ -55,21 +55,21 @@ public class ShadowShild_Main : MonoBehaviour {
         }
 
 
-        //if ((Distance >= 20 && Distance <= 22))
-        //{
-        //    ShildTime++;
-        //}
-        //else if ((Distance >= 50 && Distance <= 51))
-        //{
-        //    ShildTime++;
-        //}
+        if ((Distance >= 20 && Distance <= 22))
+        {
+            ShildTime++;
+        }
+        else if ((Distance >= 50 && Distance <= 51))
+        {
+            ShildTime++;
+        }
 
-        //if (ShildTime == 5)
-        //{
-        //    ShildTime = 0;
-        //    Shild_Length -= 0.001f;
-        //}
-        
+        if (ShildTime == 5)
+        {
+            ShildTime = 0;
+            Shild_Length -= 0.001f;
+        }
+
         // 盾の移位置微調整
         if (2.2f <= Position_y)
         {
