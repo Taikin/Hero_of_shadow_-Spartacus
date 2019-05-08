@@ -3,8 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CharctorMovement : MonoBehaviour {
-    private float movez = 1f;
-    private float speed = 3f;
+    [SerializeField,Header("スパルタクスの走る速度")]
+    private int suparutakusu_move = 0;
+    private Vector3 force;
+    public int Force        //スパルタクス(実体)の走る速度を変える
+    {
+        get { return suparutakusu_move; }
+        set { suparutakusu_move = value; }
+    }
+
     Rigidbody rb;
 
 	void Start ()
@@ -12,10 +19,10 @@ public class CharctorMovement : MonoBehaviour {
         
     }
 	
-	void Update ()
+	void FixedUpdate()
     {
         rb = GetComponent<Rigidbody>();
-        Vector3 force = new Vector3(200,0,0);
+        force = new Vector3(suparutakusu_move,0,0);
         rb.AddForce(force);
 	}
 }

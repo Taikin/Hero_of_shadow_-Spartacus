@@ -40,7 +40,7 @@ public class GuageManegur_Main : MonoBehaviour {
 
         if (_hp == 91)
         {
-            SceneManager.LoadScene("Title");
+            SceneManager.LoadScene("GameClear");
         }
     }
 }

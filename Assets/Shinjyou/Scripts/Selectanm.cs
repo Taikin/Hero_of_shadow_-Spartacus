@@ -15,6 +15,11 @@ public class Selectanm : MonoBehaviour {
     private int a = 0;                              //
     private bool on_flg;                            //決定キーを押したかどうか
 
+    public AudioClip KetteiSE;
+    public AudioClip SelectSE;
+    public AudioClip TitleSE;
+    private AudioSource audiosource;
+
     [SerializeField,Header("Fade-Out(Image)を入れる")]
     private Image Fade;             //シーンが切り替わるときのフェードアウト画像
     [SerializeField,Header("StartImg(1)(Image)を入れる")]
@@ -30,13 +35,15 @@ public class Selectanm : MonoBehaviour {
     private float fadetimer;        //スタート、エンドボタンがフェードする時間
     private float buttonalfa;       //スタート、エンドボタンの透明度
 
-    public float Vertical;
+    private float Vertical;
 
     // Use this for initialization
     void Start ()
     {
         Startrecttransform = GameObject.Find("StartImg").GetComponent<RectTransform>(); //スタートボタンの情報取得
         Endtrecttransform = GameObject.Find("EndImg").GetComponent<RectTransform>();    //エンドボタンの情報取得
+
+        audiosource = gameObject.GetComponent<AudioSource>();
     }
 
     void Update ()
@@ -59,21 +66,26 @@ public class Selectanm : MonoBehaviour {
                 Startrecttransform.sizeDelta = new Vector2(width, height);
                 Endtrecttransform.sizeDelta = new Vector2(width -30, height);   //エンドボタンは一回り小さくするため-30する
             }
-            if(Vertical == -1 && a == 0) //(DownArrow)下ボタン
+
+            if (Vertical == -1 && a == 0) //(DownArrow)下ボタン
             {
                 a += 1;
+                audiosource.PlayOneShot(SelectSE);
             }
             if (Vertical == 1 && a == 1)　//(UpArrow)上ボタン
             {
                 a = 0;
+                audiosource.PlayOneShot(SelectSE);
             }
-            if ((Input.GetButtonDown("Circle") || Input.GetButtonDown("Option")) && a == 0)  //(Space)決定キー
+            if (Input.GetButtonDown("Circle") && a == 0)  //(Space)決定キー
             {
                 on_flg = true;
+                audiosource.PlayOneShot(KetteiSE);
             }
-            else if ((Input.GetButtonDown("Circle") || Input.GetButtonDown("Option")) && a == 1)　//
+            else if (Input.GetButtonDown("Circle") && a == 1)　//
             {
                 on_flg = true;
+                audiosource.PlayOneShot(KetteiSE);
             }
             if(on_flg == true)//スペースキーが押されると下に行く
             {
@@ -84,7 +96,7 @@ public class Selectanm : MonoBehaviour {
                 {
                     if (a == 0)
                     {
-                        SceneManager.LoadScene("Main");         //メインシーンに行く
+                        SceneManager.LoadScene("Opning");         //メインシーンに行く
                     }
                     else
                     {

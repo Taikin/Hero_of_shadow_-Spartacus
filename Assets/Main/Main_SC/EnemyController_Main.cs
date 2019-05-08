@@ -217,7 +217,7 @@ public class EnemyController_Main : MonoBehaviour {
             // 矢の位置を調整
             arrow.transform.parent = arrowPos.transform;
             arrow.transform.localPosition = Vector3.zero;
-            arrow.transform.localRotation = Quaternion.identity;
+            //arrow.transform.localRotation = Quaternion.identity;
             var ArrowController_Main = arrow.GetComponent<ArrowController_Main>();
             // ターゲットの影の情報を格納
             ArrowController_Main._TargetShadow = targetShadow;
@@ -363,6 +363,7 @@ public class EnemyController_Main : MonoBehaviour {
                 case STATE._IDLE:
                     animator.SetBool("ShootBow", false);
                     animator.SetBool("Damage", false);
+                    animator.SetBool("Defalut", true);
                     entityAnimator.SetBool("ShootBow", false);
                     entityAnimator.SetBool("Damage", false);
                     break;

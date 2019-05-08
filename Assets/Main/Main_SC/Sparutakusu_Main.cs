@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 public class Sparutakusu_Main : MonoBehaviour {
 
     public Animator animator;
+    public AudioClip DethSE;
+    public AudioClip RunningSE;
+    AudioSource audiosource;
     private int Time;
     bool TimeFlg;
 
@@ -14,8 +17,10 @@ public class Sparutakusu_Main : MonoBehaviour {
     void Start()
     {
         animator = GetComponent<Animator>();
+        audiosource = GetComponent<AudioSource>();
         animator.SetBool("is_Run", true);
         animator.SetBool("is_RoundKick", false);
+        audiosource.PlayOneShot(RunningSE); 
         Time = 0;
         TimeFlg = false;
     }
@@ -28,10 +33,10 @@ public class Sparutakusu_Main : MonoBehaviour {
             Time++;
         }
 
-        if (Time >= 30)
+        if (Time >= 60)
         {
             Destroy(gameObject);
-           // SceneManager.LoadScene("GameOverScene");
+            SceneManager.LoadScene("GameOver");
         }
     }
 
@@ -41,6 +46,7 @@ public class Sparutakusu_Main : MonoBehaviour {
         {
             animator.SetBool("is_Run", false);
             animator.SetBool("is_RoundKick", true);
+            audiosource.PlayOneShot(DethSE);
             Debug.Log("OK");
             TimeFlg = true;
         }

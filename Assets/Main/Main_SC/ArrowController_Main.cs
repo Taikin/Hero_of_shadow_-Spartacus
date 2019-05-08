@@ -250,8 +250,8 @@ public class ArrowController_Main : MonoBehaviour {
             //rb.gravityScale = 0.05f;
 
             // 仮
-            rb.AddForce(new Vector2(-0.05f, 0));
-            rb.gravityScale = 0.5f;
+            rb.AddForce(new Vector2(-0.11f, 0));
+            rb.gravityScale = 0.6f;
 
             transform.Rotate(0, 0, rotatespeed);    //オブジェクトを回す
 

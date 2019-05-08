@@ -31,13 +31,13 @@ public class EntityArrowController_Main : MonoBehaviour
         {
             //rb.useGravity = true;
             if (arrowController._ArrowState != ArrowController_Main.ArrowState._CURVE_LINE) {
-                rb.velocity = new Vector3(0, -0.7f, 0);
-                transform.Rotate(0, 0, rotatespeed);    //オブジェクトを回す
+                rb.velocity = new Vector3(0, -0.67f, 0);
+                transform.Rotate(0, -rotatespeed, 0);    //オブジェクトを回す
             }
             else if (arrowController._ArrowState == ArrowController_Main.ArrowState._CURVE_LINE)
             {
                 rb.velocity = new Vector3(0, -0.73f, 0);
-                transform.Rotate(0, 0, rotatespeedCurve);    //オブジェクトを回す
+                transform.Rotate(0, -rotatespeedCurve, 0);    //オブジェクトを回す
 
             }
         }
