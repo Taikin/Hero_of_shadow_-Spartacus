@@ -15,7 +15,7 @@ public class Move_Load : MonoBehaviour
     void Start()
     {
         LoadTime = 0.0f;
-        //flg1 = 0;
+        flg1 = 0;
     }
 
     // Update is called once per frame
@@ -49,7 +49,7 @@ public class Move_Load : MonoBehaviour
         //    }
         //    
         //
-        Debug.Log(LoadTime);//513でだいたい90秒
+        //Debug.Log(LoadTime);//513でだいたい90秒
         //Debug.Log(i);//513でだいたい90秒
 
     }

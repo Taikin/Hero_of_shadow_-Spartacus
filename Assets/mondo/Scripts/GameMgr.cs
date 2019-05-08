@@ -14,7 +14,7 @@ public class GameMgr : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.Instance.PlayBGM("仮BGM01");
+       // AudioManager.Instance.PlayBGM("仮BGM01");
     }
 
     private void Update()

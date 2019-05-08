@@ -1,24 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.UI; // ←※これを忘れずに入れる
+using UnityEngine.UI;
 
 public class GaugeIncreases : MonoBehaviour
 {
 
-    Slider _slider;
+    GameObject _Gauge;
+
     void Start()
     {
         // スライダーを取得する
-        _slider = GameObject.Find("Slider").GetComponent<Slider>();
+        _Gauge = GameObject.Find("Gauge");
     }
 
-    float Load_value = 0;
     void FixedUpdate()
     {
-        // Load_value上昇
-        Load_value += 0.1f;
-
-        // Load_valueに値を設定
-        _slider.value = Load_value;
+        _Gauge.GetComponent<Image>().fillAmount += Time.deltaTime*0.01f;
     }
 }

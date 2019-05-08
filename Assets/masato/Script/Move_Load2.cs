@@ -15,7 +15,7 @@ public class Move_Load2 : MonoBehaviour
     void Start()
     {
         LoadTime2 = 0.0f;
-        //flg2 = 0;
+        flg2 = 0;
     }
 
     // Update is called once per frame
