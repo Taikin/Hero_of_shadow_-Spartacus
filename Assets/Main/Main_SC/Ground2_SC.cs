@@ -23,9 +23,8 @@ public class Ground2_SC : MonoBehaviour {
 
         // ground2の初期位置
         Position_x = 1.7f;
-        Position_y = 0.76f;
         Position_z = -9.5f;
-        transform.position = new Vector3(Position_x, Position_y, Position_z);
+        transform.position = new Vector3(Position_x, transform.position.y, Position_z);
 
     }
 
@@ -36,7 +35,7 @@ public class Ground2_SC : MonoBehaviour {
         {
             Position_x = 1.99f;
             ChangeNumber += 1;
-            transform.position = new Vector3(Position_x, Position_y, Position_z);
+            transform.position = new Vector3(Position_x, transform.position.y, Position_z);
         }
 
         switch (ChangeNumber)

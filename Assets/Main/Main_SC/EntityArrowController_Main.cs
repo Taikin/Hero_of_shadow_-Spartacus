@@ -11,6 +11,7 @@ public class EntityArrowController_Main : MonoBehaviour
     private Rigidbody rb;
     private bool hit;
     private float rotatespeed;
+    private float rotatespeedCurve;
     public bool _Hit { get { return hit; } set { hit = value; } }
     public Vector3 _CharaPos { set { charaPos = value; } }
 
@@ -19,6 +20,7 @@ public class EntityArrowController_Main : MonoBehaviour
         arrowController = arrowImage.GetComponent<ArrowController_Main>();
         // 回転量を格納
         rotatespeed = arrowController._RotateSpeed;
+        rotatespeedCurve = arrowController._RotateSpeedCurve;
         rb = GetComponent<Rigidbody>();
     }
     
@@ -28,14 +30,28 @@ public class EntityArrowController_Main : MonoBehaviour
 		if(arrowController._Protect)
         {
             //rb.useGravity = true;
-            rb.velocity = new Vector3(0, -0.2f, 0);
-            transform.Rotate(0, 0, rotatespeed);    //オブジェクトを回す
-        }
-	}
+            if (arrowController._ArrowState != ArrowController_Main.ArrowState._CURVE_LINE) {
+                rb.velocity = new Vector3(0, -0.67f, 0);
+                transform.Rotate(0, -rotatespeed, 0);    //オブジェクトを回す
+            }
+            else if (arrowController._ArrowState == ArrowController_Main.ArrowState._CURVE_LINE)
+            {
+                rb.velocity = new Vector3(0, -0.73f, 0);
+                transform.Rotate(0, -rotatespeedCurve, 0);    //オブジェクトを回す
 
-    //private void OnCollisionEnter(Collision collision)
+            }
+        }
+
+        if (transform.position.y < 0.68)
+        {
+            Destroy(arrowImage);
+            Destroy(this.gameObject);
+        }
+    }
+
+    //private void OnTriggerExit(Collider other)
     //{
-    //    if(collision.gameObject.tag == "ground")
+    //    if (other.gameObject.tag == "ground")
     //    {
     //        Destroy(arrowImage);
     //        Destroy(this.gameObject);
@@ -49,16 +65,8 @@ public class EntityArrowController_Main : MonoBehaviour
     //        Destroy(arrowImage);
     //        Destroy(this.gameObject);
     //    }
-    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "ground")
-        {
-            Destroy(arrowImage);
-            Destroy(this.gameObject);
-        }
-    }
+    //}
 
     public void DestroyArrow()
     {

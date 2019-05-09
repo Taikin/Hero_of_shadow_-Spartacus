@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 public class Sparutakusu_Main : MonoBehaviour {
 
     public Animator animator;
+    public AudioClip DethSE;
+    public AudioClip RunningSE;
+    AudioSource audiosource;
     private int Time;
     bool TimeFlg;
 
@@ -14,7 +17,10 @@ public class Sparutakusu_Main : MonoBehaviour {
     void Start()
     {
         animator = GetComponent<Animator>();
+        audiosource = GetComponent<AudioSource>();
         animator.SetBool("is_Run", true);
+        animator.SetBool("is_RoundKick", false);
+        audiosource.PlayOneShot(RunningSE); 
         Time = 0;
         TimeFlg = false;
     }
@@ -27,17 +33,31 @@ public class Sparutakusu_Main : MonoBehaviour {
             Time++;
         }
 
-        if (Time >= 250)
+        if (Time >= 60)
         {
             Destroy(gameObject);
-            SceneManager.LoadScene("GameOverScene");
+            SceneManager.LoadScene("GameOver");
         }
     }
-    private void OnTriggerEnter2D(Collider2D Shadow)
+
+    private void OnTriggerEnter(Collider Sparutakusu)
     {
-        if (Shadow.gameObject.tag == "Arrow")
+        if (Sparutakusu.gameObject.tag == "Arrow")
         {
-            SceneManager.LoadScene("GameOverScene");
+            animator.SetBool("is_Run", false);
+            animator.SetBool("is_RoundKick", true);
+            audiosource.PlayOneShot(DethSE);
+            Debug.Log("OK");
+            TimeFlg = true;
         }
+        
     }
+
+    //private void OnTriggerEnter2D(Collider2D Shadow)
+    //{
+    //    if (Shadow.gameObject.tag == "Arrow")
+    //    {
+    //        SceneManager.LoadScene("GameOverScene");
+    //    }
+    //}
 }

@@ -1,0 +1,554 @@
+fileFormatVersion: 2
+guid: b7d4ba457d0fd594d8f19524d016dbd2
+timeCreated: 1557212287
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Bone
+    100004: Bone.001
+    100006: Bone.001_end
+    100008: Bone_L
+    100010: Bone_L.001
+    100012: Bone_L.002
+    100014: Bone_L.003
+    100016: Bone_L.004
+    100018: Bone_L.004_end
+    100020: Bone_L.005
+    100022: Bone_R
+    100024: Bone_R.001
+    100026: Bone_R.002
+    100028: Bone_R.003
+    100030: Bone_R.004
+    100032: Bone_R.004_end
+    100034: Bone_R.005
+    100036: Cube.000
+    100038: Cube.001
+    100040: Cube.002
+    100042: Cube.003
+    100044: Cube.004
+    100046: Cube.009
+    100048: Cylinder.000
+    100050: Cylinder.001
+    100052: Cylinder.002
+    100054: Cylinder.003
+    100056: Cylinder.004
+    100058: Cylinder.005
+    100060: //RootNode
+    100062: LeftArm
+    100064: LeftArm.001
+    100066: LeftArm.002
+    100068: LeftArm.003
+    100070: LeftArm.004
+    100072: LeftArm.005
+    100074: LeftArm.006
+    100076: LeftArm.007
+    100078: LeftArm.008
+    100080: LeftArm.009
+    100082: LeftArm.010
+    100084: LeftArm.011
+    100086: LeftArm.011_end
+    100088: LeftArm.012
+    100090: LeftArm.012_end
+    100092: Plane
+    100094: Plane.001
+    100096: Plane.002
+    100098: Plane.003
+    100100: Plane.004
+    100102: Plane.005
+    100104: RightArm
+    100106: RightArm_end
+    100108: Sphere
+    100110: Sphere.001
+    400000: Armature
+    400002: Bone
+    400004: Bone.001
+    400006: Bone.001_end
+    400008: Bone_L
+    400010: Bone_L.001
+    400012: Bone_L.002
+    400014: Bone_L.003
+    400016: Bone_L.004
+    400018: Bone_L.004_end
+    400020: Bone_L.005
+    400022: Bone_R
+    400024: Bone_R.001
+    400026: Bone_R.002
+    400028: Bone_R.003
+    400030: Bone_R.004
+    400032: Bone_R.004_end
+    400034: Bone_R.005
+    400036: Cube.000
+    400038: Cube.001
+    400040: Cube.002
+    400042: Cube.003
+    400044: Cube.004
+    400046: Cube.009
+    400048: Cylinder.000
+    400050: Cylinder.001
+    400052: Cylinder.002
+    400054: Cylinder.003
+    400056: Cylinder.004
+    400058: Cylinder.005
+    400060: //RootNode
+    400062: LeftArm
+    400064: LeftArm.001
+    400066: LeftArm.002
+    400068: LeftArm.003
+    400070: LeftArm.004
+    400072: LeftArm.005
+    400074: LeftArm.006
+    400076: LeftArm.007
+    400078: LeftArm.008
+    400080: LeftArm.009
+    400082: LeftArm.010
+    400084: LeftArm.011
+    400086: LeftArm.011_end
+    400088: LeftArm.012
+    400090: LeftArm.012_end
+    400092: Plane
+    400094: Plane.001
+    400096: Plane.002
+    400098: Plane.003
+    400100: Plane.004
+    400102: Plane.005
+    400104: RightArm
+    400106: RightArm_end
+    400108: Sphere
+    400110: Sphere.001
+    4300000: Cylinder.005
+    4300002: Cube.002
+    4300004: Cube.001
+    4300006: Cube.000
+    4300008: Cylinder.004
+    4300010: Cylinder.003
+    4300012: Cube.004
+    4300014: Cube.003
+    4300016: Plane.005
+    4300018: Plane.004
+    4300020: Plane.003
+    4300022: Plane.002
+    4300024: Cylinder.000
+    4300026: Plane.001
+    4300028: Cylinder.001
+    4300030: Cube.009
+    4300032: Plane
+    4300034: Sphere.001
+    4300036: Sphere
+    4300038: Cylinder.002
+    7400000: Armature|action02
+    7400002: Armature|ArrowAction1
+    7400004: Armature|BowAction1
+    7400006: Armature|CurveAction
+    7400008: Armature|DefalutAction
+    7400010: Armature|DeleteAction
+    7400012: Armature|EscapeAction
+    7400014: Armature|Hourse_body|Take 001|BaseLayer
+    7400016: Armature|Left_eye|Take 001|BaseLayer
+    9500000: //RootNode
+    13700000: Cube.000
+    13700002: Cube.001
+    13700004: Cube.002
+    13700006: Cube.003
+    13700008: Cube.004
+    13700010: Cube.009
+    13700012: Cylinder.000
+    13700014: Cylinder.001
+    13700016: Cylinder.002
+    13700018: Cylinder.003
+    13700020: Cylinder.004
+    13700022: Cylinder.005
+    13700024: Plane
+    13700026: Plane.001
+    13700028: Plane.002
+    13700030: Plane.003
+    13700032: Plane.004
+    13700034: Plane.005
+    13700036: Sphere
+    13700038: Sphere.001
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: a83dcf0187bcc794b8c75114284d9d4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: b29bc62b1534ce74aae2118b03308025, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: 8efb76835bd10bb4da3592ce5fb045ef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: b3f1234e48248984e8815643481619ab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.004
+    second: {fileID: 2100000, guid: 0a655b2606ce52f4d86b3fc71a7b3501, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.006
+    second: {fileID: 2100000, guid: 59fcbb792f9d11847abbbd03bdd0fe07, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.007
+    second: {fileID: 2100000, guid: 5051706a66bf12246a92d84f4fa62970, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.008
+    second: {fileID: 2100000, guid: b839e73e11057d74d9cb75156522c67a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.015
+    second: {fileID: 2100000, guid: 518fc42e432220c479dffc6d82101a64, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.016
+    second: {fileID: 2100000, guid: 4998d6cb9d98b8c48b9ad9c15b770d86, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.017
+    second: {fileID: 2100000, guid: 7729e657ba3a73849b2a8bc31a5dfc0a, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armature|action02
+      takeName: Armature|action02
+      firstFrame: 0
+      lastFrame: 61
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|ArrowAction1
+      takeName: Armature|ArrowAction1
+      firstFrame: 0
+      lastFrame: 79
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|BowAction1
+      takeName: Armature|BowAction1
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|CurveAction
+      takeName: Armature|CurveAction
+      firstFrame: 0
+      lastFrame: 79
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|DefalutAction
+      takeName: Armature|DefalutAction
+      firstFrame: 0
+      lastFrame: 69
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|DeleteAction
+      takeName: Armature|DeleteAction
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|EscapeAction
+      takeName: Armature|EscapeAction
+      firstFrame: 0
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Hourse_body|Take 001|BaseLayer
+      takeName: Armature|Hourse_body|Take 001|BaseLayer
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Left_eye|Take 001|BaseLayer
+      takeName: Armature|Left_eye|Take 001|BaseLayer
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

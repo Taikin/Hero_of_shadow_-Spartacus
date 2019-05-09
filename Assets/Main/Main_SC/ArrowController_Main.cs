@@ -23,6 +23,8 @@ public class ArrowController_Main : MonoBehaviour {
     private GameObject Entityarrow;
     [SerializeField, Header("矢の実体02")]
     private GameObject Entityarrow02;
+    [SerializeField, Header("矢を跳ね返す速さ")]
+    private float Boundspeed = 100f;        //跳ね返す速さ
 
     private ArrowState arrowState;              // 矢の状態
     private bool isShootFlg;                    // 矢を放っているか？（外部で参照して使っている【EnemyController】） 
@@ -39,10 +41,12 @@ public class ArrowController_Main : MonoBehaviour {
     private GameObject targetShadow;            // ターゲットの影
     private GameObject milld;
     private EntityArrowController_Main entityArrowCon;
+    private EnemyGenerator_Main enemyGenerator;         // 敵を生成するスクリプト
+    private GameObject enemy;
 
     //矢が落ち始める回転の時間
-    float Boundspeed = 5f;        //跳ね返す速さ
-    float rotatespeed = 7f; //落ちながら回転する変数  
+    float rotatespeed = 10f; //落ちながら回転する変数  
+    float rotatespeedCurve = 5f;
     //盾(真ん中でない)場合の管理変数
     bool protect = false;
     bool middle = false;
@@ -53,44 +57,43 @@ public class ArrowController_Main : MonoBehaviour {
 
     public bool _IsShootFlg { set { isShootFlg = value; } }
     public float _RotateSpeed { get { return rotatespeed; } }
+    public float _RotateSpeedCurve { get { return rotatespeedCurve; } }
     public ArrowState _ArrowState { set { arrowState = value; } get { return arrowState; } }
     public Vector3 CharaPos { set { charaPos = value; } }
     public Vector3 PlayerPos { set { playerPos = value; } }
     public Vector3 GreenPos { set { greenPos = value; } }
     public GameObject _TargetShadow { set { targetShadow = value; } }
+    public EnemyGenerator_Main _EnemyGenerator { set { enemyGenerator = value; } }
 
     public bool _Middle { get { return middle; } }
     public bool _Protect { get { return protect; } }
 
     void Start()
     {
+        
         protect = false;
         middle = false ;
         entityArrowCon = Entityarrow02.GetComponent<EntityArrowController_Main>();
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void OnCollisionEnter2D(Collision2D Arrow)
+    private void OnTriggerEnter2D(Collider2D Arrow)
     {
         //盾（真ん中）部分に当たった時
         if (Arrow.gameObject.tag == "middlepoint" && protect == false)
         {
-            // 実体の矢を入れ替え
-            Entityarrow.SetActive(false);
-            Entityarrow02.SetActive(true);
-            // hitフラグをtrue
-            entityArrowCon._Hit = true;
-            RayPlay();  //Raycast,Rayの関数呼び出し
-            //真ん中に当たったフラグが立つ
-            middle = true;
-            speed = 0;
-            slowspeed = 0;
+            //rb.velocity = Vector3.zero;
+            DirectionArrow();
+            ////真ん中に当たったフラグが立つ
+            //middle = true;
+            //speed = 0;
+            //slowspeed = 0;
         }
-
 
         //盾(真ん中でない)部分に当たった時
         if (Arrow.gameObject.tag == "shieldpoint" && middle == false)
         {
+                        //rb.velocity = Vector3.zero;
             // 真ん中以外に当たったのでtrue
             protect = true;
             // 矢の親子関係を解除
@@ -98,6 +101,54 @@ public class ArrowController_Main : MonoBehaviour {
             speed = 0;
             slowspeed = 0;
 
+        }
+
+        //// スパルタクスに当たったら
+        //if (Arrow.gameObject.tag == "Shadow")
+        //{
+        //    Destroy(gameObject);
+        //}
+
+    }
+
+    void DirectionArrow()
+    {
+        enemy = enemyGenerator.FirstEnemyPos();
+        // 敵がゲーム上にいたら
+        if(enemy)
+        {
+            // 実体の矢を入れ替え
+            Entityarrow.SetActive(false);
+            Entityarrow02.SetActive(true);
+            // hitフラグをtrue
+            entityArrowCon._Hit = true;
+            //真ん中に当たったフラグが立つ
+            middle = true;
+            speed = 0;
+            slowspeed = 0;
+            if(arrowState != ArrowState._CURVE_LINE)
+            {
+                hitposition = enemy.transform.position + new Vector3(-1, 0.25f, 0);
+                var look = (hitposition - transform.position).normalized;
+                transform.rotation = Quaternion.FromToRotation(Vector2.up, look);
+            }
+            else
+            {
+                hitposition = enemy.transform.position + new Vector3(-1, 0f, 0);
+                var look = (hitposition - transform.position).normalized;
+                transform.rotation = Quaternion.FromToRotation(Vector2.up, look);
+            }
+            //transform.rotation = Quaternion.LookRotation(look, Vector2.right);
+        }
+        // 敵がゲーム上にいないなら
+        else
+        {
+            // 真ん中以外に当たったのでtrue
+            protect = true;
+            // 矢の親子関係を解除
+            Entityarrow.transform.parent = null;
+            speed = 0;
+            slowspeed = 0;
         }
     }
 
@@ -129,7 +180,9 @@ public class ArrowController_Main : MonoBehaviour {
                 //当たったオブジェクトに向けて回転
                 else
                 {
-                    transform.Rotate(0, 0, -150f);
+                    var look = (hit.point  - transform.position).normalized;
+                    transform.rotation = Quaternion.FromToRotation(Vector2.up, look);
+                    //transform.Rotate(0, 0, -150f);
                 }
             }
         }
@@ -143,7 +196,7 @@ public class ArrowController_Main : MonoBehaviour {
         //Debug.DrawRay(ray.origin, ray.direction * 300, Color.red);
 
         // 矢を敵が放っていたら
-        if (isShootFlg)
+        if (isShootFlg && protect == false && middle == false)
         {
             // 親子関係解除
             transform.parent = null;
@@ -169,13 +222,24 @@ public class ArrowController_Main : MonoBehaviour {
         //曲線矢以外で盾（真ん中）部分に当たった時
         if (middle == true && arrowState != ArrowState._CURVE_LINE)
         {
-            Debug.Log("直線矢" + hitposition);
+            //if (!enemy)
+            //{
+            //    Destroy(gameObject);
+            //} 
+
+           // Debug.Log("直線矢" + hitposition);
             // Debug.Log("あたり");
             // float middletime = Time.deltaTime * 8;
-            float middletime = Time.deltaTime * 4;
+            float middletime = Time.deltaTime * Boundspeed;
 
             //敵の方向へ矢が飛ぶ
-            rb.MovePosition(Vector2.Lerp(this.transform.position, hitposition, middletime));
+            // rb.MovePosition(Vector2.Lerp(this.transform.position, hitposition, middletime));
+            Vector2 dir = (hitposition - transform.position).normalized;
+            rb.velocity = dir * Boundspeed;
+            if (Vector2.Distance(this.transform.position, hitposition) < 0.1f)
+            {
+                Destroy(gameObject);
+            }
         }
 
 
@@ -186,8 +250,8 @@ public class ArrowController_Main : MonoBehaviour {
             //rb.gravityScale = 0.05f;
 
             // 仮
-            rb.AddForce(new Vector2(-0.1f, 0));
-            rb.gravityScale = 0.3f;
+            rb.AddForce(new Vector2(-0.11f, 0));
+            rb.gravityScale = 0.6f;
 
             transform.Rotate(0, 0, rotatespeed);    //オブジェクトを回す
 
@@ -196,10 +260,20 @@ public class ArrowController_Main : MonoBehaviour {
         //曲線矢が真ん中に当たった時の処理
         if (middle == true  && arrowState == ArrowState._CURVE_LINE)
         {
-            Debug.Log("曲線矢" + hitposition);
-            float middletime = Time.deltaTime /** 4*/;
+            //if (!enemy)
+            //{
+            //    Destroy(gameObject);
+            //}
+            float middletime = Time.deltaTime * Boundspeed;
             //敵の方向へ矢が飛ぶ
-           transform.position = Vector3.Lerp(this.transform.position, hitposition, middletime);
+            //transform.position = Vector3.Lerp(this.transform.position, hitposition, middletime);
+            Vector3 dir = (hitposition - transform.position).normalized;
+            rb.velocity = dir * Boundspeed;
+            if (Vector3.Distance(this.transform.position, hitposition) < 0.1f)
+            {
+                Destroy(gameObject);
+            }
+            //transform.position -= new Vector3(hitposition.x, hitposition.y ,0);
 
         }
         //矢がターゲットに到達したら
@@ -208,14 +282,19 @@ public class ArrowController_Main : MonoBehaviour {
 
             //矢を回転させながら落とす
             //rb.AddForce(new Vector2(-10, 0));
-            transform.Rotate(0, 0, rotatespeed);    //オブジェクトを回す
+            // 仮
+            rb.AddForce(new Vector2(-0.05f, -0.2f));
+            //rb.gravityScale = 0.2f;
+           // rb.velocity = new Vector2(-0.05f, -1.0f);
+            transform.Rotate(0, 0, rotatespeedCurve);    //オブジェクトを回す
         }
     }
 
     // 直線
     void StraoghtLine()
-    { 
+    {
         transform.position += transform.up * speed * Time.deltaTime;
+        //rb.velocity = transform.up * speed * Time.deltaTime;
     }
 
     // 曲線処理
@@ -234,23 +313,27 @@ public class ArrowController_Main : MonoBehaviour {
         //矢の進む割合をTime.deltaTimeで決める
         time += Time.deltaTime / curvespeed;
 
-        //二次ベジェ曲線
-        //スタート地点から中継地点までのベクトル上を通る点の現在の位置
-        var a = Vector3.Lerp(charaPos, greenPos, time);
+        if(this.transform.position != playerPos && protect == false && middle == false)
+        {
+            //二次ベジェ曲線
+            //スタート地点から中継地点までのベクトル上を通る点の現在の位置
+            var a = Vector3.Lerp(charaPos, greenPos, time);
 
-        //中継地点からターゲットまでのベクトル上を通る点の現在の位置
-        var b = Vector3.Lerp(greenPos, playerPos, time);
+            //中継地点からターゲットまでのベクトル上を通る点の現在の位置
+            var b = Vector3.Lerp(greenPos, playerPos, time);
 
-        //上の二つの点を結んだベクトル上を通る点の現在の位置（弾の位置）
-        this.transform.position = Vector3.Lerp(a, b, time);             //曲線矢
-                                                                        //落ちる矢の角度調整
-        step = rotspeed * Time.deltaTime;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, -120f), step); //z軸-120度まで回転させ矢を下向きに
+            //上の二つの点を結んだベクトル上を通る点の現在の位置（弾の位置）
+            this.transform.position = Vector3.Lerp(a, b, time);             //曲線矢
+                                                                            //落ちる矢の角度調整
+            step = rotspeed * Time.deltaTime;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, -120f), step); //z軸-120度まで回転させ矢を下向きに
+        }
     }
 
     // ゆっくり
     void SlowLine()
     {
         transform.position += transform.up * slowspeed * Time.deltaTime;
+        //rb.velocity = transform.up * slowspeed * Time.deltaTime;
     }
 }

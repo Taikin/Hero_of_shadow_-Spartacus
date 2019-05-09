@@ -1,0 +1,205 @@
+fileFormatVersion: 2
+guid: b7682b09ca86d9c45a1607c9f12808ac
+timeCreated: 1557196012
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Bone
+    100004: Bone.001
+    100006: Bone.001_end
+    100008: Bone_L
+    100010: Bone_L.001
+    100012: Bone_L.002
+    100014: Bone_L.003
+    100016: Bone_L.004
+    100018: Bone_L.004_end
+    100020: Bone_L.005
+    100022: Bone_L.005_end
+    100024: Bone_R
+    100026: Bone_R.001
+    100028: Bone_R.002
+    100030: Bone_R.003
+    100032: Bone_R.004
+    100034: Bone_R.004_end
+    100036: Bone_R.005
+    100038: Bone_R.005_end
+    100040: Cube.002
+    100042: Cube.003
+    100044: Cube.004
+    100046: Plane.003
+    100048: //RootNode
+    400000: Armature
+    400002: Bone
+    400004: Bone.001
+    400006: Bone.001_end
+    400008: Bone_L
+    400010: Bone_L.001
+    400012: Bone_L.002
+    400014: Bone_L.003
+    400016: Bone_L.004
+    400018: Bone_L.004_end
+    400020: Bone_L.005
+    400022: Bone_L.005_end
+    400024: Bone_R
+    400026: Bone_R.001
+    400028: Bone_R.002
+    400030: Bone_R.003
+    400032: Bone_R.004
+    400034: Bone_R.004_end
+    400036: Bone_R.005
+    400038: Bone_R.005_end
+    400040: Cube.002
+    400042: Cube.003
+    400044: Cube.004
+    400046: Plane.003
+    400048: //RootNode
+    4300000: Plane.003
+    4300002: Cube.004
+    4300004: Cube.002
+    4300006: Cube.003
+    7400000: Armature|Armature|Armature|ArmatureAction|Armature|ArmatureAction
+    7400002: Armature|GoMainAction1_Shadow
+    7400004: Armature|GoMainAction2_Shadow
+    7400006: Armature|HitAction
+    7400008: Armature|LoseAction
+    7400010: Armature|Pick_upAction
+    7400012: Armature|PickUpAction2_Shadow
+    7400014: Armature|PickUpAction3_Shadow
+    7400016: Armature|RunAction
+    7400018: Armature|RunStopAction
+    7400020: Armature|SetUpAction_shadow
+    7400022: Armature|SurpriseAction
+    7400024: Armature|tiredAction
+    7400026: Armature|TorchRunAction
+    7400028: Armature|VictoryAction01
+    7400030: Armature|VictroyAction02
+    9500000: //RootNode
+    13700000: Cube.002
+    13700002: Cube.003
+    13700004: Cube.004
+    13700006: Plane.003
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 86acb74eb1f6ee246b014bb23851c7e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.000
+    second: {fileID: 2100000, guid: 9356af340dec60e4595dc1535c0cd51b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.011
+    second: {fileID: 2100000, guid: 53b70bc99f2ec094eb670dbda8979051, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.012
+    second: {fileID: 2100000, guid: f762af2b5afbf624d85f66a3e8354e9e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.013
+    second: {fileID: 2100000, guid: 494af35c4d8d3d44aa2e0eacedbcbfe8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.014
+    second: {fileID: 2100000, guid: 4360cc0611e4cc34487095479fa6afb8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.016
+    second: {fileID: 2100000, guid: 5575a0626dfb1ad45b2d7e27e30469cd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.017
+    second: {fileID: 2100000, guid: 6f98065f0d5cb7b4d8a4c36bc9e4010a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.018
+    second: {fileID: 2100000, guid: 90e6f76ebfb69b840a9139e3d677e8de, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
