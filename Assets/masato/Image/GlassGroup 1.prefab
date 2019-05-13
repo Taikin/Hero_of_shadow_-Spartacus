@@ -2925,6 +2925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ad608ff03cf394d95748be850def59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stoptime: 3
-  speed: 0.5
   GlassSpeed: -0.01
+  CreateGlass: 2.27
+  DeleteGlass: -4.2
+  Glass: {fileID: 1562670752345048}

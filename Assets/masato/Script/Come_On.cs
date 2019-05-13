@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Come_On : MonoBehaviour
 {
+    [SerializeField, Header("クリア時にカメラを移動させる位置")]
+    private GameObject cameraMovePos;
+    [SerializeField, Header("逃げる敵")]
+    private GameObject esapeEnemy;
+    [SerializeField, Header("クリア後に敵がプレイヤーを追い詰めるために移動する位置")]
+    private GameObject clearEsapePos;
 
     public GameObject Friend;
     public GameObject Stone;
@@ -17,7 +23,7 @@ public class Come_On : MonoBehaviour
 
     GameObject instanceObj;
     GameObject caveObj;
-    Vector3 cameraMovePos;
+   // Vector3 cameraMovePos;
     // Use this for initialization
     void Start()
     {
@@ -30,18 +36,18 @@ public class Come_On : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         Times += Time.deltaTime;//時間を確認
                                 //Times += 0.1f;
 
-        if (Times > 20 && ComeSflg == false)
+        if (Times > 0 && ComeSflg == false)
         {
             if (ComeSflg == false)
             {
-                instanceObj = Instantiate(Stone, new Vector3(2.52f, 0.85f, -9.3f), Stone.transform.rotation);//石を生やします
+               // instanceObj = Instantiate(Stone, new Vector3(2.52f, 0.85f, -9.3f), Stone.transform.rotation);//石を生やします
                 caveObj = Instantiate(Friend, new Vector3(3.5f, 0.8f, -9.8f), Friend.transform.rotation);//仲間を出します
-                cameraMovePos = caveObj.transform.position + new Vector3(0.2f, 0, 0);
-                //instanceObj = Instantiate(Friend, new Vector3(1.7f, 0.8f, -9.8f), Friend.transform.rotation);//仲間を出します
+                GameObject prefab = Instantiate(esapeEnemy, new Vector3(-1.8f, 0.9f, -9.55f), Quaternion.Euler(0, 90, 0));
+                EscapeEnemyController Econtroller = prefab.GetComponent<EscapeEnemyController>();
+                Econtroller.clearEsapePos = clearEsapePos;
             }
             ComeSflg = true;
         }
@@ -50,18 +56,20 @@ public class Come_On : MonoBehaviour
             if (ComeGflg == false)
             {
                 Destroy(instanceObj);
-                instanceObj = Instantiate(Glass, new Vector3(2.52f, 0.85f, -9.3f), Glass.transform.rotation);//石を出します
+                instanceObj = Instantiate(Glass, new Vector3(2.52f, 0.85f, -9.3f), Glass.transform.rotation);//草を出します
             }
             // ComeSflg = false;
             ComeGflg = true;
         }
-        else if (Times > 85 && ComeFflg == false)
+        else if (Times > 90 && ComeFflg == false)
         {
             if (ComeFflg == false)
             {
                 Debug.Log("でた");
-                //Destroy(instanceObj);
-                instanceObj = Instantiate(Friend, new Vector3(1.7f, 0.8f, -9.8f), Friend.transform.rotation);//仲間を出します
+                //caveObj = Instantiate(Friend, new Vector3(3.5f, 0.8f, -9.8f), Friend.transform.rotation);//仲間を出します
+                //GameObject prefab = Instantiate(esapeEnemy, new Vector3(-1.8f, 0.9f, -9.55f), Quaternion.Euler(0, 90, 0));
+                //EscapeEnemyController Econtroller = prefab.GetComponent<EscapeEnemyController>();
+                //Econtroller.clearEsapePos = clearEsapePos;
             }
             ComeFflg = true;
         }
@@ -70,7 +78,7 @@ public class Come_On : MonoBehaviour
         if (caveObj)
         {
             //myCamera.transform.position += new Vector3(0.1f, 0.0f, 0.0f);
-            transform.position = Vector3.MoveTowards(transform.position, cameraMovePos,Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, cameraMovePos.transform.position,Time.deltaTime * 0.5f);
         }
     }
 }

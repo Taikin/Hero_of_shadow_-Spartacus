@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 68acb403f1d5311468fda6864730e280
-timeCreated: 1556077980
+guid: 4d0deda87bccd954bb2ad17379009500
+timeCreated: 1557720569
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -27,10 +27,11 @@ ModelImporter:
     100038: Bone_R.005_end
     100040: Cube.000
     100042: Cube.001
-    100044: Cube.010
-    100046: //RootNode
-    100048: Plane
-    100050: Plane.001
+    100044: Cube.002
+    100046: Cube.010
+    100048: //RootNode
+    100050: Plane
+    100052: Plane.001
     400000: Armature
     400002: Bone
     400004: Bone.001
@@ -53,65 +54,70 @@ ModelImporter:
     400038: Bone_R.005_end
     400040: Cube.000
     400042: Cube.001
-    400044: Cube.010
-    400046: //RootNode
-    400048: Plane
-    400050: Plane.001
-    4300000: Cube.001
-    4300002: Cube.000
-    4300004: Cube.010
-    4300006: Plane.001
-    4300008: Plane
+    400044: Cube.002
+    400046: Cube.010
+    400048: //RootNode
+    400050: Plane
+    400052: Plane.001
+    4300000: Cube.002
+    4300002: Cube.001
+    4300004: Cube.000
+    4300006: Cube.010
+    4300008: Plane.001
+    4300010: Plane
     7400000: Armature|SetupAction
     7400002: Armature|ThreatAction
-    7400004: Armature|VictoryAction
+    7400004: Armature|ThreatAction2
+    7400006: Armature|ThreatAction3
+    7400008: Armature|VictoryAction
     9500000: //RootNode
     13700000: Cube.000
     13700002: Cube.001
-    13700004: Cube.010
-    13700006: Plane
-    13700008: Plane.001
+    13700004: Cube.002
+    13700006: Cube.010
+    13700008: Plane
+    13700010: Plane.001
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.002
-    second: {fileID: 2100000, guid: 4cb751ed359f04c47bbcb3e4660ff14b, type: 2}
+    second: {fileID: 2100000, guid: 5d9fd7d67496424408c72204a3a893af, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.004
-    second: {fileID: 2100000, guid: d22efeaeaf5e83d479383f4f3290bafc, type: 2}
+    second: {fileID: 2100000, guid: ea8188c5a26878745a0f24061144295c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.006
-    second: {fileID: 2100000, guid: 8cd3c840ad39c7d46884f6010d0d8e3e, type: 2}
+    second: {fileID: 2100000, guid: eadcebfff94c8c74187c6dc7e5c5881a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.008
-    second: {fileID: 2100000, guid: 9ca6e165f40975d4e9c6a7edba4eae54, type: 2}
+    second: {fileID: 2100000, guid: 32c617c3612a9be40b8f55748754f19a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.009
-    second: {fileID: 2100000, guid: e1db5bed4dba1ca4d8f84f838c10ed3a, type: 2}
+    second: {fileID: 2100000, guid: 80ad2146a9f2df44296191c0091092d2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.010
-    second: {fileID: 2100000, guid: 74bff5ad99646f040b8f355669dd20a5, type: 2}
+    second: {fileID: 2100000, guid: a996627e221a6d246a13f124cc5b59e3, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.011
-    second: {fileID: 2100000, guid: 53b70bc99f2ec094eb670dbda8979051, type: 2}
+    second: {fileID: 2100000, guid: 0045a75042e8f8142b2e2586793eb73a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.012
-    second: {fileID: 2100000, guid: f762af2b5afbf624d85f66a3e8354e9e, type: 2}
+    second: {fileID: 2100000, guid: a674c99eae3260341b09eb3738916587, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -149,7 +155,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -177,7 +183,63 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|ThreatAction2
+      takeName: Armature|ThreatAction2
+      firstFrame: 0
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|ThreatAction3
+      takeName: Armature|ThreatAction3
+      firstFrame: 0
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -205,7 +267,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

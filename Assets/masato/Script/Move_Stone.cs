@@ -2,87 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move_Stone : MonoBehaviour {
+public class Move_Stone : MonoBehaviour
+{
 
-    [SerializeField, Header("真ん中に止める時間")]
-    private float stoptime;
-    [SerializeField, Header("真ん中までに動くスピード")]
-    private float speed;
-    [SerializeField, Header("画面外に行く石のスピード")]
+    [SerializeField, Header("石のスピード")]
     private float StoneSpeed;
+    [SerializeField, Header("新しい石を出す瞬間")]
+    private float CreateStone;
+    [SerializeField, Header("古い石を消す瞬間")]
+    private float DeleteStone;
 
-    private GameObject ObjPos;
-    private bool MoveFlg;
+    GameObject instanceObj;
+    public GameObject Stone;
+
+    private bool CreateFlg;
     private float LerpTime;
     float TimeCount;
 
     void Start()
     {
-        TimeCount = 0;
-        MoveFlg = false;
-        ObjPos = GameObject.Find("ObjPos");
+        CreateFlg = true;
     }
 
     void FixedUpdate()
     {
-
-        if (MoveFlg == false)
+        transform.position += new Vector3(StoneSpeed, 0.0f, 0.0f);//x方向に動く
+        if (transform.position.x < CreateStone && CreateFlg == true)
         {
-
-            // ストーンを真ん中に移動（ストーンの位置と真ん中にあるオブジェクトの距離 > 1なら）
-            if (Vector3.Distance(transform.position, ObjPos.transform.position) > 1)
-            {
-                LerpTime = Time.deltaTime * speed;
-                transform.position = Vector3.MoveTowards(transform.position, ObjPos.transform.position, LerpTime);
-            }
-            // ストーンが真ん中に着いたら
-            else
-            {
-                TimeCount += Time.deltaTime;
-
-                // 指定秒数後MoveFlgをTrue
-                if (TimeCount > stoptime)
-                {
-                    MoveFlg = true;
-                }
-            }
+            instanceObj = Instantiate(Stone, new Vector3(2.52f, 0.85f, -9.3f), Stone.transform.rotation);//石を生やします
+            CreateFlg = false;
         }
-        else
+        if (transform.position.x < DeleteStone)
         {
-            transform.position += new Vector3(StoneSpeed, 0, 0);
+            Destroy(gameObject);//xが-3を超えたら消す
         }
-
-            //if (TimeCount < 7.5f)
-            //{
-            //    MoveFlg = false;
-            //}
-            //else if (TimeCount < 10f)
-            //{
-            //    MoveFlg = true;
-            //}
-            //else
-            //{
-            //   MoveFlg = false;
-            //}
-
-            //if (MoveFlg == true)
-            //{
-            //    transform.position = new Vector3(-0.23f, 0.84f, -9.3f);
-            //}
-            //else
-            //{
-            //    transform.position += new Vector3(TC, 0, 0);
-            //}
-
-
-            //if (flg == 0 || flg == 2)
-            //{
-            //    transform.position += new Vector3(TC, 0, 0);
-            //}
-            //else if (flg == 1)
-            //{
-            //    transform.position = new Vector3(-0.23f, 0.84f, -9.3f);
-            //}
-
-        }
+    }
 }
