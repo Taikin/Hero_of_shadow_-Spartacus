@@ -128,7 +128,7 @@ public class ArrowController_Main : MonoBehaviour {
             slowspeed = 0;
             if(arrowState != ArrowState._CURVE_LINE)
             {
-                hitposition = enemy.transform.position + new Vector3(-1, 0.25f, 0);
+                hitposition = enemy.transform.position + new Vector3(-1, 0.15f, 0);
                 var look = (hitposition - transform.position).normalized;
                 transform.rotation = Quaternion.FromToRotation(Vector2.up, look);
             }

@@ -36,6 +36,8 @@ public class EnemyController_Main : MonoBehaviour {
 
     [SerializeField, Header("矢を生成する位置")]
     private GameObject arrowPos;
+    [SerializeField, Header("曲線矢を生成する位置")]
+    private GameObject arrowcCurvePos;
     [SerializeField, Header("現在持っている矢")]
     private GameObject arrow;
     [SerializeField, Header("生成する矢")]
@@ -64,7 +66,9 @@ public class EnemyController_Main : MonoBehaviour {
     private ENEMYTYPE enemyType;                // 敵のタイプを格納
     private ENEMYPOS_TYPE enemyPosType;         // 敵のポジションタイプを格納
     private float keyInputTime;                 // Time.deltaTimeの値を格納
-    private float shootArrowSpeed;              // 矢を放つ時間
+    private float shootArrowSpeed;              // 矢を放つ時間0
+    private bool createFlg;
+    private bool curveCreateFlg;
     private Animator entityAnimator;
 
 
@@ -85,8 +89,6 @@ public class EnemyController_Main : MonoBehaviour {
     public AudioClip Arrowshot;
     AudioSource audiosource;
 
-    public float time;
-    public int Flg;
     void Start()
     {
         this.animator = GetComponent<Animator>();
@@ -97,20 +99,10 @@ public class EnemyController_Main : MonoBehaviour {
         CheckEnemyType();                                       // 敵のタイプを初期化
         audiosource = GetComponent<AudioSource>();
         this.entityAnimator = entityEnemy.GetComponent<Animator>();
-        time = 0;
-        Flg = 0;
     }
 
     void Update()
     {
-        //time += Time.deltaTime;
-        //Debug.Log(time);
-
-        //if (time >= 0.5f)
-        //{
-        //    ArrowCreate();
-        //}
-
         if (!target) { return; }
         EnemyAnimation();               // アニメーション処理
         EnemyState();                   // 敵の状態
@@ -156,6 +148,7 @@ public class EnemyController_Main : MonoBehaviour {
     {
         keyInputTime += Time.deltaTime;
 
+
         // 指定秒数後に矢を放つ
         if (keyInputTime >= shootArrowSpeed && state != STATE._DAMAGE)
         {
@@ -171,24 +164,67 @@ public class EnemyController_Main : MonoBehaviour {
      * *******************************************************************/
     void EnemyShootBow()
     {
-        //　現在矢を持っているなら
-        if (arrow)
-        {
-            // 矢を放つ処理
-            ShootArrow();
-        }
-
         aniStateInfo = animator.GetCurrentAnimatorStateInfo(0);
         // 現在再生されているアニメーションが【ShootBow】だったら
         if (aniStateInfo.fullPathHash == Animator.StringToHash("Base Layer.ShootBow"))
         {
             // アニメーションが終了したら、
+            if (aniStateInfo.normalizedTime >= 0.3f && !createFlg)
+            {
+                arrow.SetActive(true);
+                createFlg = true;
+            }
+
+            // アニメーションが終了したら、
+            if (aniStateInfo.normalizedTime >= 0.6f)
+            {
+                //　現在矢を持っているなら
+                if (arrow)
+                {
+                    // 矢を放つ処理
+                    ShootArrow();
+                }
+            }
+
+            // アニメーションが終了したら、
             if (aniStateInfo.normalizedTime >= 1.0f)
             {
-                // 矢を生成する
-              ArrowCreate();
                 // IDLE状態に戻る
                 state = STATE._IDLE;
+                ArrowCreate();
+                createFlg = false;
+            }
+        }
+
+        // 現在再生されているアニメーションが【Curve】だったら
+        if (aniStateInfo.fullPathHash == Animator.StringToHash("Base Layer.Curve"))
+        {
+
+            if (aniStateInfo.normalizedTime >= 0.35f && !curveCreateFlg)
+            {
+
+                arrow.SetActive(true);
+                curveCreateFlg = true;
+            }
+
+            if (aniStateInfo.normalizedTime >= 0.6f)
+            {
+                //　現在矢を持っているなら
+                if (arrow)
+                {
+                    // 矢を放つ処理
+                    ShootArrow();
+                }
+            }
+
+            // アニメーションが終了したら、
+            if (aniStateInfo.normalizedTime >= 1.0f)
+            {
+                Debug.Log("OK");
+                // IDLE状態に戻る
+                state = STATE._IDLE;
+                ArrowCreate();
+                curveCreateFlg = false;
             }
         }
     }
@@ -229,7 +265,7 @@ public class EnemyController_Main : MonoBehaviour {
             // 矢の位置を調整
             arrow.transform.parent = arrowPos.transform;
             arrow.transform.localPosition = Vector3.zero;
-            arrow.transform.localRotation = Quaternion.identity;
+            arrow.transform.localRotation = Quaternion.identity;;
             var ArrowController_Main = arrow.GetComponent<ArrowController_Main>();
             // ターゲットの影の情報を格納
             ArrowController_Main._TargetShadow = targetShadow;
@@ -375,13 +411,29 @@ public class EnemyController_Main : MonoBehaviour {
                 case STATE._IDLE:
                     animator.SetBool("ShootBow", false);
                     animator.SetBool("Damage", false);
-                    animator.SetBool("Defalut", true);
                     entityAnimator.SetBool("ShootBow", false);
                     entityAnimator.SetBool("Damage", false);
+                    animator.SetBool("Curve", false);
+                    entityAnimator.SetBool("Curve", false);
                     break;
                 case STATE._SHOOT_BOW:
-                    animator.SetBool("ShootBow", true);
-                    entityAnimator.SetBool("ShootBow", true);
+                    var ArrowController_Main_Main = arrow.GetComponent<ArrowController_Main>();
+                    if (ArrowController_Main_Main._ArrowState == ArrowController_Main.ArrowState._CURVE_LINE)
+                    {
+                        // 矢の親子関係を解除
+                        arrow.transform.parent = null;
+                        // CurvePosを親にする
+                        arrow.transform.parent = arrowcCurvePos.transform;
+                        arrow.transform.localPosition = new Vector3(0, -0.027f, -0.02f);
+                        arrow.transform.localRotation = Quaternion.Euler(-14, 76, 243);
+                        animator.SetBool("Curve", true);
+                        entityAnimator.SetBool("Curve", true);
+                    }
+                    else
+                    {
+                        animator.SetBool("ShootBow", true);
+                        entityAnimator.SetBool("ShootBow", true);
+                    }
                     audiosource.PlayOneShot(Arrowshot);
                     break;
                 case STATE._DAMAGE:
