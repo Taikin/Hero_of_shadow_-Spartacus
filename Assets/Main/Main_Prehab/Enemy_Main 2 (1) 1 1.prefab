@@ -5357,7 +5357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowPos: {fileID: 1948373073631036}
   arrow: {fileID: 0}
-  arrowPrefab: {fileID: 1259240298425078, guid: 8782fbae0de2c0e4f8072e32a30ac6d8,
+  arrowPrefab: {fileID: 1680835135481842, guid: 8782fbae0de2c0e4f8072e32a30ac6d8,
     type: 2}
   greenPoint: {fileID: 0}
   greenPoint1: {fileID: 0}
@@ -5366,7 +5366,8 @@ MonoBehaviour:
   completionSpeed: 0
   entityEnemy: {fileID: 1929183540640288}
   Arrowshot: {fileID: 8300000, guid: 56c9b594113cef44195159632e80e521, type: 3}
-  HorseRunningSE: {fileID: 8300000, guid: 1702322bbef7ced4e8b3355a9ff54abc, type: 3}
+  time: 0
+  Flg: 0
 --- !u!137 &137060281216362222
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

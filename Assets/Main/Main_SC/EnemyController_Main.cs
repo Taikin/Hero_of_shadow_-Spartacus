@@ -85,6 +85,8 @@ public class EnemyController_Main : MonoBehaviour {
     public AudioClip Arrowshot;
     AudioSource audiosource;
 
+    public float time;
+    public int Flg;
     void Start()
     {
         this.animator = GetComponent<Animator>();
@@ -95,15 +97,25 @@ public class EnemyController_Main : MonoBehaviour {
         CheckEnemyType();                                       // 敵のタイプを初期化
         audiosource = GetComponent<AudioSource>();
         this.entityAnimator = entityEnemy.GetComponent<Animator>();
+        time = 0;
+        Flg = 0;
     }
 
     void Update()
     {
+        //time += Time.deltaTime;
+        //Debug.Log(time);
+
+        //if (time >= 0.5f)
+        //{
+        //    ArrowCreate();
+        //}
+
         if (!target) { return; }
         EnemyAnimation();               // アニメーション処理
         EnemyState();                   // 敵の状態
         EnemyMove();                    // 敵の動き
-    }
+      }
 
     /**********************************************************************
      * * 敵の状態
@@ -174,7 +186,7 @@ public class EnemyController_Main : MonoBehaviour {
             if (aniStateInfo.normalizedTime >= 1.0f)
             {
                 // 矢を生成する
-                ArrowCreate();
+              ArrowCreate();
                 // IDLE状態に戻る
                 state = STATE._IDLE;
             }
@@ -213,11 +225,11 @@ public class EnemyController_Main : MonoBehaviour {
         if (!arrow)
         {
             // 矢を生成する
-            arrow = Instantiate(arrowPrefab);
+           arrow = Instantiate(arrowPrefab);
             // 矢の位置を調整
             arrow.transform.parent = arrowPos.transform;
             arrow.transform.localPosition = Vector3.zero;
-            //arrow.transform.localRotation = Quaternion.identity;
+            arrow.transform.localRotation = Quaternion.identity;
             var ArrowController_Main = arrow.GetComponent<ArrowController_Main>();
             // ターゲットの影の情報を格納
             ArrowController_Main._TargetShadow = targetShadow;
