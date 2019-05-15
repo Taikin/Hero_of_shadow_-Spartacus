@@ -91,7 +91,7 @@ public class ShadowShild_Main : MonoBehaviour {
             PosFlg = 0;
         }
 
-        if (comeOnMain.stopFlg) { return; }
+        //if (comeOnMain.stopFlg) { return; }
 
         // 盾の移動・回転
         if (Vertical > 0 && PosFlg != -1)

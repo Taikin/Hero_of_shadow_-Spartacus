@@ -348,13 +348,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7714414fb46e742a47564858e08546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 2
   slowspeed: 0.5
   curvespeed: 3
   RayPos: {fileID: 1485582659340592}
   Entityarrow: {fileID: 1193324905946996}
   Entityarrow02: {fileID: 1359955250711280}
   Boundspeed: 4
+  myCamera: {fileID: 0}
 --- !u!114 &114674994525127644
 MonoBehaviour:
   m_ObjectHideFlags: 1

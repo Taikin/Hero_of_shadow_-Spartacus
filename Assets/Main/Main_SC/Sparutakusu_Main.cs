@@ -42,6 +42,8 @@ public class Sparutakusu_Main : MonoBehaviour {
     {
         if (Sparutakusu.gameObject.tag == "Arrow")
         {
+            var controller = Sparutakusu.gameObject.GetComponent<EntityArrowController_Main>();
+            controller.DestroyArrow();
             animator.SetBool("is_Run", false);
             animator.SetBool("is_RoundKick", true);
             audiosource.PlayOneShot(DethSE);

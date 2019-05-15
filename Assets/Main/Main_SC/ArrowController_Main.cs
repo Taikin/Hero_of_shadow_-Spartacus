@@ -192,7 +192,7 @@ public class ArrowController_Main : MonoBehaviour {
 
     void Update() {
         // ゲームクリア時削除する
-        if (comeOnMain.stopFlg) { Destroy(this.gameObject); }
+        //if (comeOnMain.stopFlg) { Destroy(this.gameObject); }
         //if(transform.position.)
         //direction = ((transform.position) - charaPos).normalized;
 

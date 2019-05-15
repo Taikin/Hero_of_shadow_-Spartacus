@@ -66,14 +66,16 @@ public class EnemyGenerator_Main : MonoBehaviour {
         {
             activeEnemys[i] = null;
         }
-        createLevel = CREATE_LEVEL_MAIN._LEVEL1;
+        createLevel = CREATE_LEVEL_MAIN._LEVEL0;
     }
 
     void Update()
     {
+        Debug.Log(createLevel);
         switch (createLevel)
         {
             case CREATE_LEVEL_MAIN._LEVEL0:
+                Levels(0);          // 追加
                 break;
             case CREATE_LEVEL_MAIN._LEVEL1:
                 Levels(1);
@@ -247,5 +249,19 @@ public class EnemyGenerator_Main : MonoBehaviour {
                 controller._State = EnemyController_Main.STATE._STOP;
             }
         }
+    }
+
+    // ゲーム上の敵を調べる
+    public bool _CheckActiveEnemy()
+    {
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (activeEnemys[i])
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

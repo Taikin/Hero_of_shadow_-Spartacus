@@ -363,13 +363,11 @@ public class EnemyController_Main : MonoBehaviour {
             else if( rValue >= 3 && rValue < 8)
             {
                 randamValue = 1;
-                Debug.Log("50%");
             }
             // 20%
             else if(rValue >= 8 && rValue < 10)
             {
                 randamValue = 2;
-                Debug.Log("20%");
             }
         }
         // ランダムに矢の挙動を割り振る
@@ -392,7 +390,6 @@ public class EnemyController_Main : MonoBehaviour {
      * *******************************************************************/
     void EnemyDamage()
     {
-        Debug.Log("HIT");
         aniStateInfo = animator.GetCurrentAnimatorStateInfo(0);
         // 現在再生されているアニメーションが【Damage】だったら
         if (aniStateInfo.fullPathHash == Animator.StringToHash("Base Layer.Damage"))

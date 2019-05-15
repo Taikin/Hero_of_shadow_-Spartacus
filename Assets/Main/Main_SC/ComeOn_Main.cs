@@ -48,10 +48,11 @@ public class ComeOn_Main : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (stopFlg)
-        {
-            enemyGeneratorCon.EnemyStop();                  // 敵の動きをストップさせる
-        }
+       // Debug.Log(enemyGeneratorCon._CheckActiveEnemy());
+        //if (stopFlg)
+        //{
+        //    enemyGeneratorCon.EnemyStop();                  // 敵の動きをストップさせる
+        //}
             Times += Time.deltaTime;//時間を確認
                                 //Times += 0.1f;
 
@@ -70,16 +71,19 @@ public class ComeOn_Main : MonoBehaviour
         }
         else if (Times > 90 && ComeFflg == false)
         {
-            if (ComeFflg == false)
+            stopFlg = true;
+            if (enemyGeneratorCon._CheckActiveEnemy())
             {
-                Debug.Log("でた");
-                caveObj = Instantiate(Friend, new Vector3(3.5f, 0.8f, -9.8f), Friend.transform.rotation);//仲間を出します
-                GameObject prefab = Instantiate(esapeEnemy, new Vector3(-1.8f, 0.9f, -9.55f), Quaternion.Euler(0, 90, 0));
-                EscapeEnemyController Econtroller = prefab.GetComponent<EscapeEnemyController>();
-                Econtroller.clearEsapePos = clearEsapePos;
-                stopFlg = true;
+                if (ComeFflg == false)
+                {
+                    Debug.Log("でた");
+                    caveObj = Instantiate(Friend, new Vector3(3.5f, 0.8f, -9.8f), Friend.transform.rotation);//仲間を出します
+                    GameObject prefab = Instantiate(esapeEnemy, new Vector3(-1.8f, 0.9f, -9.55f), Quaternion.Euler(0, 90, 0));
+                    EscapeEnemyController_Main Econtroller = prefab.GetComponent<EscapeEnemyController_Main>();
+                    Econtroller.clearEsapePos = clearEsapePos;
+                }
+                ComeFflg = true;
             }
-            ComeFflg = true;
         }
 
         // 洞窟が生成されたら
