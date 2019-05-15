@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ShadowShild_Main : MonoBehaviour {
+    public GameObject myCamera;
 
+    private ComeOn_Main comeOnMain;
     private float Shild_Width, Shild_Length;
     private float Position_x, Position_y, Position_z;
     private float Rotate_x, Rotate_y, Rotate_z;
@@ -11,9 +13,14 @@ public class ShadowShild_Main : MonoBehaviour {
     private float Horizontal, Vertical;
     private int PosFlg;
     private float ShildTime;
+    AudioSource audiosource;
+    public AudioClip ShieldDownSE;
+
     // Use this for initialization
     void Start()
     {
+        comeOnMain = myCamera.GetComponent<ComeOn_Main>();
+        audiosource = GetComponent<AudioSource>();
         // 大きさ
         Shild_Width = 0.1f;
         Shild_Length = 0.1f;
@@ -35,8 +42,6 @@ public class ShadowShild_Main : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-       // Debug.Log(("Shild_Length")+Shild_Length);
-        //Debug.Log(("Distance")+Distance);
         // 大きさ・位置・回転
         this.transform.localScale = new Vector2(Shild_Width, Shild_Length);
         this.transform.localPosition = new Vector3(Position_x, Position_y, Position_z);
@@ -57,10 +62,12 @@ public class ShadowShild_Main : MonoBehaviour {
 
         if ((Distance >= 20 && Distance <= 22))
         {
+            audiosource.PlayOneShot(ShieldDownSE, 0.2F);
             ShildTime++;
         }
         else if ((Distance >= 50 && Distance <= 51))
         {
+            audiosource.PlayOneShot(ShieldDownSE, 0.2F);
             ShildTime++;
         }
 
@@ -84,6 +91,8 @@ public class ShadowShild_Main : MonoBehaviour {
             PosFlg = 0;
         }
 
+        if (comeOnMain.stopFlg) { return; }
+
         // 盾の移動・回転
         if (Vertical > 0 && PosFlg != -1)
         {
@@ -95,12 +104,5 @@ public class ShadowShild_Main : MonoBehaviour {
             Position_y -= 0.02f;
             Rotate_z += 1.9f;
         }
-
-
-        //if (Input.GetButton("Circle"))
-        //{
-        //    Position_y = 1.8f;
-        //    Rotate_z = 0;
-        //}
     }
 }

@@ -23,9 +23,10 @@ public class Load2_Main : MonoBehaviour {
     {
         transform.position += new Vector3(z2, 0.0f, 0.0f);
         LoadTime2 += Time.deltaTime;
-        if (transform.position.x < -2.17f)
+        if (transform.position.x < -4.17f)
         {
-            transform.position = new Vector3(3.2f, 0.61f, -9.5f);
+            //transform.position = new Vector3(3.2f, 0.61f, -9.5f);
+            transform.position = new Vector3(5f, 0.61f, -9.5f);
         }
 
         if (LoadTime2 > 40)

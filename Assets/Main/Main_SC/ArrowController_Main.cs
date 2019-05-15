@@ -43,6 +43,8 @@ public class ArrowController_Main : MonoBehaviour {
     private EntityArrowController_Main entityArrowCon;
     private EnemyGenerator_Main enemyGenerator;         // 敵を生成するスクリプト
     private GameObject enemy;
+    public GameObject myCamera;
+    private ComeOn_Main comeOnMain;
 
     //矢が落ち始める回転の時間
     float rotatespeed = 10f; //落ちながら回転する変数  
@@ -70,9 +72,9 @@ public class ArrowController_Main : MonoBehaviour {
 
     void Start()
     {
-        
         protect = false;
         middle = false ;
+        comeOnMain = myCamera.GetComponent<ComeOn_Main>();
         entityArrowCon = Entityarrow02.GetComponent<EntityArrowController_Main>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -189,7 +191,9 @@ public class ArrowController_Main : MonoBehaviour {
     }
 
     void Update() {
-
+        // ゲームクリア時削除する
+        if (comeOnMain.stopFlg) { Destroy(this.gameObject); }
+        //if(transform.position.)
         //direction = ((transform.position) - charaPos).normalized;
 
         //this.ray = new Ray((transform.position), -direction);

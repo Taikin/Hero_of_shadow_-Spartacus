@@ -10,7 +10,7 @@ public class BGMSC_Main : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         audiosource = gameObject.GetComponent<AudioSource>();
-        audiosource.PlayOneShot(MainBGM);
+        //audiosource.PlayOneShot(MainBGM);
     }
 	
 	// Update is called once per frame

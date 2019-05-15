@@ -11,6 +11,7 @@ public class ShadowShieldOther_Main : MonoBehaviour {
     AudioSource audiosource;
     public AudioClip shieldsound;   //真ん中以外に当たった時の盾の音
 
+
     public bool _ShieldEffect { get { return shieldEffect; } }
 
     // Use this for initialization

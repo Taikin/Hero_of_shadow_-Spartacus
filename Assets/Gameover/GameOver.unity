@@ -465,6 +465,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[3]
       value: 
       objectReference: {fileID: 2100000, guid: f620eee801cb2fd49ba3350ded723528, type: 2}
+    - target: {fileID: 13700006, guid: 88b53896f17798f4fb6754b4576d3cde, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: f620eee801cb2fd49ba3350ded723528, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88b53896f17798f4fb6754b4576d3cde, type: 3}
   m_IsPrefabParent: 0
@@ -685,8 +689,8 @@ MonoBehaviour:
   ButtonShadowLeft: {fileID: 861338942}
   ButtonShadowRight: {fileID: 1497002015}
   gameoveranim: {fileID: 2027134167}
-  OverSelectsound: {fileID: 8300000, guid: 72e73f4aafb48d94cac8b271dfa61ccd, type: 3}
-  OverDecisionsound: {fileID: 8300000, guid: dd34d4c8cc80fbe4181866b8923a954d, type: 3}
+  OverSelectsound: {fileID: 8300000, guid: dd34d4c8cc80fbe4181866b8923a954d, type: 3}
+  OverDecisionsound: {fileID: 8300000, guid: 72e73f4aafb48d94cac8b271dfa61ccd, type: 3}
 --- !u!82 &1806109334
 AudioSource:
   m_ObjectHideFlags: 0

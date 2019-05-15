@@ -483,6 +483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acec1fb9fc1ec67488ff088977e265d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stoptime: 3
-  speed: 0.5
   StoneSpeed: -0.01
+  CreateStone: 0.16
+  DeleteStone: 3.4
+  Stone: {fileID: 1798729867532306}

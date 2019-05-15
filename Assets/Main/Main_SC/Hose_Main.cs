@@ -10,7 +10,7 @@ public class Hose_Main : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         audiosorce = GetComponent<AudioSource>();
-        audiosorce.PlayOneShot(HorseRunnintSE, 0.9F);
+        audiosorce.PlayOneShot(HorseRunnintSE, 0.2F);
         animator = GetComponent<Animator>();
         Time = 0;
 	}

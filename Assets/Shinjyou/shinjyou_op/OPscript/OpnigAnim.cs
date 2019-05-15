@@ -36,6 +36,11 @@ public class OpnigAnim : MonoBehaviour {
 
     Animator animator;
     Animator shadowanimatoer;
+    AudioSource audiosource;
+    public AudioClip SurprisedSE;
+    public AudioClip FlameSE;
+    private bool FlameFlg;
+
 
     float b;
 
@@ -52,7 +57,9 @@ public class OpnigAnim : MonoBehaviour {
     private float PlayerAppearance;
 	void Start ()
     {
-	}
+        audiosource = GetComponent<AudioSource>();
+        FlameFlg = false;
+    }
 	
 	void Update ()
     {
@@ -100,8 +107,10 @@ public class OpnigAnim : MonoBehaviour {
             {
                 shadowparameta = 5;
             }
-            if (PlayerAppearance >= 4.5)
+            if (PlayerAppearance >= 4.5 && FlameFlg == false)
             {
+                FlameFlg = true;
+                audiosource.PlayOneShot(FlameSE, 0.5F);
                 tateshadow.SetActive(true);
                 //OpnigSparutakusuShadow.enabled = true;
                 var ma = ps.main;
@@ -118,8 +127,9 @@ public class OpnigAnim : MonoBehaviour {
                 }
                 paramator = 5;
             }
-            if (PlayerAppearance >= 5.5)
+            if (PlayerAppearance >= 5.5 && stoprotation == false)
             {
+                audiosource.PlayOneShot(SurprisedSE);
                 stoprotation = true;
                 ExclamationMarkImg.enabled = true;
             }

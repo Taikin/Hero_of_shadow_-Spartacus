@@ -11,7 +11,7 @@ public class EnemyController_Main : MonoBehaviour {
         _IDLE,
         _SHOOT_BOW,
         _DAMAGE,
-
+        _STOP,
     }
 
     // 敵のタイプ
@@ -58,9 +58,11 @@ public class EnemyController_Main : MonoBehaviour {
     private GameObject enemyPosition;           // 敵が進んでいく位置
     private GameObject targetShadow;            // ターゲットの影
     private GameObject targetCurvePoint;
+    private GameObject myCamera;
     private Animator animator;
     private AnimatorStateInfo aniStateInfo;
     private EnemyGenerator_Main enemyGeneratorCon;
+    private EntityArrowController_Main entityArrow;
     private STATE state;                        // 状態を格納
     private STATE preState;                     // 前の状態を格納
     private ENEMYTYPE enemyType;                // 敵のタイプを格納
@@ -82,11 +84,13 @@ public class EnemyController_Main : MonoBehaviour {
     public GameObject _EnemyPosition { get { return enemyPosition; } set { enemyPosition = value; } }
     public GameObject _TargetShadow { set { targetShadow = value; } }
     public GameObject _TargetCurvePoint { set { targetCurvePoint = value; } }
+    public GameObject _MyCamera { set { myCamera = value; } }
     public EnemyGenerator_Main _EnemyGeneratorCon { set { enemyGeneratorCon = value; } }
     public ENEMYPOS_TYPE _EnemyPos_Type { get { return enemyPosType; } set { enemyPosType = value; } }
     public float _ShootArrowSpeed { set { shootArrowSpeed = value; } }
 
     public AudioClip Arrowshot;
+    public AudioClip HitSE;
     AudioSource audiosource;
 
     void Start()
@@ -124,6 +128,8 @@ public class EnemyController_Main : MonoBehaviour {
                 break;
             case STATE._DAMAGE:         // Damageを与えられた時の処理
                 EnemyDamage();
+                break;
+            case STATE._STOP:
                 break;
         }
     }
@@ -252,6 +258,7 @@ public class EnemyController_Main : MonoBehaviour {
         ArrowController_Main_Main._IsShootFlg = true;
         // 矢を持っていない状態にする
         arrow = null;
+        audiosource.PlayOneShot(Arrowshot);
     }
 
     // 矢を生成する処理
@@ -271,6 +278,8 @@ public class EnemyController_Main : MonoBehaviour {
             ArrowController_Main._TargetShadow = targetShadow;
             // 敵の生成スクリプト取得
             ArrowController_Main._EnemyGenerator = enemyGeneratorCon;
+            // カメラの取得
+            ArrowController_Main.myCamera = myCamera;
             CheckEnemyType();
         }
     }
@@ -383,6 +392,7 @@ public class EnemyController_Main : MonoBehaviour {
      * *******************************************************************/
     void EnemyDamage()
     {
+        Debug.Log("HIT");
         aniStateInfo = animator.GetCurrentAnimatorStateInfo(0);
         // 現在再生されているアニメーションが【Damage】だったら
         if (aniStateInfo.fullPathHash == Animator.StringToHash("Base Layer.Damage"))
@@ -390,10 +400,10 @@ public class EnemyController_Main : MonoBehaviour {
             // アニメーションが終了したら、
             if (aniStateInfo.normalizedTime >= 1.0f)
             {
-                // 敵が死んだ時に、生きている敵の目標地点を更新する処理
-                enemyGeneratorCon.EnemyPosSort();
-                // 敵を消す
                 Destroy(this.gameObject);
+                enemyGeneratorCon.EnemyPosSort();
+                Destroy(arrow);
+                
             }
         }
     }
@@ -409,6 +419,7 @@ public class EnemyController_Main : MonoBehaviour {
             switch (state)
             {
                 case STATE._IDLE:
+                case STATE._STOP:
                     animator.SetBool("ShootBow", false);
                     animator.SetBool("Damage", false);
                     entityAnimator.SetBool("ShootBow", false);
@@ -434,7 +445,6 @@ public class EnemyController_Main : MonoBehaviour {
                         animator.SetBool("ShootBow", true);
                         entityAnimator.SetBool("ShootBow", true);
                     }
-                    audiosource.PlayOneShot(Arrowshot);
                     break;
                 case STATE._DAMAGE:
                     animator.SetBool("Damage", true);
@@ -502,12 +512,15 @@ public class EnemyController_Main : MonoBehaviour {
 
             if (entityArrowCon._Hit)
             {
-                //state = STATE._DAMAGE;
-                // 敵が死んだ時に、生きている敵の目標地点を更新する処理
-                Destroy(this.gameObject);
-                enemyGeneratorCon.EnemyPosSort();
-                Destroy(arrow);
-                entityArrowCon.DestroyArrow();      // 当たった矢を削除
+                entityArrow = enemy.GetComponent<EntityArrowController_Main>();
+                audiosource.PlayOneShot(HitSE, 30.0F);
+                entityArrow.DestroyArrow();      // 当たった矢を削除
+                state = STATE._DAMAGE;
+                //// 敵が死んだ時に、生きている敵の目標地点を更新する処理
+                //Destroy(this.gameObject);
+                //enemyGeneratorCon.EnemyPosSort();
+                //Destroy(arrow);
+                //entityArrowCon.DestroyArrow();      // 当たった矢を削除
             }
         }
     }
