@@ -6954,7 +6954,7 @@ MonoBehaviour:
   arrowPos: {fileID: 1558721769816948}
   arrowcCurvePos: {fileID: 1952461247228892}
   arrow: {fileID: 0}
-  arrowPrefab: {fileID: 1854238541565944, guid: 8782fbae0de2c0e4f8072e32a30ac6d8,
+  arrowPrefab: {fileID: 1504692315994836, guid: 8782fbae0de2c0e4f8072e32a30ac6d8,
     type: 2}
   greenPoint: {fileID: 0}
   greenPoint1: {fileID: 0}
