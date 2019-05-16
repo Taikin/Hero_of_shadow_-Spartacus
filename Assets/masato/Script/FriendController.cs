@@ -7,8 +7,10 @@ public class FriendController : MonoBehaviour
     private EscapeEnemyController escapeController;
     private Animator animator;
     private GameObject escapeEnemy;
+    private bool stopFlg;
 
     public GameObject _EscapeEnemy { set { escapeEnemy = value; } }
+    public bool _StopFlg { set { stopFlg = value; } }
 
 	void Start ()
     {
@@ -18,7 +20,7 @@ public class FriendController : MonoBehaviour
 	
 	void Update ()
     {
-        if (escapeController._STATE == EscapeEnemyController.STATE._ESCAPE)
+        if (escapeController._STATE == EscapeEnemyController.STATE._ESCAPE && !stopFlg)
         {
             Debug.Log("ESCAPE");
             animator.SetBool("Chase", true);

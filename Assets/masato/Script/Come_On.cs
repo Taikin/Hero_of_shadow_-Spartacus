@@ -10,12 +10,16 @@ public class Come_On : MonoBehaviour
     private GameObject esapeEnemy;
     [SerializeField, Header("クリア後に敵がプレイヤーを追い詰めるために移動する位置")]
     private GameObject clearEsapePos;
+    [SerializeField, Header("仲間")]
+    public GameObject Frend;
+    [SerializeField, Header("洞窟")]
+    public GameObject Curve;
+    [SerializeField, Header("仲間の距離感")]
+    private float[] distance;
 
-    public GameObject Friend;
     public GameObject Stone;
     public GameObject Glass;
     private Camera myCamera;
-
     float Times;
     bool ComeFflg;//仲間のフラグ
     bool ComeSflg;//石のフラグ
@@ -45,13 +49,20 @@ public class Come_On : MonoBehaviour
             {
                 // 追加
                 GameObject prefab = Instantiate(esapeEnemy, new Vector3(-1.8f, 0.9f, -9.55f), Quaternion.Euler(0, 90, 0));
-                caveObj = Instantiate(Friend, new Vector3(3.5f, 1.07f, -9.8f), Friend.transform.rotation);//仲間を出します
-                GameObject friend = caveObj.transform.Find("frendPrehub").gameObject;
-                var controller = friend.GetComponent<FriendController>();
-                controller._EscapeEnemy = prefab;
+                //洞窟を出します
+                caveObj = Instantiate(Curve, new Vector3(3.5f, 1.07f, -9.8f), Curve.transform.rotation);                    
+
+                for(int i = 0; i < 6; i++)
+                {
+                    // 仲間を生成
+                    GameObject frendPrefab = Instantiate(Frend, new Vector3(1.73f + distance[i], 0.773f, -9.383f), Frend.transform.rotation);
+                    var controller = frendPrefab.GetComponent<FriendController>();
+                    controller._EscapeEnemy = prefab;
+                    // 一番最初の敵を止める
+                    //if (i == 0) { controller._StopFlg = true; }
+                }
+
                 // ここまで
-
-
                 EscapeEnemyController Econtroller = prefab.GetComponent<EscapeEnemyController>();
                 Econtroller.clearEsapePos = clearEsapePos;
             }
