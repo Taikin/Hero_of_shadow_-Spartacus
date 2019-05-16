@@ -6,11 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Gameover/GameOver_Scene/GameOverScene.unity
-    guid: 6b46035ae9a47ec468894faefecaac06
-  - enabled: 1
-    path: Assets/Main/Main_Scene/Main.unity
-    guid: 0251347eb80d42d418151aa2a632be05
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Shinjyou/title.unity
     guid: bdefcb6b3fa4d9a46a871b2bd3a823e1
@@ -18,8 +15,11 @@ EditorBuildSettings:
     path: Assets/Shinjyou/shinjyou_op/Opning.unity
     guid: e7ee1c02717d2814e8b8ded4e5eac493
   - enabled: 1
+    path: Assets/Main/Main_Scene/Main.unity
+    guid: 0251347eb80d42d418151aa2a632be05
+  - enabled: 1
     path: Assets/GameClearFol/GameClear.unity
     guid: 8cac98c68252e634baa2cac00d51a5ed
   - enabled: 1
-    path: Assets/GameOver/GameOver.unity
+    path: Assets/Gameover/GameOver.unity
     guid: 37286fdd6dfefac4980ee23e486f104d

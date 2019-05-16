@@ -71,6 +71,6 @@ public class EntityArrowController_Main : MonoBehaviour
     public void DestroyArrow()
     {
         Destroy(arrowImage);
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
     }
 }

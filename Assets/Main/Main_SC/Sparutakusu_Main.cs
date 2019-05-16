@@ -8,19 +8,17 @@ public class Sparutakusu_Main : MonoBehaviour {
 
     public Animator animator;
     public AudioClip DethSE;
-    public AudioClip RunningSE;
     AudioSource audiosource;
     private int Time;
     bool TimeFlg;
 
     // Use this for initialization
     void Start()
-    {
+    { 
         animator = GetComponent<Animator>();
         audiosource = GetComponent<AudioSource>();
         animator.SetBool("is_Run", true);
         animator.SetBool("is_RoundKick", false);
-        audiosource.PlayOneShot(RunningSE); 
         Time = 0;
         TimeFlg = false;
     }
@@ -44,6 +42,8 @@ public class Sparutakusu_Main : MonoBehaviour {
     {
         if (Sparutakusu.gameObject.tag == "Arrow")
         {
+            var controller = Sparutakusu.gameObject.GetComponent<EntityArrowController_Main>();
+            controller.DestroyArrow();
             animator.SetBool("is_Run", false);
             animator.SetBool("is_RoundKick", true);
             audiosource.PlayOneShot(DethSE);
@@ -52,12 +52,4 @@ public class Sparutakusu_Main : MonoBehaviour {
         }
         
     }
-
-    //private void OnTriggerEnter2D(Collider2D Shadow)
-    //{
-    //    if (Shadow.gameObject.tag == "Arrow")
-    //    {
-    //        SceneManager.LoadScene("GameOverScene");
-    //    }
-    //}
 }

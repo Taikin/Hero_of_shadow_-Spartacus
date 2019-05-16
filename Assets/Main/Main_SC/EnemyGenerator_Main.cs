@@ -29,7 +29,8 @@ public enum CREATE_LEVEL_MAIN
 };
 
 public class EnemyGenerator_Main : MonoBehaviour {
-
+    [SerializeField, Header("カメラ")]
+    private GameObject myCamera;
     [SerializeField, Header("中継地点０１")]
     private GameObject greenPoint;
     [SerializeField, Header("中継地点０２")]
@@ -65,14 +66,16 @@ public class EnemyGenerator_Main : MonoBehaviour {
         {
             activeEnemys[i] = null;
         }
-        createLevel = CREATE_LEVEL_MAIN._LEVEL1;
+        createLevel = CREATE_LEVEL_MAIN._LEVEL0;
     }
 
     void Update()
     {
+        Debug.Log(createLevel);
         switch (createLevel)
         {
             case CREATE_LEVEL_MAIN._LEVEL0:
+                Levels(0);          // 追加
                 break;
             case CREATE_LEVEL_MAIN._LEVEL1:
                 Levels(1);
@@ -160,6 +163,7 @@ public class EnemyGenerator_Main : MonoBehaviour {
         enemyController._ENEMYTYPE = type;                    // 敵のタイプ格納
         enemyController._ShootArrowSpeed = _shootArrowSpeed;  // 矢を放つスピードを格納
         enemyController._TargetCurvePoint = targetCurvePoint;
+        enemyController._MyCamera = myCamera;
 
         // 現在ゲーム上にいる敵を取得
         for (int i = 0; i < 3; i++)
@@ -221,11 +225,6 @@ public class EnemyGenerator_Main : MonoBehaviour {
     {
         GameObject firstPos = null;
 
-        //if (activeEnemys[0])
-        //{
-        //    return activeEnemys[0];
-        //}
-
         for (int i = 0; i < 3; i++)
         {
             if (activeEnemys[i])
@@ -237,5 +236,32 @@ public class EnemyGenerator_Main : MonoBehaviour {
         }
 
         return firstPos;
+    }
+
+    // 敵の動きを止める処理
+    public void EnemyStop()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (activeEnemys[i])
+            {
+                var controller = activeEnemys[i].GetComponent<EnemyController_Main>();
+                controller._State = EnemyController_Main.STATE._STOP;
+            }
+        }
+    }
+
+    // ゲーム上の敵を調べる
+    public bool _CheckActiveEnemy()
+    {
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (activeEnemys[i])
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

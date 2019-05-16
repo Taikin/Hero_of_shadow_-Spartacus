@@ -1,0 +1,405 @@
+fileFormatVersion: 2
+guid: 0b5792572e051eb4983772954746456a
+timeCreated: 1557801149
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Bone
+    100004: Bone.001
+    100006: Bone.001_end
+    100008: Bone.001_end_end
+    100010: Bone_L
+    100012: Bone_L.001
+    100014: Bone_L.002
+    100016: Bone_L.003
+    100018: Bone_L.004
+    100020: Bone_L.004_end
+    100022: Bone_L.004_end_end
+    100024: Bone_L.005
+    100026: Bone_L.005_end
+    100028: Bone_L.005_end_end
+    100030: Bone_R
+    100032: Bone_R.001
+    100034: Bone_R.002
+    100036: Bone_R.003
+    100038: Bone_R.004
+    100040: Bone_R.004_end
+    100042: Bone_R.004_end_end
+    100044: Bone_R.005
+    100046: Bone_R.005_end
+    100048: Bone_R.005_end_end
+    100050: Cube.000
+    100052: Cube.001
+    100054: Cube.002
+    100056: Cube.010
+    100058: Plane
+    100060: Plane.001
+    100062: //RootNode
+    400000: Armature
+    400002: Bone
+    400004: Bone.001
+    400006: Bone.001_end
+    400008: Bone.001_end_end
+    400010: Bone_L
+    400012: Bone_L.001
+    400014: Bone_L.002
+    400016: Bone_L.003
+    400018: Bone_L.004
+    400020: Bone_L.004_end
+    400022: Bone_L.004_end_end
+    400024: Bone_L.005
+    400026: Bone_L.005_end
+    400028: Bone_L.005_end_end
+    400030: Bone_R
+    400032: Bone_R.001
+    400034: Bone_R.002
+    400036: Bone_R.003
+    400038: Bone_R.004
+    400040: Bone_R.004_end
+    400042: Bone_R.004_end_end
+    400044: Bone_R.005
+    400046: Bone_R.005_end
+    400048: Bone_R.005_end_end
+    400050: Cube.000
+    400052: Cube.001
+    400054: Cube.002
+    400056: Cube.010
+    400058: Plane
+    400060: Plane.001
+    400062: //RootNode
+    4300000: Plane
+    4300002: Cube.000
+    4300004: Cube.002
+    4300006: Plane.001
+    4300008: Cube.010
+    4300010: Cube.001
+    7400000: Armature|Armature|Armature|SetupAction|Armature|SetupAction
+    7400002: Armature|Armature|Armature|ThreatAction2|Armature|ThreatAction2
+    7400004: Armature|Armature|Armature|ThreatAction2|Armature|ThreatAction2.001
+    7400006: Armature|Armature|Armature|ThreatAction3|Armature|ThreatAction3
+    7400008: Armature|Armature|Armature|ThreatAction|Armature|ThreatAction
+    7400010: Armature|Armature|Armature|VictoryAction|Armature|VictoryAction
+    7400012: Armature|ThreatAction_2
+    9500000: //RootNode
+    13700000: Cube.000
+    13700002: Cube.001
+    13700004: Cube.002
+    13700006: Cube.010
+    13700008: Plane
+    13700010: Plane.001
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: 0553938c64c7b9a4e9111420bbee4a0b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.004
+    second: {fileID: 2100000, guid: f2f1c38bb7e491747bf60a719a53bb72, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.006
+    second: {fileID: 2100000, guid: aa6c1460a79977b4cb101d1f52ab20bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.008
+    second: {fileID: 2100000, guid: 6904affaca8afe64c9f5555fdb7f87e7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.009
+    second: {fileID: 2100000, guid: 6190ce1862ae33141bf2881178f1efc6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.010
+    second: {fileID: 2100000, guid: ac48072b9030aa84691d477de83a1950, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.011
+    second: {fileID: 2100000, guid: 2758ed116fe225445bb0d3cd8758acd9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.012
+    second: {fileID: 2100000, guid: ee3659e0299fd544f8aa680745c745cf, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armature|Armature|Armature|SetupAction|Armature|SetupAction
+      takeName: Armature|Armature|Armature|SetupAction|Armature|SetupAction
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Armature|Armature|ThreatAction2|Armature|ThreatAction2
+      takeName: Armature|Armature|Armature|ThreatAction2|Armature|ThreatAction2
+      firstFrame: 0
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Armature|Armature|ThreatAction2|Armature|ThreatAction2.001
+      takeName: Armature|Armature|Armature|ThreatAction2|Armature|ThreatAction2.001
+      firstFrame: 0
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Armature|Armature|ThreatAction3|Armature|ThreatAction3
+      takeName: Armature|Armature|Armature|ThreatAction3|Armature|ThreatAction3
+      firstFrame: 0
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Armature|Armature|ThreatAction|Armature|ThreatAction
+      takeName: Armature|Armature|Armature|ThreatAction|Armature|ThreatAction
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Armature|Armature|VictoryAction|Armature|VictoryAction
+      takeName: Armature|Armature|Armature|VictoryAction|Armature|VictoryAction
+      firstFrame: 0
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|ThreatAction_2
+      takeName: Armature|ThreatAction_2
+      firstFrame: 0
+      lastFrame: 38
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

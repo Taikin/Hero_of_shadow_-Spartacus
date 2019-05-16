@@ -18,24 +18,9 @@ public class ClearSceneChange : MonoBehaviour {
 
 	void Update ()
     {
-        
-        //if (Input.GetKeyDown(KeyCode.Space)) //if(Input.GetButton("Circle"))  //たぶん○ボタン押したらできる
-        //{
-        //    SceneChamge_Flg = true;
-        //}
-        //if (SceneChamge_Flg == true)
-        //{
-        //    SceneChamgeTimer += Time.deltaTime;
-
-        //    if (SceneChamgeTimer >= 1.0f)
-        //    {
-        //        SceneManager.LoadScene("Title");
-        //    }
-        //}
-        //Debug.Log(SceneChamgeTimer);
-        if (Input.GetButtonDown("Circle"))  //たぶん○ボタン押したらできる
+        if (Input.GetButtonDown("Circle") && SceneChamge_Flg == false)  //たぶん○ボタン押したらできる
         {
-            ClearaudioSource.PlayOneShot(ClearSelectOn);
+            ClearaudioSource.PlayOneShot(ClearSelectOn, 2.0F);
             SceneChamge_Flg = true;
         }
         if (SceneChamge_Flg == true)

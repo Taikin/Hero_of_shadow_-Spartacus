@@ -37,6 +37,8 @@ public class Selectanm : MonoBehaviour {
 
     private float Vertical;
 
+    private bool SeFlg;
+
     // Use this for initialization
     void Start ()
     {
@@ -44,6 +46,7 @@ public class Selectanm : MonoBehaviour {
         Endtrecttransform = GameObject.Find("EndImg").GetComponent<RectTransform>();    //エンドボタンの情報取得
 
         audiosource = gameObject.GetComponent<AudioSource>();
+        SeFlg = false;
     }
 
     void Update ()
@@ -64,28 +67,34 @@ public class Selectanm : MonoBehaviour {
             if (width >= 100)
             {
                 Startrecttransform.sizeDelta = new Vector2(width, height);
-                Endtrecttransform.sizeDelta = new Vector2(width -30, height);   //エンドボタンは一回り小さくするため-30する
+                Endtrecttransform.sizeDelta = new Vector2(width - 30, height);   //エンドボタンは一回り小さくするため-30する
+                if (SeFlg == false)
+                {
+                    audiosource.PlayOneShot(TitleSE);
+                }
             }
+
+            SeFlg = true;
 
             if (Vertical == -1 && a == 0) //(DownArrow)下ボタン
             {
                 a += 1;
-                audiosource.PlayOneShot(SelectSE);
+                audiosource.PlayOneShot(SelectSE, 2.0F);
             }
             if (Vertical == 1 && a == 1)　//(UpArrow)上ボタン
             {
                 a = 0;
-                audiosource.PlayOneShot(SelectSE);
+                audiosource.PlayOneShot(SelectSE, 2.0F);
             }
             if (Input.GetButtonDown("Circle") && a == 0)  //(Space)決定キー
             {
                 on_flg = true;
-                audiosource.PlayOneShot(KetteiSE);
+                audiosource.PlayOneShot(KetteiSE, 2.0F);
             }
             else if (Input.GetButtonDown("Circle") && a == 1)　//
             {
                 on_flg = true;
-                audiosource.PlayOneShot(KetteiSE);
+                audiosource.PlayOneShot(KetteiSE, 2.0F);
             }
             if(on_flg == true)//スペースキーが押されると下に行く
             {
@@ -100,7 +109,9 @@ public class Selectanm : MonoBehaviour {
                     }
                     else
                     {
-                        SceneManager.LoadScene("end");          //エンドシーンに行く
+                        //SceneManager.LoadScene("end");          //エンドシーンに行く
+                        //UnityEditor.EditorApplication.isPlaying = false;
+                       // UnityEngine.Application.Quit();
                     }
                 }
             }
