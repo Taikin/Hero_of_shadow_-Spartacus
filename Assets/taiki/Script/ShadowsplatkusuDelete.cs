@@ -4,23 +4,23 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ShadowsplatkusuDelete : MonoBehaviour {
-    float Deletealfa=1;   //影のスパルタクスを透明化させるためのa値
-
-
+ 
     float Deleteflg;       //矢が刺さった時のフラグ
-    float Deletespeed=0.03f; //a値が減算されていく速さ
     Animator shadowanimator;
-    SpriteRenderer shadowspriteRenderer;
     Rigidbody2D rb2d;
-    float red, green, blue;
+
+    GameObject shadow_parent;   //親参照
+    ShadowDeletetaikiDirector cash1;    //親スクリプト保存
 	// Use this for initialization
 	void Start () {
         shadowanimator = GetComponent<Animator>();
-        shadowspriteRenderer = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
-      
-	}
-  
+
+        shadow_parent = transform.parent.gameObject;    //親参照
+        cash1 = shadow_parent.GetComponent<ShadowDeletetaikiDirector>();    //親のスクリプトを保存
+
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Arrow")
@@ -32,13 +32,11 @@ public class ShadowsplatkusuDelete : MonoBehaviour {
     }
     // Update is called once per frame
     void Update () {
-        shadowspriteRenderer.color = new Color(red, green, blue, Deletealfa);
-
-        // Debug.Log(Deleteflg);
+        
         if (Deleteflg != 0)
         {
-
-            Deletealfa -= Deletespeed;
+            cash1.DeleteFlg = Deleteflg; //値渡し
+      
             //Debug.Log(Deletealfa);
         }
     }
