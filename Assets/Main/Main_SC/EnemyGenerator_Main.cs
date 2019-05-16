@@ -71,7 +71,7 @@ public class EnemyGenerator_Main : MonoBehaviour {
 
     void Update()
     {
-        Debug.Log(createLevel);
+        //Debug.Log(createLevel);
         switch (createLevel)
         {
             case CREATE_LEVEL_MAIN._LEVEL0:

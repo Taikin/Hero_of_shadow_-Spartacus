@@ -104,17 +104,7 @@ public class EscapeEnemyController_Main : MonoBehaviour
                 SurprisedImg.SetActive(false);           // びっくりする画像非表示
                 timer = 0;
             }
-            //animator.SetBool("Amazed", false);
         }
-        //timer += Time.deltaTime;
-
-        //if(timer > 1.0f)
-        //{
-        //    state = STATE._ESCAPE;          // 逃げる状態へ
-        //    transform.rotation = Quaternion.Euler(0, -90, 0);
-        //    SurprisedImg.SetActive(false);           // びっくりする画像非表示
-        //    timer = 0;
-        //}
     }
 
     // ターゲットの仲間から逃げる

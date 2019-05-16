@@ -43,9 +43,15 @@ public class Come_On : MonoBehaviour
         {
             if (ComeSflg == false)
             {
-               // instanceObj = Instantiate(Stone, new Vector3(2.52f, 0.85f, -9.3f), Stone.transform.rotation);//石を生やします
-                caveObj = Instantiate(Friend, new Vector3(3.5f, 0.8f, -9.8f), Friend.transform.rotation);//仲間を出します
+                // 追加
                 GameObject prefab = Instantiate(esapeEnemy, new Vector3(-1.8f, 0.9f, -9.55f), Quaternion.Euler(0, 90, 0));
+                caveObj = Instantiate(Friend, new Vector3(3.5f, 1.07f, -9.8f), Friend.transform.rotation);//仲間を出します
+                GameObject friend = caveObj.transform.Find("frendPrehub").gameObject;
+                var controller = friend.GetComponent<FriendController>();
+                controller._EscapeEnemy = prefab;
+                // ここまで
+
+
                 EscapeEnemyController Econtroller = prefab.GetComponent<EscapeEnemyController>();
                 Econtroller.clearEsapePos = clearEsapePos;
             }

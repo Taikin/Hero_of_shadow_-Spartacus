@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EscapeEnemyController : MonoBehaviour
 {
-    enum STATE
+    public enum STATE
     {
         _CHASE,
         _AMAZED,
@@ -25,6 +25,8 @@ public class EscapeEnemyController : MonoBehaviour
 
     private STATE state;
     private float timer;
+
+    public STATE _STATE { get { return state; } }
 
 	void Start ()
     {
@@ -56,7 +58,6 @@ public class EscapeEnemyController : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, clearEsapePos.transform.position) > 0.1)
         {
-            Debug.Log("OK");
             transform.position = Vector3.MoveTowards(transform.position, clearEsapePos.transform.position, Time.deltaTime * 0.5f);
         }
         else

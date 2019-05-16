@@ -84,18 +84,12 @@ public class ArrowController_Main : MonoBehaviour {
         //盾（真ん中）部分に当たった時
         if (Arrow.gameObject.tag == "middlepoint" && protect == false)
         {
-            //rb.velocity = Vector3.zero;
             DirectionArrow();
-            ////真ん中に当たったフラグが立つ
-            //middle = true;
-            //speed = 0;
-            //slowspeed = 0;
         }
 
         //盾(真ん中でない)部分に当たった時
         if (Arrow.gameObject.tag == "shieldpoint" && middle == false)
         {
-                        //rb.velocity = Vector3.zero;
             // 真ん中以外に当たったのでtrue
             protect = true;
             // 矢の親子関係を解除
@@ -104,13 +98,6 @@ public class ArrowController_Main : MonoBehaviour {
             slowspeed = 0;
 
         }
-
-        //// スパルタクスに当たったら
-        //if (Arrow.gameObject.tag == "Shadow")
-        //{
-        //    Destroy(gameObject);
-        //}
-
     }
 
     void DirectionArrow()
