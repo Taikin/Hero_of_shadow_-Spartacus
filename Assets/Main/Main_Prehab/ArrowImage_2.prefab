@@ -108,8 +108,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1359955250711280}
   m_LocalRotation: {x: 0.49999988, y: -0.50000083, z: 0.5000013, w: -0.49999806}
-  m_LocalPosition: {x: -5.3600407, y: -1.1649783, z: -2.790041}
-  m_LocalScale: {x: 45.000927, y: 200.00201, z: 300.00455}
+  m_LocalPosition: {x: -6.5, y: -1.1649783, z: -2.790041}
+  m_LocalScale: {x: 35, y: 200.00201, z: 300.00455}
   m_Children: []
   m_Father: {fileID: 4049480753642422}
   m_RootOrder: 2
@@ -134,8 +134,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1193324905946996}
   m_LocalRotation: {x: 0.49999988, y: -0.50000083, z: 0.5000013, w: -0.49999806}
-  m_LocalPosition: {x: 5.3600397, y: -1.1649783, z: -2.790041}
-  m_LocalScale: {x: 45.000927, y: 200.00201, z: 300.00455}
+  m_LocalPosition: {x: 6.5, y: -1.1650001, z: -2.790041}
+  m_LocalScale: {x: 35, y: 200.00218, z: 300.0049}
   m_Children: []
   m_Father: {fileID: 4049480753642422}
   m_RootOrder: 1
@@ -348,8 +348,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7714414fb46e742a47564858e08546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  slowspeed: 0.5
+  speed: 3
+  slowspeed: 1
   curvespeed: 3
   RayPos: {fileID: 1485582659340592}
   Entityarrow: {fileID: 1193324905946996}

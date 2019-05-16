@@ -182,12 +182,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7714414fb46e742a47564858e08546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 3
   slowspeed: 1
-  curvespeed: 3
+  curvespeed: 6
   RayPos: {fileID: 0}
   Entityarrow: {fileID: 0}
   Entityarrow02: {fileID: 0}
+  Boundspeed: 100
+  myCamera: {fileID: 0}
 --- !u!212 &212094669157867790
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class GuageManegur_Main : MonoBehaviour {
 
-    [SerializeField, Header("タイマー")]
-    private float Timer;
     GameObject _Gauge;
 
     void Start()
@@ -18,7 +16,7 @@ public class GuageManegur_Main : MonoBehaviour {
 
     void FixedUpdate()
     {
-        _Gauge.GetComponent<Image>().fillAmount += Time.deltaTime * Timer;
+        _Gauge.GetComponent<Image>().fillAmount += Time.deltaTime / 90.0f;
     }
 }
 
