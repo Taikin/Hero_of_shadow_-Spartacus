@@ -195,6 +195,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4080127647260946}
   - component: {fileID: 95002071473431240}
+  - component: {fileID: 114124786320732580}
   m_Layer: 0
   m_Name: frendPrehub
   m_TagString: Untagged
@@ -1358,6 +1359,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114124786320732580
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1461879656269218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3136e2f63b53d3b438c3e813d8674b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &137115231961742346
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
