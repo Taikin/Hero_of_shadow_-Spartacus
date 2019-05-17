@@ -6,11 +6,15 @@ using UnityEngine.UI;
 public class ShadowsplatkusuDelete : MonoBehaviour {
  
     float Deleteflg;       //矢が刺さった時のフラグ
+    float Deleteflgsub;
     Animator shadowanimator;
     Rigidbody2D rb2d;
 
     GameObject shadow_parent;   //親参照
     ShadowDeletetaikiDirector cash1;    //親スクリプト保存
+
+    GameObject shadow_parent1;
+    deletesub shadowsub;
 	// Use this for initialization
 	void Start () {
         shadowanimator = GetComponent<Animator>();
@@ -19,6 +23,9 @@ public class ShadowsplatkusuDelete : MonoBehaviour {
         shadow_parent = transform.parent.gameObject;    //親参照
         cash1 = shadow_parent.GetComponent<ShadowDeletetaikiDirector>();    //親のスクリプトを保存
 
+        shadow_parent1 = GameObject.FindWithTag("Player");
+        shadowsub = shadow_parent1.GetComponent<deletesub>();
+        Debug.Log(shadow_parent1);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -28,6 +35,7 @@ public class ShadowsplatkusuDelete : MonoBehaviour {
             shadowanimator.SetBool("Delete", true);
            // Debug.Log("当たった");
             Deleteflg = 1;
+            Deleteflgsub = 1;
         }
     }
     // Update is called once per frame
@@ -36,8 +44,9 @@ public class ShadowsplatkusuDelete : MonoBehaviour {
         if (Deleteflg != 0)
         {
             cash1.DeleteFlg = Deleteflg; //値渡し
-      
+            shadowsub.spaDeleteFlg = Deleteflg;
             //Debug.Log(Deletealfa);
         }
+   
     }
 }
