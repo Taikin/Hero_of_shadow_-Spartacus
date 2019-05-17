@@ -16,12 +16,14 @@ public class Hose_Main : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        //Time++;
-        //if (Time > 60)
-        //{
-        //    animator.SetBool("is_Run", false);
-        //    animator.SetBool("is_Falldown", true);
-        //}
-	}
+	void Update ()
+    // void FixidUpdate()
+    {
+    //Time++;
+    //if (Time > 60)
+    //{
+    //    animator.SetBool("is_Run", false);
+    //    animator.SetBool("is_Falldown", true);
+    //}
+}
 }

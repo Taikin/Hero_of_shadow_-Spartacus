@@ -29,7 +29,9 @@ public class Ground2_SC : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update ()
+    // void FixidUpdate()
+    {
         transform.position += new Vector3(x2, 0.0f, 0.0f);
         if (transform.position.x < -2.0f)
         {

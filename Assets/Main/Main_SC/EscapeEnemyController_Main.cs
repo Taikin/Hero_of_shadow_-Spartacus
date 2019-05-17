@@ -51,6 +51,7 @@ public class EscapeEnemyController_Main : MonoBehaviour
     }
 
     void Update()
+        // void FixidUpdate()
     {
         switch (state)
         {

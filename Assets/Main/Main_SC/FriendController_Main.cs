@@ -17,6 +17,7 @@ public class FriendController_Main : MonoBehaviour {
     }
 
     void Update()
+    // void FixidUpdate()
     {
         if (escapeController._STATE == EscapeEnemyController_Main.STATE._ESCAPE)
         {

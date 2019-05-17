@@ -17,7 +17,13 @@ public class ComeOn_Main : MonoBehaviour
     [SerializeField, Header("敵を生成するオブジェクト")]
     private GameObject enemyGenerator;
 
-    public GameObject Friend;
+    [SerializeField, Header("仲間")]
+    public GameObject Frend;
+    [SerializeField, Header("洞窟")]
+    public GameObject Curve;
+    [SerializeField, Header("仲間の距離感")]
+    private float[] distance;
+
     public GameObject Stone;
     public GameObject Glass;
     private Camera myCamera;
@@ -47,6 +53,7 @@ public class ComeOn_Main : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+        // void FixidUpdate()
     {
        // Debug.Log(enemyGeneratorCon._CheckActiveEnemy());
         //if (stopFlg)
@@ -56,7 +63,7 @@ public class ComeOn_Main : MonoBehaviour
             Times += Time.deltaTime;//時間を確認
                                 //Times += 0.1f;
 
-        if (Times > 0 && ComeSflg == false)
+        if (Times > 20 && ComeSflg == false)
         {
             if (ComeSflg == false)
             {
@@ -78,11 +85,23 @@ public class ComeOn_Main : MonoBehaviour
                 {
                     Debug.Log("でた");
                     GameObject prefab = Instantiate(esapeEnemy, new Vector3(-1.8f, 0.9f, -9.55f), Quaternion.Euler(0, 90, 0));
-                    caveObj = Instantiate(Friend, new Vector3(4.1f, 0.99f, -9.8f), Friend.transform.rotation);//仲間を出します
-                    GameObject friend = caveObj.transform.Find("frendPrehub").gameObject;
-                    Debug.Log(friend);
-                    var controller = friend.GetComponent<FriendController_Main>();
-                    controller._EscapeEnemy = prefab;
+                    //caveObj = Instantiate(Friend, new Vector3(4.1f, 0.99f, -9.8f), Friend.transform.rotation);//仲間を出します
+                    //GameObject friend = caveObj.transform.Find("frendPrehub").gameObject;
+                    //Debug.Log(friend);
+                    //var controller = friend.GetComponent<FriendController_Main>();
+                    //controller._EscapeEnemy = prefab;
+
+                    //洞窟を出します
+                    caveObj = Instantiate(Curve, new Vector3(3.5f, 1.07f, -9.8f), Curve.transform.rotation);
+                    for (int i = 0; i < 6; i++)
+                    {
+                        // 仲間を生成
+                        GameObject frendPrefab = Instantiate(Frend, new Vector3(1.73f + distance[i], 0.773f, -9.383f), Frend.transform.rotation);
+                        var controller = frendPrefab.GetComponent<FriendController>();
+                        controller._EscapeEnemy = prefab;
+                        // 一番最初の敵を止める
+                        //if (i == 0) { controller._StopFlg = true; }
+                    }
                     EscapeEnemyController_Main Econtroller = prefab.GetComponent<EscapeEnemyController_Main>();
                     Econtroller.clearEsapePos = clearEsapePos;
                 }
@@ -99,7 +118,7 @@ public class ComeOn_Main : MonoBehaviour
             {
                 runEffect.SetActive(false);
                 timer += Time.deltaTime;
-                if(timer > 6.0f)
+                if(timer > 8.0f)
                 {
                     SceneManager.LoadScene("GameClear");
                     timer = 0;

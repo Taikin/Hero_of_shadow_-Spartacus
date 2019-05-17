@@ -18,6 +18,7 @@ public class GameMgr_Main : MonoBehaviour {
     }
 
     private void Update()
+    // void FixidUpdate()
     {
         m_timeleft -= Time.deltaTime;
         m_accum += Time.timeScale / Time.deltaTime;

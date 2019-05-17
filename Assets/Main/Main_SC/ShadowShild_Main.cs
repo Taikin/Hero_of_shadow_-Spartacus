@@ -9,7 +9,7 @@ public class ShadowShild_Main : MonoBehaviour {
     private float Shild_Width, Shild_Length;
     private float Position_x, Position_y, Position_z;
     private float Rotate_x, Rotate_y, Rotate_z;
-    private int Distance, Time;
+    private float Distance;
     private float Horizontal, Vertical;
     private int PosFlg;
     private float ShildTime;
@@ -33,14 +33,14 @@ public class ShadowShild_Main : MonoBehaviour {
         Rotate_y = 0;
         Rotate_z = 0;
         // その他変数
-        Distance = 0; //------- ゲームの経過時間 ----------//
-        Time = 60;
+        //Distance = 0; //------- ゲームの経過時間 ----------//
         PosFlg = 0;
         ShildTime = 0; ;
     }
 
     // Update is called once per frame
     void Update()
+    // void FixidUpdate()
     {
         // 大きさ・位置・回転
         this.transform.localScale = new Vector2(Shild_Width, Shild_Length);
@@ -49,23 +49,25 @@ public class ShadowShild_Main : MonoBehaviour {
 
         Vertical = Input.GetAxis("Vertical");
 
-        if (Time != 0 && Distance != 60)
-        {
-            Time--;
-        }
-        else if (Time == 0)
-        {
-            Time = 60;
-            Distance += 1;
-        }
+        Distance += Time.deltaTime;
+
+        //if (Time != 0 && Distance != 60)
+        //{
+        //    Time--;
+        //}
+        //else if (Time == 0)
+        //{
+        //    Time = 60;
+        //    Distance += 1;
+        //}
 
 
-        if ((Distance >= 20 && Distance <= 22))
+        if ((Distance >= 20 && Distance <= 23))
         {
             audiosource.PlayOneShot(ShieldDownSE, 0.2F);
             ShildTime++;
         }
-        else if ((Distance >= 50 && Distance <= 51))
+        else if ((Distance >= 50 && Distance <= 53))
         {
             audiosource.PlayOneShot(ShieldDownSE, 0.2F);
             ShildTime++;

@@ -70,6 +70,7 @@ public class EnemyGenerator_Main : MonoBehaviour {
     }
 
     void Update()
+        // void FixidUpdate()
     {
         //Debug.Log(createLevel);
         switch (createLevel)

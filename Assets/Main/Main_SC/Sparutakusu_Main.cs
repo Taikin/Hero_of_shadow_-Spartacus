@@ -10,7 +10,12 @@ public class Sparutakusu_Main : MonoBehaviour {
     public AudioClip DethSE;
     AudioSource audiosource;
     private int Time;
-    bool TimeFlg;
+    public bool TimeFlg;
+
+    // スパルタクスがやられる時に炎を小さくする
+    private bool FireEffeFlg;
+    GameObject Effect_Child;
+    FireEffect_Main fireeffect_main;
 
     // Use this for initialization
     void Start()
@@ -25,6 +30,7 @@ public class Sparutakusu_Main : MonoBehaviour {
 
     // Update is called once per frame
     void Update()
+    // void FixidUpdate()
     {
         if (TimeFlg == true)
         {
@@ -43,13 +49,12 @@ public class Sparutakusu_Main : MonoBehaviour {
         if (Sparutakusu.gameObject.tag == "Arrow")
         {
             var controller = Sparutakusu.gameObject.GetComponent<EntityArrowController_Main>();
-            controller.DestroyArrow();
+           controller.DestroyArrow();
             animator.SetBool("is_Run", false);
             animator.SetBool("is_RoundKick", true);
             audiosource.PlayOneShot(DethSE);
             Debug.Log("OK");
             TimeFlg = true;
         }
-        
     }
 }

@@ -9,37 +9,38 @@ public class ShadowSparutakusu_Main : MonoBehaviour {
     private float Shadow_x, Shadow_y, Shadow_z;
     public bool PerDecision;
     private Animator ShadowAnimation;
-    private float DeleteAlfa = 1;
+
+    // スパルタクスの影に当たった時にフェードとアウト処理
     private bool ShadowDeleteFlg;
-    private SpriteRenderer ShadowSprite;
-    private float DeleteSpeed = 0.03f;
-    private float red, green, blue;
+    GameObject shadow_parent;
+    ShadowSparutaDilecter_Main shadowsparutadilectoer;
 
     // Use this for initialization
     void Start()
     {
         ShadowAnimation = GetComponent<Animator>();
+
         Shadow_Width = 0.2f;
         Shadow_Length = 0.2f;
         Shadow_x = -0.23f;
         Shadow_y = 1.80f;
         Shadow_z = -9.333f;
-        ShadowSprite = GetComponent<SpriteRenderer>();
-        
+        shadow_parent = transform.parent.gameObject;
+        shadowsparutadilectoer = shadow_parent.GetComponent<ShadowSparutaDilecter_Main>();
 
         PerDecision = false;
     }
 
     // Update is called once per frame
     void Update()
+    // void FixidUpdate()
     {
-        ShadowSprite.color = new Color(red, green, blue, DeleteAlfa);
         this.transform.localScale = new Vector2(Shadow_Width, Shadow_Length);
         //this.transform.localPosition = new Vector3(Shadow_x, Shadow_y, Shadow_z);
 
         if (ShadowDeleteFlg == true)
         {
-            DeleteAlfa -= DeleteSpeed;
+            shadowsparutadilectoer.shadowdeleteflg = ShadowDeleteFlg;
         }
     }
 

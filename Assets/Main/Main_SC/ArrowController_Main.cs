@@ -177,7 +177,9 @@ public class ArrowController_Main : MonoBehaviour {
         }
     }
 
-    void Update() {
+      void Update() 
+     // void FixidUpdate()
+      {
         // ゲームクリア時削除する
         //if (comeOnMain.stopFlg) { Destroy(this.gameObject); }
         //if(transform.position.)

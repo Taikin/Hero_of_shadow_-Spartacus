@@ -93,6 +93,12 @@ public class EnemyController_Main : MonoBehaviour {
     public AudioClip HitSE;
     AudioSource audiosource;
 
+    GameObject effect;
+    private float DeleteTime = 0.001f;
+    float time;
+    private bool EffectFlg;
+    private float HitFlg;
+
     void Start()
     {
         this.animator = GetComponent<Animator>();
@@ -103,15 +109,34 @@ public class EnemyController_Main : MonoBehaviour {
         CheckEnemyType();                                       // 敵のタイプを初期化
         audiosource = GetComponent<AudioSource>();
         this.entityAnimator = entityEnemy.GetComponent<Animator>();
+
+        effect = transform.GetChild(22).gameObject; //やられエフェクト
+        EffectFlg = false;
+        time = 0;
+        HitFlg = 0;
+
     }
 
     void Update()
+   // void FixidUpdate()
     {
         if (!target) { return; }
         EnemyAnimation();               // アニメーション処理
         EnemyState();                   // 敵の状態
         EnemyMove();                    // 敵の動き
-      }
+
+        if (EffectFlg == true)
+        {
+            time += Time.deltaTime;
+            if (DeleteTime < time)
+            {
+                EffectFlg = false;
+                time = 0;
+                HitFlg = 2;
+            }
+        }
+
+    }
 
     /**********************************************************************
      * * 敵の状態
@@ -518,6 +543,12 @@ public class EnemyController_Main : MonoBehaviour {
                 //enemyGeneratorCon.EnemyPosSort();
                 //Destroy(arrow);
                 //entityArrowCon.DestroyArrow();      // 当たった矢を削除
+                if (EffectFlg == false)
+                {
+                    EffectFlg = true;
+                    effect.SetActive(true);
+                    HitFlg = 1;
+                }
             }
         }
     }

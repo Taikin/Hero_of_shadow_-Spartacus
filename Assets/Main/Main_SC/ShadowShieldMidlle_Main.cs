@@ -36,6 +36,7 @@ public class ShadowShieldMidlle_Main : MonoBehaviour {
     }
     // Update is called once per frame
     void Update()
+    // void FixidUpdate()
     {
         if (middleEffect == true)
         {

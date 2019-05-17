@@ -24,6 +24,7 @@ public class UIController_Main : MonoBehaviour {
     }
 
     private void Update()
+    // void FixidUpdate()
     {
         // 敵の情報を書き込むテキスト（処理が重くなるかも）
         EnemyInformationText();
