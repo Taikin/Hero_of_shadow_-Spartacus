@@ -6,6 +6,7 @@ public class EntityArrowController_Main : MonoBehaviour
 {
     [SerializeField, Header("矢の影")]
     private GameObject arrowImage;
+
     private ArrowController_Main arrowController;
     private Vector3 charaPos;
     private Rigidbody rb;
@@ -15,6 +16,12 @@ public class EntityArrowController_Main : MonoBehaviour
     public bool _Hit { get { return hit; } set { hit = value; } }
     public Vector3 _CharaPos { set { charaPos = value; } }
 
+    //GameObject Effect;
+    //private float DeleteTime = 0.2f;
+    //float time;
+    //private bool EffectFlg;
+
+
     void Start()
     {
         arrowController = arrowImage.GetComponent<ArrowController_Main>();
@@ -22,9 +29,24 @@ public class EntityArrowController_Main : MonoBehaviour
         rotatespeed = arrowController._RotateSpeed;
         rotatespeedCurve = arrowController._RotateSpeedCurve;
         rb = GetComponent<Rigidbody>();
+
+        //Effect = transform.GetChild(0).gameObject;
+        //EffectFlg = false;
+        //time = 0;
     }
-    
-	void Update ()
+
+    //private void OnTriggerEnter(Collider Arrow)
+    //{
+    //    if (Arrow.gameObject.tag == "enemy" && EffectFlg == false)
+    //    {
+    //        EffectFlg = true;
+    //        time += Time.deltaTime;
+    //        Effect.SetActive(true);
+    //    }
+    //}
+
+
+    void Update ()
     {
         // 真ん中以外に当たったら
 		if(arrowController._Protect)
@@ -47,30 +69,17 @@ public class EntityArrowController_Main : MonoBehaviour
             Destroy(arrowImage);
             Destroy(this.gameObject);
         }
+
+        //if (DeleteTime < time)
+        //{
+        //    EffectFlg = false;
+        //    Effect.SetActive(false);
+        //    time = 0;
+        //}
     }
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.gameObject.tag == "ground")
-    //    {
-    //        Destroy(arrowImage);
-    //        Destroy(this.gameObject);
-    //    }
-    //}
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.tag == "ground")
-    //    {
-    //        Destroy(arrowImage);
-    //        Destroy(this.gameObject);
-    //    }
-
-    //}
 
     public void DestroyArrow()
     {
-        Destroy(arrowImage);
-        //Destroy(this.gameObject);
+            Destroy(arrowImage);
     }
 }

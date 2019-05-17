@@ -58,19 +58,6 @@ public class ComeOn_Main : MonoBehaviour
 
         if (Times > 0 && ComeSflg == false)
         {
-            //stopFlg = true;
-            //if (enemyGeneratorCon._CheckActiveEnemy())
-            //{
-            //    if (ComeFflg == false)
-            //    {
-            //        Debug.Log("でた");
-            //        caveObj = Instantiate(Friend, new Vector3(4.1f, 0.99f, -9.8f), Friend.transform.rotation);//仲間を出します
-            //        GameObject prefab = Instantiate(esapeEnemy, new Vector3(-1.8f, 0.9f, -9.55f), Quaternion.Euler(0, 90, 0));
-            //        EscapeEnemyController_Main Econtroller = prefab.GetComponent<EscapeEnemyController_Main>();
-            //        Econtroller.clearEsapePos = clearEsapePos;
-            //    }
-            //    ComeFflg = true;
-            //}
             if (ComeSflg == false)
             {
                 Instantiate(Stone, new Vector3(2.52f, 0.85f, -9.3f), Stone.transform.rotation);//石を生やします
@@ -90,8 +77,12 @@ public class ComeOn_Main : MonoBehaviour
                 if (ComeFflg == false)
                 {
                     Debug.Log("でた");
-                    caveObj = Instantiate(Friend, new Vector3(4.1f, 0.99f, -9.8f), Friend.transform.rotation);//仲間を出します
                     GameObject prefab = Instantiate(esapeEnemy, new Vector3(-1.8f, 0.9f, -9.55f), Quaternion.Euler(0, 90, 0));
+                    caveObj = Instantiate(Friend, new Vector3(4.1f, 0.99f, -9.8f), Friend.transform.rotation);//仲間を出します
+                    GameObject friend = caveObj.transform.Find("frendPrehub").gameObject;
+                    Debug.Log(friend);
+                    var controller = friend.GetComponent<FriendController_Main>();
+                    controller._EscapeEnemy = prefab;
                     EscapeEnemyController_Main Econtroller = prefab.GetComponent<EscapeEnemyController_Main>();
                     Econtroller.clearEsapePos = clearEsapePos;
                 }
@@ -108,7 +99,7 @@ public class ComeOn_Main : MonoBehaviour
             {
                 runEffect.SetActive(false);
                 timer += Time.deltaTime;
-                if(timer > 5.0f)
+                if(timer > 6.0f)
                 {
                     SceneManager.LoadScene("GameClear");
                     timer = 0;

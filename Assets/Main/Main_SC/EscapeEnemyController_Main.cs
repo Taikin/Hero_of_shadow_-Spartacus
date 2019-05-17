@@ -5,7 +5,7 @@ using UnityEngine;
 public class EscapeEnemyController_Main : MonoBehaviour
 {
 
-    enum STATE
+    public enum STATE
     {
         _CHASE,
         _AMAZED,
@@ -38,6 +38,7 @@ public class EscapeEnemyController_Main : MonoBehaviour
     public AudioClip HorseSE;
     AudioSource audiosource;
 
+    public STATE _STATE { get { return state; } }
 
     void Start()
     {
