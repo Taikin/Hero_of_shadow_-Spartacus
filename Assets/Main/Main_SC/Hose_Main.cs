@@ -7,23 +7,18 @@ public class Hose_Main : MonoBehaviour {
     public AudioClip HorseRunnintSE;
     AudioSource audiosorce;
     public float Time;
+
 	// Use this for initialization
 	void Start () {
         audiosorce = GetComponent<AudioSource>();
-        audiosorce.PlayOneShot(HorseRunnintSE, 0.2F);
+        audiosorce.PlayOneShot(HorseRunnintSE, 0.13F);
         animator = GetComponent<Animator>();
         Time = 0;
 	}
 	
 	// Update is called once per frame
-	void Update ()
-    // void FixidUpdate()
+	//void Update ()
+     void FixedUpdate()
     {
-    //Time++;
-    //if (Time > 60)
-    //{
-    //    animator.SetBool("is_Run", false);
-    //    animator.SetBool("is_Falldown", true);
-    //}
-}
+    }
 }

@@ -20242,6 +20242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   DethSE: {fileID: 8300000, guid: 951cc5acd9e18674cafa26184d2129e7, type: 3}
+  RunSE: {fileID: 0}
   TimeFlg: 0
   ShadowSparutakusu: {fileID: 0}
 --- !u!82 &1677842179
@@ -21143,7 +21144,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 1702322bbef7ced4e8b3355a9ff54abc, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -31185,6 +31186,7 @@ GameObject:
   - component: {fileID: 2103270018}
   - component: {fileID: 2103270020}
   - component: {fileID: 2103270016}
+  - component: {fileID: 2103270017}
   m_Layer: 0
   m_Name: Sparutakusu
   m_TagString: Sparutakusu
@@ -31205,8 +31207,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   DethSE: {fileID: 8300000, guid: 951cc5acd9e18674cafa26184d2129e7, type: 3}
+  RunSE: {fileID: 8300000, guid: 2413b0f78aa45b14a90374f7bde8a776, type: 3}
   TimeFlg: 0
   ShadowSparutakusu: {fileID: 801442603}
+--- !u!65 &2103270017
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2103270015}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.737844, y: 5.8509603, z: 2.0751314}
+  m_Center: {x: -3.5787377, y: 2.4254806, z: 0.53756535}
 --- !u!95 &2103270018
 Animator:
   serializedVersion: 3
@@ -31253,7 +31268,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2413b0f78aa45b14a90374f7bde8a776, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

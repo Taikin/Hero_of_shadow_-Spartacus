@@ -29,7 +29,7 @@ public class ShadowShieldMidlle_Main : MonoBehaviour {
             {
                 Effectobj.SetActive(true);
                 middleEffect = true;
-                audiosource.PlayOneShot(Middleshieldsound);   //真ん中に当たった時の音再生
+                audiosource.PlayOneShot(Middleshieldsound, 2.0F);   //真ん中に当たった時の音再生
             }
         }
 

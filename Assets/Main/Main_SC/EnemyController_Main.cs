@@ -236,7 +236,7 @@ public class EnemyController_Main : MonoBehaviour {
         ArrowController_Main_Main._IsShootFlg = true;
         // 矢を持っていない状態にする
         arrow = null;
-        audiosource.PlayOneShot(Arrowshot);
+        audiosource.PlayOneShot(Arrowshot, 2.0F);
     }
 
     // 矢を生成する処理

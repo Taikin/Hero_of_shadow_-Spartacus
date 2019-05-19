@@ -8,6 +8,7 @@ public class Sparutakusu_Main : MonoBehaviour {
 
     public Animator animator;
     public AudioClip DethSE;
+    public AudioClip RunSE;
     AudioSource audiosource;
     private float GameOverTime;
     public bool TimeFlg;
@@ -28,6 +29,7 @@ public class Sparutakusu_Main : MonoBehaviour {
     { 
         animator = GetComponent<Animator>();
         audiosource = GetComponent<AudioSource>();
+        audiosource.PlayOneShot(RunSE, 0.6F);
         animator.SetBool("is_Run", true);
         animator.SetBool("is_RoundKick", false);
         GameOverTime = 0;
@@ -57,7 +59,6 @@ public class Sparutakusu_Main : MonoBehaviour {
             //SparutakusuHitFlg = true;
             animator.SetBool("is_Run", false);
             animator.SetBool("is_RoundKick", true);
-            audiosource.PlayOneShot(DethSE);
             TimeFlg = true;
 
         }
@@ -69,6 +70,7 @@ public class Sparutakusu_Main : MonoBehaviour {
         {
             var controller = Sparutakusu.gameObject.GetComponent<EntityArrowController_Main>();
            controller.DestroyArrow();
+            audiosource.PlayOneShot(DethSE);
             //animator.SetBool("is_Run", false);
             //animator.SetBool("is_RoundKick", true);
             //audiosource.PlayOneShot(DethSE);
