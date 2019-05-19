@@ -17069,6 +17069,7 @@ MonoBehaviour:
   target: {fileID: 0}
   enemySpeed: 0.3
   completionSpeed: 0
+  specifiedValue: 0
   entityEnemy: {fileID: 1684855590}
   Arrowshot: {fileID: 8300000, guid: 56c9b594113cef44195159632e80e521, type: 3}
   HitSE: {fileID: 8300000, guid: d0e1440a668896b45b3a97818492c6ba, type: 3}
@@ -31182,7 +31183,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2103270019}
   - component: {fileID: 2103270018}
-  - component: {fileID: 2103270017}
   - component: {fileID: 2103270020}
   - component: {fileID: 2103270016}
   m_Layer: 0
@@ -31207,18 +31207,6 @@ MonoBehaviour:
   DethSE: {fileID: 8300000, guid: 951cc5acd9e18674cafa26184d2129e7, type: 3}
   TimeFlg: 0
   ShadowSparutakusu: {fileID: 801442603}
---- !u!65 &2103270017
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2103270015}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 10.495251, y: 4.8820887, z: 1.9227991}
-  m_Center: {x: -1.6260635, y: 1.9410431, z: 0.92564464}
 --- !u!95 &2103270018
 Animator:
   serializedVersion: 3
