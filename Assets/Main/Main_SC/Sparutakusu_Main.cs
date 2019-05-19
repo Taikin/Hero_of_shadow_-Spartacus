@@ -58,7 +58,6 @@ public class Sparutakusu_Main : MonoBehaviour {
             animator.SetBool("is_Run", false);
             animator.SetBool("is_RoundKick", true);
             audiosource.PlayOneShot(DethSE);
-            Debug.Log("OK");
             TimeFlg = true;
 
         }

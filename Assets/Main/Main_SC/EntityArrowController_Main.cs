@@ -25,7 +25,8 @@ public class EntityArrowController_Main : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    void Update ()
+    //void Update ()
+    void FixedUpdate()
         // void FixidUpdate
     {
         // 真ん中以外に当たったら

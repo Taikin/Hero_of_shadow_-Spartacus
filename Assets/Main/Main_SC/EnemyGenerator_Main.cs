@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// ステータス
 [System.Serializable]
 public struct CREATE_LEVEL_STATUS_MAIN
 {
@@ -13,11 +14,12 @@ public struct CREATE_LEVEL_STATUS_MAIN
     public int maxCreateEnemy;
     [Header("敵の生成速度")]
     public float enemyCreateTime;
-    [Header("矢を放つまでの速度"), Range(1.0f, 5.0f)]
+    [Header("矢を放つまでのアニメーション速度時間の最大値（1.0fの場合は常に1.0fの速度で矢を放つ）"), Range(1.0f, 5.0f)]
     public float shootArrowSpeed;
     [Header("次のLevelに移動する時間")]
     public float nextLevelTime;
 };
+
 // 生成レベルの列挙型
 public enum CREATE_LEVEL_MAIN
 {
@@ -28,7 +30,8 @@ public enum CREATE_LEVEL_MAIN
     _LEVEL4,
 };
 
-public class EnemyGenerator_Main : MonoBehaviour {
+public class EnemyGenerator_Main : MonoBehaviour
+{
     [SerializeField, Header("カメラ")]
     private GameObject myCamera;
     [SerializeField, Header("中継地点０１")]
@@ -70,7 +73,6 @@ public class EnemyGenerator_Main : MonoBehaviour {
     }
 
     void Update()
-        // void FixidUpdate()
     {
         //Debug.Log(createLevel);
         switch (createLevel)
@@ -119,7 +121,7 @@ public class EnemyGenerator_Main : MonoBehaviour {
     // 時間を計測し、次のレベルに行く時間か調べる
     private bool IsCheckTimer(float numberSecond)
     {
-       // Debug.Log("現在のレベル" + createLevel + "\t" + comparisonTime);
+        // Debug.Log("現在のレベル" + createLevel + "\t" + comparisonTime);
         comparisonTime += Time.deltaTime;
         if (numberSecond < comparisonTime)
         {
@@ -172,7 +174,7 @@ public class EnemyGenerator_Main : MonoBehaviour {
             // 敵がいなければ
             if (activeEnemys[i] == null)
             {
-               // 現在生成した敵の情報を入れる
+                // 現在生成した敵の情報を入れる
                 activeEnemys[i] = prefab;
                 // 敵が移動する目標地点を敵のスクリプトに渡す
                 enemyController._EnemyPosition = enemyPositions[i];
@@ -255,14 +257,28 @@ public class EnemyGenerator_Main : MonoBehaviour {
     // ゲーム上の敵を調べる
     public bool _CheckActiveEnemy()
     {
-
         for (int i = 0; i < 3; i++)
         {
+            // 敵が居ればfalseを返す
             if (activeEnemys[i])
             {
                 return false;
             }
         }
         return true;
+    }
+
+    // 前に敵がいるか調べる
+    public bool _IsCheckForwardEnemy()
+    {
+        for (int i = 1; i < 3; i++)
+        {
+            // 前に敵が居ればtrueを返す
+            if (activeEnemys[i])
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

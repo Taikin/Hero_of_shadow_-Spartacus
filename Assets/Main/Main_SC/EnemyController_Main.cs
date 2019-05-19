@@ -52,6 +52,8 @@ public class EnemyController_Main : MonoBehaviour {
     private float enemySpeed;
     [SerializeField, Header("補完スピード")]
     private float completionSpeed;
+    [SerializeField, Header("前方に敵が居て、指定した数に一回は曲線を放つようにする")]
+    private int specifiedValue;
     [SerializeField, Header("実験体の敵")]
     private GameObject entityEnemy;
 
@@ -69,10 +71,10 @@ public class EnemyController_Main : MonoBehaviour {
     private ENEMYPOS_TYPE enemyPosType;         // 敵のポジションタイプを格納
     private float keyInputTime;                 // Time.deltaTimeの値を格納
     private float shootArrowSpeed;              // 矢を放つ時間0
+    private int arrowCheckCount;                // 矢のカウントに使用
     private bool createFlg;
     private bool curveCreateFlg;
     private Animator entityAnimator;
-
 
     public ENEMYTYPE _ENEMYTYPE { set { enemyType = value; } get { return enemyType; } }
     public STATE _State { set { state = value; } get { return state; } }
@@ -102,13 +104,15 @@ public class EnemyController_Main : MonoBehaviour {
     void Start()
     {
         this.animator = GetComponent<Animator>();
+        this.entityAnimator = entityEnemy.GetComponent<Animator>();
+        animator.SetFloat("ShootSpeed", shootArrowSpeed);
+        entityAnimator.SetFloat("ShootSpeed", shootArrowSpeed);
         this.state = STATE._IDLE;
         this.preState = STATE._IDLE;
         enemyType = ENEMYTYPE._SLOW;
         ArrowCreate();
         CheckEnemyType();                                       // 敵のタイプを初期化
         audiosource = GetComponent<AudioSource>();
-        this.entityAnimator = entityEnemy.GetComponent<Animator>();
 
         effect = transform.GetChild(22).gameObject; //やられエフェクト
         EffectFlg = false;
@@ -117,8 +121,8 @@ public class EnemyController_Main : MonoBehaviour {
 
     }
 
-    void Update()
-   // void FixidUpdate()
+    //void Update()
+    void FixedUpdate()
     {
         if (!target) { return; }
         EnemyAnimation();               // アニメーション処理
@@ -199,63 +203,13 @@ public class EnemyController_Main : MonoBehaviour {
         // 現在再生されているアニメーションが【ShootBow】だったら
         if (aniStateInfo.fullPathHash == Animator.StringToHash("Base Layer.ShootBow"))
         {
-            // アニメーションが終了したら、
-            if (aniStateInfo.normalizedTime >= 0.3f && !createFlg)
-            {
-                arrow.SetActive(true);
-                createFlg = true;
-            }
-
-            // アニメーションが終了したら、
-            if (aniStateInfo.normalizedTime >= 0.6f)
-            {
-                //　現在矢を持っているなら
-                if (arrow)
-                {
-                    // 矢を放つ処理
-                    ShootArrow();
-                }
-            }
-
-            // アニメーションが終了したら、
-            if (aniStateInfo.normalizedTime >= 1.0f)
-            {
-                // IDLE状態に戻る
-                state = STATE._IDLE;
-                ArrowCreate();
-                createFlg = false;
-            }
+            Check_ArrowShootAnimation(0.3f, 0.6f);
         }
 
         // 現在再生されているアニメーションが【Curve】だったら
         if (aniStateInfo.fullPathHash == Animator.StringToHash("Base Layer.Curve"))
         {
-
-            if (aniStateInfo.normalizedTime >= 0.35f && !curveCreateFlg)
-            {
-
-                arrow.SetActive(true);
-                curveCreateFlg = true;
-            }
-
-            if (aniStateInfo.normalizedTime >= 0.6f)
-            {
-                //　現在矢を持っているなら
-                if (arrow)
-                {
-                    // 矢を放つ処理
-                    ShootArrow();
-                }
-            }
-
-            // アニメーションが終了したら、
-            if (aniStateInfo.normalizedTime >= 1.0f)
-            {
-                // IDLE状態に戻る
-                state = STATE._IDLE;
-                ArrowCreate();
-                curveCreateFlg = false;
-            }
+            Check_ArrowShootAnimation(0.35f, 0.6f);
         }
     }
 
@@ -292,11 +246,11 @@ public class EnemyController_Main : MonoBehaviour {
         if (!arrow)
         {
             // 矢を生成する
-           arrow = Instantiate(arrowPrefab);
+            arrow = Instantiate(arrowPrefab);
             // 矢の位置を調整
             arrow.transform.parent = arrowPos.transform;
             arrow.transform.localPosition = Vector3.zero;
-            arrow.transform.localRotation = Quaternion.identity;;
+            arrow.transform.localRotation = Quaternion.identity; ;
             var ArrowController_Main = arrow.GetComponent<ArrowController_Main>();
             // ターゲットの影の情報を格納
             ArrowController_Main._TargetShadow = targetShadow;
@@ -340,6 +294,11 @@ public class EnemyController_Main : MonoBehaviour {
         // それ以外なら（通常の指定された敵タイプで処理）
         else
         {
+            // 敵が前方いるなら
+            if (enemyGeneratorCon._IsCheckForwardEnemy())
+            {
+                if (RandamCurveArrow()) { return; }
+            }
             // 敵のタイプに応じて矢の種類を変える
             switch (enemyType)
             {
@@ -374,22 +333,22 @@ public class EnemyController_Main : MonoBehaviour {
         var ArrowController_Main_Main = arrow.GetComponent<ArrowController_Main>();
         int randamValue = Random.Range(0, value);
 
-        if(probabilityFlg)
+        if (probabilityFlg)
         {
             int rValue = Random.Range(0, 10);
             // 30%
-            if(rValue >= 0 && rValue < 3)
+            if (rValue >= 0 && rValue < 3)
             {
                 randamValue = 0;
-               // Debug.Log("30%");
+                // Debug.Log("30%");
             }
             // 50%
-            else if( rValue >= 3 && rValue < 8)
+            else if (rValue >= 3 && rValue < 8)
             {
                 randamValue = 1;
             }
             // 20%
-            else if(rValue >= 8 && rValue < 10)
+            else if (rValue >= 8 && rValue < 10)
             {
                 randamValue = 2;
             }
@@ -407,6 +366,33 @@ public class EnemyController_Main : MonoBehaviour {
                 ArrowController_Main_Main._ArrowState = C;
                 break;
         }
+    }
+
+    // 2回に一回は必ず曲線矢を放つ処理
+    private bool RandamCurveArrow()
+    {
+        var ArrowController_Main_Main = arrow.GetComponent<ArrowController_Main>();
+        int randamValue = Random.Range(0, specifiedValue);
+
+        if (++arrowCheckCount >= specifiedValue)
+        {
+            ArrowController_Main_Main._ArrowState = ArrowController_Main.ArrowState._CURVE_LINE;
+            arrowCheckCount = 0;
+            return true;
+        }
+
+        switch (randamValue)
+        {
+            case 0:
+                return false;
+            case 1:
+                return false;
+            case 2:
+                ArrowController_Main_Main._ArrowState = ArrowController_Main.ArrowState._CURVE_LINE;
+                return true;
+        }
+
+        return false;
     }
 
     /**********************************************************************
@@ -475,11 +461,44 @@ public class EnemyController_Main : MonoBehaviour {
             preState = state;
         }
     }
+    /**********************************************************************
+ * * 矢を放つアニメーションの時間に応じて矢を放つタイミングを変える
+ * *******************************************************************/
+    void Check_ArrowShootAnimation(float _firstSpeed, float _secondSpeed)
+    {
+        Debug.Log("OK");
+        if (aniStateInfo.normalizedTime >= _firstSpeed && !curveCreateFlg)
+        {
+
+            arrow.SetActive(true);
+            curveCreateFlg = true;
+        }
+
+        if (aniStateInfo.normalizedTime >= _secondSpeed)
+        {
+            //　現在矢を持っているなら
+            if (arrow)
+            {
+                // 矢を放つ処理
+                ShootArrow();
+            }
+        }
+
+        // アニメーションが終了したら、
+        if (aniStateInfo.normalizedTime >= 1.0f)
+        {
+            Debug.Log("OK");
+            // IDLE状態に戻る
+            state = STATE._IDLE;
+            ArrowCreate();
+            curveCreateFlg = false;
+        }
+    }
+
 
     /**********************************************************************
      * * 外部で使用している処理
      * *******************************************************************/
-
     // 敵の状態に合わせてテキストを返す処理
     public string EnemyTextType()
     {
