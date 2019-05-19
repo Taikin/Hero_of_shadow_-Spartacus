@@ -9,13 +9,19 @@ public class Sparutakusu_Main : MonoBehaviour {
     public Animator animator;
     public AudioClip DethSE;
     AudioSource audiosource;
-    private int Time;
+    private float GameOverTime;
     public bool TimeFlg;
 
     // スパルタクスがやられる時に炎を小さくする
     private bool FireEffeFlg;
     GameObject Effect_Child;
     FireEffect_Main fireeffect_main;
+
+    // スパルタクスがやられたときにスパルタクスもやられる
+    [SerializeField, Header("スパルタクスの影がやられたとき")]
+    private GameObject ShadowSparutakusu;
+    ShadowSparutakusu_Main shadow_main;
+   // public bool SparutakusuHitFlg;
 
     // Use this for initialization
     void Start()
@@ -24,23 +30,37 @@ public class Sparutakusu_Main : MonoBehaviour {
         audiosource = GetComponent<AudioSource>();
         animator.SetBool("is_Run", true);
         animator.SetBool("is_RoundKick", false);
-        Time = 0;
+        GameOverTime = 0;
         TimeFlg = false;
+
+        shadow_main = ShadowSparutakusu.GetComponent<ShadowSparutakusu_Main>();
+       // SparutakusuHitFlg = false;
     }
 
     // Update is called once per frame
-    void Update()
-    // void FixidUpdate()
+    //void Update()
+    void FixedUpdate()
     {
         if (TimeFlg == true)
         {
-            Time++;
+            GameOverTime += Time.deltaTime;
         }
 
-        if (Time >= 60)
+        if (GameOverTime >= 1.0f)
         {
-            Destroy(gameObject);
+           // Destroy(gameObject);
             SceneManager.LoadScene("GameOver");
+        }
+
+        if (shadow_main.ShadowHit == true)
+        {
+            //SparutakusuHitFlg = true;
+            animator.SetBool("is_Run", false);
+            animator.SetBool("is_RoundKick", true);
+            audiosource.PlayOneShot(DethSE);
+            Debug.Log("OK");
+            TimeFlg = true;
+
         }
     }
 
@@ -50,11 +70,11 @@ public class Sparutakusu_Main : MonoBehaviour {
         {
             var controller = Sparutakusu.gameObject.GetComponent<EntityArrowController_Main>();
            controller.DestroyArrow();
-            animator.SetBool("is_Run", false);
-            animator.SetBool("is_RoundKick", true);
-            audiosource.PlayOneShot(DethSE);
-            Debug.Log("OK");
-            TimeFlg = true;
+            //animator.SetBool("is_Run", false);
+            //animator.SetBool("is_RoundKick", true);
+            //audiosource.PlayOneShot(DethSE);
+            //Debug.Log("OK");
+            //TimeFlg = true;
         }
     }
 }

@@ -8,10 +8,12 @@ public class ShadowSparutakusu_Main : MonoBehaviour {
     private float Shadow_Width, Shadow_Length;
     private float Shadow_x, Shadow_y, Shadow_z;
     public bool PerDecision;
+    public bool ShadowHit; // スパルタクスの影が矢に当たった時
+
     private Animator ShadowAnimation;
 
     // スパルタクスの影に当たった時にフェードとアウト処理
-    private bool ShadowDeleteFlg;
+    public bool ShadowDeleteFlg;
     GameObject shadow_parent;
     ShadowSparutaDilecter_Main shadowsparutadilectoer;
 
@@ -27,13 +29,14 @@ public class ShadowSparutakusu_Main : MonoBehaviour {
         Shadow_z = -9.333f;
         shadow_parent = transform.parent.gameObject;
         shadowsparutadilectoer = shadow_parent.GetComponent<ShadowSparutaDilecter_Main>();
+        ShadowHit = false;
 
         PerDecision = false;
     }
 
     // Update is called once per frame
-    void Update()
-    // void FixidUpdate()
+    //void Update()
+    void FixedUpdate()
     {
         this.transform.localScale = new Vector2(Shadow_Width, Shadow_Length);
         //this.transform.localPosition = new Vector3(Shadow_x, Shadow_y, Shadow_z);
@@ -51,6 +54,7 @@ public class ShadowSparutakusu_Main : MonoBehaviour {
           //  Debug.Log("ゲームオーバー");
             PerDecision = true;
             ShadowDeleteFlg = true;
+            ShadowHit = true;
             ShadowAnimation.SetBool("Delete", true);
         }
     }

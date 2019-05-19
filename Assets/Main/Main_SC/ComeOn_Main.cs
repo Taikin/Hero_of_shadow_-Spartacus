@@ -52,8 +52,8 @@ public class ComeOn_Main : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-        // void FixidUpdate()
+    // void Update()
+    void FixedUpdate()
     {
        // Debug.Log(enemyGeneratorCon._CheckActiveEnemy());
         //if (stopFlg)
@@ -92,12 +92,12 @@ public class ComeOn_Main : MonoBehaviour
                     //controller._EscapeEnemy = prefab;
 
                     //洞窟を出します
-                    caveObj = Instantiate(Curve, new Vector3(3.5f, 1.07f, -9.8f), Curve.transform.rotation);
+                    caveObj = Instantiate(Curve, new Vector3(4.1f, 0.99f, -9.8f), Curve.transform.rotation);
                     for (int i = 0; i < 6; i++)
                     {
                         // 仲間を生成
-                        GameObject frendPrefab = Instantiate(Frend, new Vector3(1.73f + distance[i], 0.773f, -9.383f), Frend.transform.rotation);
-                        var controller = frendPrefab.GetComponent<FriendController>();
+                        GameObject frendPrefab = Instantiate(Frend, new Vector3(2.3f + distance[i], 0.7f, -9.4f), Frend.transform.rotation);
+                        var controller = frendPrefab.GetComponent<FriendController_Main>();
                         controller._EscapeEnemy = prefab;
                         // 一番最初の敵を止める
                         //if (i == 0) { controller._StopFlg = true; }

@@ -251,7 +251,6 @@ public class EnemyController_Main : MonoBehaviour {
             // アニメーションが終了したら、
             if (aniStateInfo.normalizedTime >= 1.0f)
             {
-                Debug.Log("OK");
                 // IDLE状態に戻る
                 state = STATE._IDLE;
                 ArrowCreate();

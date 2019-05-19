@@ -29,21 +29,23 @@ public class FireEffect_Main : MonoBehaviour {
     private Vector3 End_Passing;
     private float QuenchingTimer;//秒数(時間)
     private bool moveone_Flg;
+    private float EndTimer; //追加
 
     Sparutakusu_Main spautakusu_main;
 
     void Start()
     {
         spautakusu_main = Suparutakusu.GetComponent<Sparutakusu_Main>();
-        End_Passing.x = 0;
     }
 
-    void Update()
-    // void FixidUpdate()
+    //void Update()
+    void FixedUpdate()
     {
         division();
 
+
         QuenchingTimer += Time.deltaTime;
+
         if (QuenchingTimer >= Firsttime)
         {
             Firstin_Flg = true;
@@ -60,15 +62,25 @@ public class FireEffect_Main : MonoBehaviour {
                 flameEfect.transform.localScale += new Vector3(-flameSizeX, -flameSizeY, -flameSizeZ);
             }
         }
-        if (spautakusu_main.TimeFlg)
+        /*************ここ***************/
+        if (QuenchingTimer >= 0 && spautakusu_main.TimeFlg)
         {
-            if (End_Passing.x <= flameEfect.transform.localScale.x && moveone_Flg == false)
+
+            if (End_Passing.x <= flameEfect.transform.localScale.x)
             {
-                flameEfect.transform.localScale += new Vector3(-flameSizeX, -flameSizeY, -flameSizeZ);
-                moveone_Flg = true;
+                EndTimer += Time.deltaTime;
+                if (EndTimer <= 1)
+                {
+                    moveone_Flg = true;
+                    flameEfect.transform.localScale += new Vector3(-flameSizeX, -flameSizeY, -flameSizeZ);
+                }
             }
         }
-
+        if (0 >= flameEfect.transform.localScale.x)
+        {
+            flameEfect.SetActive(false);
+        }
+        /****************ここまで******************/
     }
 
     void division()
@@ -90,9 +102,15 @@ public class FireEffect_Main : MonoBehaviour {
                 Tow_Passing.x /= 3;
                 SecondOut_Flg = true;
             }
-            
+            /***************ここ***********/
+            if (spautakusu_main.TimeFlg)
+            {
+                End_Passing = Passing;
+                End_Passing.x = 0;
+                //moveone_Flg = true;
+            }
+            /****************ここまで***************/
+
         }
-        //Debug.Log(spautakusu_main.TimeFlg);
-        
     }
 }

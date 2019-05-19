@@ -39,7 +39,7 @@ public class ShadowShild_Main : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     // void FixidUpdate()
     {
         // 大きさ・位置・回転
@@ -50,17 +50,6 @@ public class ShadowShild_Main : MonoBehaviour {
         Vertical = Input.GetAxis("Vertical");
 
         Distance += Time.deltaTime;
-
-        //if (Time != 0 && Distance != 60)
-        //{
-        //    Time--;
-        //}
-        //else if (Time == 0)
-        //{
-        //    Time = 60;
-        //    Distance += 1;
-        //}
-
 
         if ((Distance >= 20 && Distance <= 23))
         {

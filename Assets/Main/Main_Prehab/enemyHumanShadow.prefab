@@ -6980,6 +6980,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   DethSE: {fileID: 8300000, guid: 951cc5acd9e18674cafa26184d2129e7, type: 3}
+  TimeFlg: 0
+  ShadowSparutakusu: {fileID: 0}
 --- !u!114 &114545627307171678
 MonoBehaviour:
   m_ObjectHideFlags: 1

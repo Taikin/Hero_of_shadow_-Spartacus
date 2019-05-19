@@ -14,6 +14,7 @@ public class ShadowSparutaDilecter_Main : MonoBehaviour {
 
     private bool ShadowDelFlg;
     public bool shadowdeleteflg { set { ShadowDelFlg = value; } }
+    
 
     // Use this for initialization
     void Start () {
@@ -23,15 +24,15 @@ public class ShadowSparutaDilecter_Main : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update ()
-    // void FixidUpdate()
+    //void Update ()
+    void FixedUpdate()
     {
         sr1.color = new Color(red, green, blue, Deletealfa);
         sr2.color = new Color(red, green, blue, Deletealfa);
         if (ShadowDelFlg == true)
         {
-
             Deletealfa -= Deletespeed;
+
         }
 
     }
